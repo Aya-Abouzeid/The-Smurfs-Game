@@ -16,7 +16,8 @@ public class shapeFactory {
 		
 		return shapeFactory;
 	}
-	
+	//not finshed
+	//will randomize shape
 
 
 }

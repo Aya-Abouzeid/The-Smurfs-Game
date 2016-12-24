@@ -1,15 +1,16 @@
 package factories;
 
+import javafx.scene.Scene;
 
 public class sceneFactory {
 
-	private sceneFactory sceneFactory;
+	private static sceneFactory sceneFactory;
 	
 	private sceneFactory(){
 		
 	}
 	
-	protected sceneFactory getSceneFactory(){
+	public static sceneFactory getSceneFactory(){
 		
 		if(sceneFactory == null){
 			return sceneFactory = new sceneFactory();
@@ -17,11 +18,14 @@ public class sceneFactory {
 		
 		return sceneFactory;
 	}
-	
-//	protected Scene getScene(){
-//		
-//		return new Scene();
-//	}
+	//not finisheds
+	public Scene getScene(String sceneName){
+		Scene s = null;
+		switch(sceneName){
+		
+		}
+		return s;
+	}
 	
 	
 	
