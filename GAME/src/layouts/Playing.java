@@ -29,12 +29,10 @@ public class Playing extends Application implements layout {
 
         classLoading classloading = new classLoading();
         Constructor<?>[] con = classloading.loadedShapes.get(0).getConstructors();
-        System.out.println(con.length);
         con[0].newInstance(Color.AZURE);
         Method m = classloading.loadedShapes.get(0).getMethods()[0];
-        System.out.println(m.getName()); // -- el mafrood getShape
-        //classloading.loadedShapes.get(0).getMethod("getShape");
-       // pane.setCenter((Node)(classloading.loadedShapes.get(0).getMethod("getShape")));
+        classloading.loadedShapes.get(0).getMethod("getShape");
+        //pane.setCenter((Node)classloading.loadedShapes.get(0).getMethod("getShape"));
 
         Scene scene = new Scene(pane, 300, 400);
 
