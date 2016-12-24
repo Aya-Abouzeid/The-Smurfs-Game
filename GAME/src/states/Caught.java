@@ -1,6 +1,6 @@
 package states;
 
-public class Cought implements State{
+public class Caught implements State{
 
     @Override
     public void dequeue() {
@@ -9,7 +9,7 @@ public class Cought implements State{
     }
 
     @Override
-    public void isCought() {
+    public void isCaught() {
         // TODO Auto-generated method stub
 
     }

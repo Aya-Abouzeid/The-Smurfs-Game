@@ -9,7 +9,7 @@ public class Falling implements State{
     }
 
     @Override
-    public void isCought() {
+    public void isCaught() {
         // TODO Auto-generated method stub
 
     }
