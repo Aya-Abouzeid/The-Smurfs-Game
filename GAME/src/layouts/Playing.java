@@ -22,7 +22,7 @@ public class Playing extends Application implements layout {
     public void start(Stage primaryStage) throws URISyntaxException, MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
         BorderPane pane = new BorderPane();
 
-        ImageView player1 = new ImageView(new Image(getClass().getResource("/images/player1.png").toURI().toString()));
+        ImageView player1 = new ImageView(new Image("file:player1.png"));
         player1.setFitHeight(100);
         player1.setPreserveRatio(true);
         pane.setBottom(player1);
@@ -33,7 +33,12 @@ public class Playing extends Application implements layout {
         Method m = classloading.loadedShapes.get(0).getMethods()[0];
         classloading.loadedShapes.get(0).getMethod("getShape");
         //pane.setCenter((Node)classloading.loadedShapes.get(0).getMethod("getShape"));
-
+//        final URL resource = getClass().getResource("BBC.mp3");
+//        final Media media = new Media(resource.toString());
+//        final MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        mediaPlayer.play();
+        //MediaPlayer mediaPlayer = new MediaPlayer(new Media("file:BBC.mp3"));
+       // mediaPlayer.play();
         Scene scene = new Scene(pane, 300, 400);
 
         primaryStage.setTitle("Playing");
