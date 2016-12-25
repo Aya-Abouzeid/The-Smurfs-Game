@@ -2,19 +2,21 @@ package layouts;
 
 import factories.buttonFactory;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 
-public class Instructions implements layout {
+public class EndGame implements layout{
 
 	private Scene scene;
 	private buttonFactory factory;
 
-	public Instructions() {
+	public EndGame() {
 		factory = buttonFactory.getButtonFactory();
-		VBox root = new VBox();
-		root.getChildren().add(factory.getButton("Main Menu").getButton());
-		root.setAlignment(Pos.CENTER);
+		StackPane root = new StackPane();
+		Node b = factory.getButton("Main Menu").getButton();
+		root.getChildren().add(b);
+		StackPane.setAlignment(b, Pos.BOTTOM_CENTER);
 		scene = new Scene(root,windowWidth, windowHeight);
 	}
 
@@ -22,5 +24,5 @@ public class Instructions implements layout {
 	public Scene getScene() {
 		return scene;
 	}
-
+	
 }

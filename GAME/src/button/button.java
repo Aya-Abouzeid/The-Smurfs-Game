@@ -1,41 +1,43 @@
 package button;
 
-public class button implements buttonInterface{
+import controller.eventHandler;
+import javafx.scene.control.Button;
 
-	@Override
-	public void setX(int x) {
-		// TODO Auto-generated method stub
-		
+public abstract class button {
+	protected Button b;
+	eventHandler handler = eventHandler.getInstance();
+	
+	public button() {
+		createButton();
+		setStyle();
+		setX();
+		setY();
+		setName();
+		setAction();
+	}
+	
+	public Button getButton() {
+		return b;
+	}
+	
+	private void createButton() {
+		Button newButton = new Button();
+		b = newButton;
 	}
 
-	@Override
-	public void setY(int y) {
-		// TODO Auto-generated method stub
-		
+	private void setStyle() {
+		////////////////// styling
 	}
 
-	@Override
-	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public boolean isClicked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setWidth(int width) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setHeight(int height) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void setX();
+	public abstract void setY();
+	public abstract void setName();
+	public abstract void setAction();
+	
+	
+//	public boolean isClicked();
+//	public void setWidth(int width);
+//	public void setHeight(int height);
 
 }
