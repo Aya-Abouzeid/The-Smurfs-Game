@@ -59,25 +59,22 @@ public class tryingShapeMotion extends Application {
 	}
 
 	public void draw (GraphicsContext g ){
-//			    int  position = Math.abs((rand.nextInt(400)*315123123 + 50)%400);
-			    
-	            double y = (counter)%500;
-	            double y2 = (counter2)%500;
 
-	if(y== 0.0){
-		counter = 500; // increment position y by1
-//		x = position;
-	}
-	else if(y2== 0.0){
-		counter2 = 500;
-//		x2 = position;
-	}
-	newshape.setX(x);
-   newshape.setY(y);
 	 g.clearRect(0, 0, 500, 500);
-//	 for(int i=0; i<pool.po)
-     newshape.drawShape(g);
-     //	            g.drawImage(newshape.getShape(), x, y);
+	 
+	 fallingShapes.add(pool.borrowObject());
+	 for(int i =0 ; i<fallingShapes.size() ; i++){
+		 if(fallingShapes.get(i).getY() == 500){
+			 pool.returnObject(fallingShapes.get(i));
+
+			 fallingShapes.remove(i);
+		 }
+	 else
+		 {fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 1.0);
+		  fallingShapes.get(i).drawShape(g);
+		 }
+     
+	 }
 				counter++;
 				counter2++;
 

@@ -23,8 +23,8 @@ public class ellipse extends Shape {
 		ellipseShape.setCenterY(10.0);
 		ellipseShape.setCenterX(10.0);
 
-		ellipseShape.setRadiusX(25.0f);
-		ellipseShape.setRadiusY(5.0f);
+		ellipseShape.setRadiusX(45.0f);
+		ellipseShape.setRadiusY(20.0f);
 		ellipseShape.setStrokeWidth(2);
 		ellipseShape.setStroke(Color.BLACK);
 		ellipseShape.setFill(color);
@@ -36,7 +36,7 @@ public class ellipse extends Shape {
 //	}
 	public void drawShape(GraphicsContext gc){
 		gc.setFill(this.color);
-		gc.fillOval(x - 25, y - 10.0 , 25.0, 5.0f);
+		gc.fillOval(x - 25, y - 10.0 , 55.0, 25.0f);
 	}
 	public  Ellipse getShape(){
 		return 	this.ellipseShape;

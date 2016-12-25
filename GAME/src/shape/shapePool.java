@@ -35,7 +35,7 @@ public class shapePool {
 		int position = Math.abs((rand.nextInt(400) * 315123123 + 50) % 400);
 		shape.setX(position);
 		shape.setY(y);
-		y = y - 10.0;
+		y = y - 20.0;
 		return shape;
 	}
 
