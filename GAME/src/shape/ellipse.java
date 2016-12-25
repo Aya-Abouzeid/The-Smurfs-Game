@@ -1,35 +1,46 @@
 package shape;
 
+import java.util.Random;
+
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import states.*;
 
-public class ellipse implements shapeInterface{
+public class ellipse extends Shape {
+	private Random randomize = new Random();
+	private Ellipse ellipseShape;
+	private State state;
+	private Color color;
+	private double x;
+	private double y;
+	private Color[] colors = { Color.RED, Color.BLUE, Color.PINK, Color.ORANGE ,Color.GOLD };
 
-    private Ellipse ellipse;
-    private State state;
-    private double x;
-    private double y;
+	public ellipse() {
+		Color c = colors[randomize.nextInt(colors.length)];
+		this.color = c;
+		ellipseShape = new Ellipse();
+		ellipseShape.setCenterY(10.0);
+		ellipseShape.setCenterX(10.0);
 
-    // -- you would send CenterX and CenterY which are generated randomly -- //
-    public ellipse(Color color) {
-
-        ellipse = new Ellipse();
-        {
-            ellipse.setRadiusX(25.0f);
-            ellipse.setRadiusY(5.0f);
-        }
-
-        ellipse.setStrokeWidth(2);
-        ellipse.setStroke(Color.BLACK);
-        ellipse.setFill(color);
-    }
-
-    public Ellipse getEllipse() {
-        return ellipse;
-    }
-
-    @Override
+		ellipseShape.setRadiusX(25.0f);
+		ellipseShape.setRadiusY(5.0f);
+		ellipseShape.setStrokeWidth(2);
+		ellipseShape.setStroke(Color.BLACK);
+		ellipseShape.setFill(color);
+	}
+//
+//	public ellipse getEllipse() {
+//		return new ellipse();
+//	}
+	public void drawShape(GraphicsContext gc){
+		gc.setFill(this.color);
+		gc.fillOval(x - 25, y - 10.0 , 25.0, 5.0f);
+	}
+	public  Ellipse getShape(){
+		return 	this.ellipseShape;
+	}
+	@Override
 	public double getX() {
 		// TODO Auto-generated method stub
 		return this.x;
@@ -45,7 +56,7 @@ public class ellipse implements shapeInterface{
 	public void setX(double x) {
 		// TODO Auto-generated method stub
 		this.x = x;
-        ellipse.setCenterX(x);
+		this.ellipseShape.setCenterX(x);
 
 	}
 
@@ -53,7 +64,7 @@ public class ellipse implements shapeInterface{
 	public void setY(double y) {
 		// TODO Auto-generated method stub
 		this.y = y;
-        ellipse.setCenterY(y);
+		this.ellipseShape.setCenterY(y);
 
 	}
 
@@ -68,6 +79,10 @@ public class ellipse implements shapeInterface{
 		// TODO Auto-generated method stub
 		this.state = s;
 	}
-    
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return this.color;
+	}
 
 }
