@@ -65,8 +65,9 @@ public class tryingShapeMotion extends Application {
 				pool.returnObject(fallingShapes.get(i));
 
 				fallingShapes.remove(i);
+				
 			} else {
-				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 1.0);
+				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 10.0);
 				fallingShapes.get(i).drawShape(g);
 			}
 

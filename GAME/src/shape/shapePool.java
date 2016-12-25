@@ -11,7 +11,7 @@ public class shapePool {
 
 	// --- Replace every Object with a SHAPE --- //
 	private Random rand = new Random();
-
+int counter =0;
 	private static shapePool shapePoolSinglton = null;
 	private shapeFactory factory = shapeFactory.getShapeFactory();
 	private ConcurrentLinkedQueue<Shape> pool = new ConcurrentLinkedQueue<Shape>();
@@ -28,8 +28,10 @@ public class shapePool {
 
 	public Shape borrowObject() {
 		Shape shape;
-		if ((shape = pool.poll()) == null) {
+		shape = this.pool.poll();
+		if (shape == null) {
 			shape = CreateObject();
+			System.out.println(pool.size());
 		}
 		shape.setState(Falling.getFallingInstance());
 		int position = Math.abs((rand.nextInt(400) * 315123123 + 50) % 400);
@@ -41,7 +43,10 @@ public class shapePool {
 
 	public void returnObject(Shape shape) {
 		if (shape != null) {
+			System.out.println("heree");
 			this.pool.add(shape);
+			System.out.println(pool.size());
+
 			shape.setState(Stored.getStoredInstance());
 		}
 	}
