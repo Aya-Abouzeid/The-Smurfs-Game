@@ -27,6 +27,10 @@ public class tryingShapeMotion extends Application {
 	private shapePool pool = shapePool.getPoolInstance();
 	private int counter = 0;
 	private ArrayList<shape.Shape> fallingShapes = new ArrayList<shape.Shape>();
+	Image galaxy = new Image( "file:galaxy2.png" );
+	
+	Image smurfette = new Image( "file:Smurfette-original.png" );
+
 
 	public static void main(String[] args) {
 		launch(args);
@@ -35,17 +39,19 @@ public class tryingShapeMotion extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		primaryStage.setTitle("Timeline Example");
+		primaryStage.setTitle("Game");
 
 		final Group root = new Group();
-		Scene scene = new Scene(root, 500, 500, Color.WHITE);
+		Scene scene = new Scene(root, 800, 800, Color.WHITE);
 		primaryStage.setScene(scene);
 
-		Canvas canvas = new Canvas(500, 500);
+		Canvas canvas = new Canvas(800, 800);
 		root.getChildren().add(canvas);
 		fallingShapes.add(pool.borrowObject());
-
 		final GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.drawImage(galaxy, 0, 0);
+		gc.drawImage(smurfette, 0, 0);
+
 		gc.setStroke(Color.BLACK);
 		new AnimationTimer() {
 			public void handle(long currentNanoTime) {
@@ -56,14 +62,18 @@ public class tryingShapeMotion extends Application {
 		primaryStage.show();
 	}
 
-	public void draw(GraphicsContext g) {
+	public void draw(GraphicsContext gc) {
 
-		g.clearRect(0, 0, 500, 500);
+		gc.clearRect(0, 0, 800, 800);
+
+		gc.drawImage(galaxy, 0, 0);
+		gc.drawImage(smurfette, 0, 0);
+
 		counter++;
 		if (counter % 20 == 0)
 			fallingShapes.add(pool.borrowObject());
 		for (int i = 0; i < fallingShapes.size(); i++) {
-			if (fallingShapes.get(i).getY() >= 500) {
+			if (fallingShapes.get(i).getY() >= 800) {
 				pool.returnObject(fallingShapes.get(i));
 
 				fallingShapes.remove(i);
@@ -71,7 +81,7 @@ public class tryingShapeMotion extends Application {
 			} else {
 				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 4.0); // controls
 																				// speed
-				fallingShapes.get(i).drawShape(g);
+				fallingShapes.get(i).drawShape(gc);
 			}
 		}
 	}

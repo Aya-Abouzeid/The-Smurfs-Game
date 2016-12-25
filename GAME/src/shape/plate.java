@@ -14,10 +14,11 @@ public class plate extends Shape {
 	private double x;
 	private double y;
 	private Color color;
-	private Double[] vertices = { 0.0, 0.0, 20.0, 10.0, 70.0, 10.0, 90.0, 0.0};
-	private double[] xVertices= {vertices[0], vertices[2],vertices[4],vertices[6]};
-	private double[] yVertices= {vertices[1], vertices[3],vertices[5],vertices[7]};
-	private Color[] colors = { Color.RED, Color.BLUE, Color.PINK, Color.ORANGE, Color.GOLD };
+	private Double[] vertices = { 0.0, 0.0, 20.0, 15.0, 70.0, 15.0, 90.0, 0.0 };
+	private double[] xVertices = { vertices[0], vertices[2], vertices[4], vertices[6] };
+	private double[] yVertices = { vertices[1], vertices[3], vertices[5], vertices[7] };
+	private Color[] colors = { Color.RED, Color.BLUE, Color.PINK, Color.CYAN, Color.GOLD, color.BLUEVIOLET,
+			color.GREENYELLOW ,color.DEEPPINK , color.BLACK , color.DARKGREEN};
 
 	// --- you would send me 1 coordinate generated randomly and I should
 	// calculate the rest --- //
@@ -32,19 +33,19 @@ public class plate extends Shape {
 		this.state = Stored.getStoredInstance();
 	}
 
-//	public plate getPlate() {
-//		return new plate();
-//	}
-	
-	public void drawShape(GraphicsContext gc){
+	// public plate getPlate() {
+	// return new plate();
+	// }
+
+	public void drawShape(GraphicsContext gc) {
 		gc.setFill(this.color);
-		gc.fillPolygon(xVertices,
-                yVertices,
-                4);
+		gc.fillPolygon(xVertices, yVertices, 4);
 	}
-	public Polygon getShape(){
-		return 	this.platePolygon;
+
+	public Polygon getShape() {
+		return this.platePolygon;
 	}
+
 	@Override
 	public double getX() {
 		// TODO Auto-generated method stub
@@ -56,7 +57,6 @@ public class plate extends Shape {
 		// TODO Auto-generated method stub
 		return this.y;
 	}
-	// = { x, y, x+20.0, y+10.0, x+70.0, y+10.0, x+90.0, y};
 
 	@Override
 	public void setX(double x) {
@@ -77,12 +77,12 @@ public class plate extends Shape {
 	public void setY(double y) {
 		// TODO Auto-generated method stub
 		this.vertices[1] = y;
-		this.vertices[3] = y + 10.0;
-		this.vertices[5] = y + 10.0;
+		this.vertices[3] = y + 15.0;
+		this.vertices[5] = y + 15.0;
 		this.vertices[7] = y;
 		this.yVertices[0] = y;
-		this.yVertices[1] = y + 10.0;
-		this.yVertices[2] = y + 10.0;
+		this.yVertices[1] = y + 15.0;
+		this.yVertices[2] = y + 15.0;
 		this.yVertices[3] = y;
 		platePolygon.getPoints().addAll(vertices);
 		this.y = y;

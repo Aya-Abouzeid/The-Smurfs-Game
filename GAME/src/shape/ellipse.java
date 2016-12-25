@@ -14,7 +14,8 @@ public class ellipse extends Shape {
 	private Color color;
 	private double x;
 	private double y;
-	private Color[] colors = { Color.RED, Color.BLUE, Color.PINK, Color.ORANGE ,Color.GOLD };
+	private Color[] colors = { Color.RED, Color.BLUE, Color.PINK, Color.CYAN, Color.GOLD, color.BLUEVIOLET,
+			color.GREENYELLOW, color.DEEPPINK , color.BLACK , color.DARKGREEN};
 
 	public ellipse() {
 		Color c = colors[randomize.nextInt(colors.length)];
@@ -23,24 +24,27 @@ public class ellipse extends Shape {
 		ellipseShape.setCenterY(10.0);
 		ellipseShape.setCenterX(10.0);
 
-		ellipseShape.setRadiusX(45.0f);
-		ellipseShape.setRadiusY(20.0f);
+		ellipseShape.setRadiusX(60.0f);
+		ellipseShape.setRadiusY(25.0f);
 		ellipseShape.setStrokeWidth(2);
 		ellipseShape.setStroke(Color.BLACK);
 		ellipseShape.setFill(color);
 		this.state = Stored.getStoredInstance();
 	}
-//
-//	public ellipse getEllipse() {
-//		return new ellipse();
-//	}
-	public void drawShape(GraphicsContext gc){
+
+	//
+	// public ellipse getEllipse() {
+	// return new ellipse();
+	// }
+	public void drawShape(GraphicsContext gc) {
 		gc.setFill(this.color);
-		gc.fillOval(x - 25, y - 10.0 , 55.0, 25.0f);
+		gc.fillOval(x - 25, y - 10.0, 60.0, 25.0f);
 	}
-	public  Ellipse getShape(){
-		return 	this.ellipseShape;
+
+	public Ellipse getShape() {
+		return this.ellipseShape;
 	}
+
 	@Override
 	public double getX() {
 		// TODO Auto-generated method stub
@@ -80,6 +84,7 @@ public class ellipse extends Shape {
 		// TODO Auto-generated method stub
 		this.state = s;
 	}
+
 	@Override
 	public Color getColor() {
 		// TODO Auto-generated method stub
