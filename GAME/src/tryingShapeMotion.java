@@ -23,12 +23,9 @@ import factories.*;
 import shape.*;
 
 public class tryingShapeMotion extends Application {
-	double x;
-	double x2;
+
 	private shapePool pool = shapePool.getPoolInstance();
-	shape.Shape newshape;
-	int counter2 = 500;
-	int counter = 500;
+
 	private ArrayList<shape.Shape> fallingShapes = new ArrayList<shape.Shape>();
 
 	public static void main(String[] args) {
@@ -58,25 +55,22 @@ public class tryingShapeMotion extends Application {
 		primaryStage.show();
 	}
 
-	public void draw (GraphicsContext g ){
+	public void draw(GraphicsContext g) {
 
-	 g.clearRect(0, 0, 500, 500);
-	 
-	 fallingShapes.add(pool.borrowObject());
-	 for(int i =0 ; i<fallingShapes.size() ; i++){
-		 if(fallingShapes.get(i).getY() == 500){
-			 pool.returnObject(fallingShapes.get(i));
+		g.clearRect(0, 0, 500, 500);
 
-			 fallingShapes.remove(i);
-		 }
-	 else
-		 {fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 1.0);
-		  fallingShapes.get(i).drawShape(g);
-		 }
-     
-	 }
-				counter++;
-				counter2++;
+		fallingShapes.add(pool.borrowObject());
+		for (int i = 0; i < fallingShapes.size(); i++) {
+			if (fallingShapes.get(i).getY() == 500) {
+				pool.returnObject(fallingShapes.get(i));
+
+				fallingShapes.remove(i);
+			} else {
+				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 1.0);
+				fallingShapes.get(i).drawShape(g);
+			}
 
 		}
+
+	}
 }
