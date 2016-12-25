@@ -15,11 +15,7 @@ private Falling(){
 		
 		return falling;
 	}
-    @Override
-    public void dequeue() {
-        // TODO Auto-generated method stub
-
-    }
+   
 
     @Override
     public boolean isCaught() {
@@ -27,22 +23,38 @@ private Falling(){
     	return false;
     }
 
-    @Override
-    public void isOnGround() {
-        // TODO Auto-generated method stub
-    	
-    }
+	@Override
+	public boolean isFalling() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
-    @Override
-    public void checkFalse() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void checkTrue() {
-        // TODO Auto-generated method stub
-
-    }
+	@Override
+	public boolean isStored() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+//	 @Override
+//	    public void dequeue() {
+//	        // TODO Auto-generated method stub
+//
+//	    }
+//    @Override
+//    public void isOnGround() {
+//        // TODO Auto-generated method stub
+//    	
+//    }
+//
+//    @Override
+//    public void checkFalse() {
+//        // TODO Auto-generated method stub
+//
+//    }
+//
+//    @Override
+//    public void checkTrue() {
+//        // TODO Auto-generated method stub
+//
+//    }
 
 }

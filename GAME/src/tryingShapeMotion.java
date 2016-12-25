@@ -25,7 +25,7 @@ import shape.*;
 public class tryingShapeMotion extends Application {
 
 	private shapePool pool = shapePool.getPoolInstance();
-
+	private int counter = 0;
 	private ArrayList<shape.Shape> fallingShapes = new ArrayList<shape.Shape>();
 
 	public static void main(String[] args) {
@@ -43,6 +43,7 @@ public class tryingShapeMotion extends Application {
 
 		Canvas canvas = new Canvas(500, 500);
 		root.getChildren().add(canvas);
+		fallingShapes.add(pool.borrowObject());
 
 		final GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.setStroke(Color.BLACK);
@@ -58,20 +59,20 @@ public class tryingShapeMotion extends Application {
 	public void draw(GraphicsContext g) {
 
 		g.clearRect(0, 0, 500, 500);
-
-		fallingShapes.add(pool.borrowObject());
+		counter++;
+		if (counter % 20 == 0)
+			fallingShapes.add(pool.borrowObject());
 		for (int i = 0; i < fallingShapes.size(); i++) {
-			if (fallingShapes.get(i).getY() == 500) {
+			if (fallingShapes.get(i).getY() >= 500) {
 				pool.returnObject(fallingShapes.get(i));
 
 				fallingShapes.remove(i);
-				
+				i--;
 			} else {
-				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 10.0);
+				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 4.0); // controls
+																				// speed
 				fallingShapes.get(i).drawShape(g);
 			}
-
 		}
-
 	}
 }

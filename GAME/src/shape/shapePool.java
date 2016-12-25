@@ -28,24 +28,22 @@ int counter =0;
 
 	public Shape borrowObject() {
 		Shape shape;
-		shape = this.pool.poll();
-		if (shape == null) {
+		
+		if ((shape = this.pool.poll()) == null) {
 			shape = CreateObject();
-			System.out.println(pool.size());
 		}
+
 		shape.setState(Falling.getFallingInstance());
 		int position = Math.abs((rand.nextInt(400) * 315123123 + 50) % 400);
 		shape.setX(position);
 		shape.setY(y);
-		y = y - 20.0;
+		y = y - 1.0;
 		return shape;
 	}
 
 	public void returnObject(Shape shape) {
 		if (shape != null) {
-			System.out.println("heree");
 			this.pool.add(shape);
-			System.out.println(pool.size());
 
 			shape.setState(Stored.getStoredInstance());
 		}
