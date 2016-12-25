@@ -1,10 +1,9 @@
 package states;
 
-public interface State {
-
-    public void dequeue();
-    public void isCaught();
-    public void onGround();
-    public void checkFalse();
-    public void checkTrue();
+public abstract class State {
+	abstract public void dequeue();
+	abstract public boolean isCaught();
+	abstract public void isOnGround();
+	abstract public void checkFalse();
+	abstract public void checkTrue();
 }

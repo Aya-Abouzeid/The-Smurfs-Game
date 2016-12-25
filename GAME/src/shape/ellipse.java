@@ -28,6 +28,7 @@ public class ellipse extends Shape {
 		ellipseShape.setStrokeWidth(2);
 		ellipseShape.setStroke(Color.BLACK);
 		ellipseShape.setFill(color);
+		this.state = Stored.getStoredInstance();
 	}
 //
 //	public ellipse getEllipse() {

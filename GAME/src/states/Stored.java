@@ -1,7 +1,21 @@
 package states;
 
-public class Stored implements State{
+public class Stored extends State{
 
+	private static Stored stored = null;
+
+	private Stored() {
+
+	}
+
+	public static Stored getStoredInstance() {
+
+		if (stored == null) {
+			return stored = new Stored();
+		}
+
+		return stored;
+	}
     @Override
     public void dequeue() {
         // TODO Auto-generated method stub
@@ -9,13 +23,13 @@ public class Stored implements State{
     }
 
     @Override
-    public void isCaught() {
+    public boolean isCaught() {
         // TODO Auto-generated method stub
-
+    	return false;
     }
 
     @Override
-    public void onGround() {
+    public void isOnGround() {
         // TODO Auto-generated method stub
 
     }

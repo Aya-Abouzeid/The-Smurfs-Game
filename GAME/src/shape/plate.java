@@ -29,6 +29,7 @@ public class plate extends Shape {
 		platePolygon.setStrokeWidth(2);
 		platePolygon.setStroke(Color.BLACK);
 		platePolygon.setFill(color);
+		this.state = Stored.getStoredInstance();
 	}
 
 //	public plate getPlate() {

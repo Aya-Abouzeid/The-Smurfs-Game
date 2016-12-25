@@ -1,35 +1,52 @@
 package states;
 
-public class Caught implements State{
+import factories.sceneFactory;
 
-    @Override
-    public void dequeue() {
-        // TODO Auto-generated method stub
+public class Caught extends State {
 
-    }
+	private static Caught caught = null;
 
-    @Override
-    public void isCaught() {
-        // TODO Auto-generated method stub
+	private Caught() {
 
-    }
+	}
 
-    @Override
-    public void onGround() {
-        // TODO Auto-generated method stub
+	public static Caught getcaughtInstance() {
 
-    }
+		if (caught == null) {
+			return caught = new Caught();
+		}
 
-    @Override
-    public void checkFalse() {
-        // TODO Auto-generated method stub
+		return caught;
+	}
 
-    }
+	@Override
+	public void dequeue() {
+		// TODO Auto-generated method stub
 
-    @Override
-    public void checkTrue() {
-        // TODO Auto-generated method stub
+	}
 
-    }
+	@Override
+	public boolean isCaught() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void isOnGround() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void checkFalse() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void checkTrue() {
+		// TODO Auto-generated method stub
+
+	}
 
 }

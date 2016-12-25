@@ -1,7 +1,20 @@
 package states;
 
-public class Falling implements State{
+public class Falling extends State{
+	private static Falling falling = null;
 
+private Falling(){
+		
+	}
+	
+	public static Falling getFallingInstance(){
+		
+		if(falling == null){
+			return falling = new Falling();
+		}
+		
+		return falling;
+	}
     @Override
     public void dequeue() {
         // TODO Auto-generated method stub
@@ -9,15 +22,15 @@ public class Falling implements State{
     }
 
     @Override
-    public void isCaught() {
+    public boolean isCaught() {
         // TODO Auto-generated method stub
-
+    	return false;
     }
 
     @Override
-    public void onGround() {
+    public void isOnGround() {
         // TODO Auto-generated method stub
-
+    	
     }
 
     @Override
