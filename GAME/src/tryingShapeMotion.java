@@ -1,37 +1,20 @@
 import java.util.ArrayList;
-import java.util.Random;
-import button.button;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
-import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
-import factories.*;
-import shape.*;
+import javafx.stage.Stage;
+import shape.shapePool;
 
 public class tryingShapeMotion extends Application {
 	private double screenWidth;
-	
+
 	private shapePool pool = shapePool.getPoolInstance();
 	private int counter = 0;
 	private ArrayList<shape.Shape> fallingShapes = new ArrayList<shape.Shape>();
@@ -47,11 +30,11 @@ public class tryingShapeMotion extends Application {
 		// TODO Auto-generated method stub
 		primaryStage.setTitle("Game");
 		primaryStage.setFullScreen(true);
-		
+
 		ImageView img = new ImageView(galaxy);
 		img.setPreserveRatio(true);
 		img.fitWidthProperty().bind(primaryStage.widthProperty());
-		
+
 		final Group root = new Group();
 
 		Scene scene = new Scene(root, primaryStage.getWidth(), primaryStage.getHeight(), Color.WHITE);
@@ -70,7 +53,8 @@ public class tryingShapeMotion extends Application {
 
 		gc.setStroke(Color.BLACK);
 		new AnimationTimer() {
-			public void handle(long currentNanoTime) {
+			@Override
+            public void handle(long currentNanoTime) {
 				draw(gc,primaryStage.getHeight() ,primaryStage.getWidth());
 			}
 		}.start();
@@ -89,12 +73,11 @@ public class tryingShapeMotion extends Application {
 		for (int i = 0; i < fallingShapes.size(); i++) {
 			if (fallingShapes.get(i).getY() >= height) {
 				pool.returnObject(fallingShapes.get(i));
-
 				fallingShapes.remove(i);
 				i--;
 			} else {
-				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 4.0); // controls
-																				// speed
+				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 4.0);
+
 				fallingShapes.get(i).drawShape(gc);
 			}
 		}
