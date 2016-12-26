@@ -36,10 +36,6 @@ public class shapeFactory {
             e.printStackTrace();
         }
 		return (Shape) crnt;
-//		if (shuffle == 0) {
-//			return new ellipse();
-//		} else
-//			return new plate();
 	}
 
 	public void setLoadedClasses(ArrayList<Class> loadedShapes) {

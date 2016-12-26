@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import layouts.classLoading;
+import player.Player;
+import shape.Shape;
 import shape.shapePool;
 
 public class tryingShapeMotion extends Application {
@@ -23,8 +25,8 @@ public class tryingShapeMotion extends Application {
     Image galaxy = new Image("file:galaxy2.png");
     Image smurfette = new Image("file:Smurfette-original.png");
     private static ArrayList<Class> loadedShapes;
-    private Player playe1 = new Player(null); // --- Send a path
-    private Player playe2 = new Player(null);
+    private Player player1 = new Player(null); // --- Send a path
+    private Player player2 = new Player(null);
     public static void main(String[] args) {
         loadSahpes();
         launch(args);
@@ -82,19 +84,24 @@ public class tryingShapeMotion extends Application {
         gc.clearRect(0, 0, width, height);
         gc.drawImage(smurfette, 0, 0);
         counter++;
-        if (counter % 10 == 0)
+        if (counter % 15 == 0)
             fallingShapes.add(pool.borrowObject(width));
         for (int i = 0; i < fallingShapes.size(); i++) {
             if (fallingShapes.get(i).getY() >= height) {
                 pool.returnObject(fallingShapes.get(i));
-                fallingShapes.remove(i);
-                i--;
+                fallingShapes.remove(i--);
+            }else if(fallingShapes.get(i).getX() == player1.getX() || fallingShapes.get(i).getX() == player2.getX()){
+                catchDetection(fallingShapes.get(i));
             }
             else {
                 fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 4.0);
-
                 fallingShapes.get(i).drawShape(gc);
             }
         }
+    }
+
+    private void catchDetection(Shape shape) {
+
+
     }
 }

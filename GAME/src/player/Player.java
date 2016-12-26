@@ -1,3 +1,4 @@
+package player;
 import java.util.Stack;
 
 import shape.Shape;
@@ -8,6 +9,7 @@ public class Player {
     public double hight; // photo Hight
     private double rightStackHight;
     private double leftStackHight;
+    private double positionX;
     private Stack<Shape> rightStack;
     private Stack<Shape> leftStack;
 
@@ -51,6 +53,10 @@ public class Player {
 
     public void setLeftStackHight(double Hight) {
         this.leftStackHight = Hight;
+    }
+
+    public double getX() {
+        return positionX;
     }
 
 }
