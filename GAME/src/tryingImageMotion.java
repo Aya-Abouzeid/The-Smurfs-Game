@@ -25,9 +25,9 @@ import javafx.scene.paint.Color;
 public class tryingImageMotion extends Application {
 	double x;
 	double x2;
-	Image oscar = new Image("file:oscar.png");
+	Image galaxy = new Image("file:galaxy2.png");
 	Image oscar2 = new Image("file:oscars.png");
-	Image theme = new Image("file:Theme.jpg");
+	Image smurfette = new Image( "file:Smurfette-original.png" );
 
 	int counter2 = 500;
 	int counter = 500;
@@ -84,14 +84,12 @@ else if(y2== 0.0){
 }
 //            g.clearRect(0, 0, 500, 500);
             if(counter < 700)
-            g.drawImage(oscar, x2, y2);
-            else
-            {
+//            g.drawImage(galaxy, x2, y2);
+           
             g.clearRect(0, 0, 500, 500);
-            }
-            g.clearRect(0, 0, 500, 500);
+            g.drawImage( galaxy, 0, 0 );
 
-            g.drawImage( oscar2, x, y );
+            g.drawImage( smurfette, x, y );
 
 			counter++;
 			counter2++;

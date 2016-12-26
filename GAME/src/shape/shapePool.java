@@ -26,15 +26,15 @@ public class shapePool {
 		return shapePoolSinglton;
 	}
 
-	public Shape borrowObject() {
+	public Shape borrowObject(double width) {
 		Shape shape;
 
 		if ((shape = this.pool.poll()) == null) {
 			shape = CreateObject();
 		}
-
+	
 		shape.setState(Falling.getFallingInstance());
-		int position = Math.abs((rand.nextInt(700) * 315123123 + 50) % 700);
+		int position = (int) Math.abs((rand.nextInt((int) width) * 315123123 + 50) % (int)width);
 		shape.setX(position);
 		shape.setY(y);
 		y = y - 1.0;
