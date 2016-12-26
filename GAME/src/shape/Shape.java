@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import states.State;
 
-public abstract class Shape implements shapeIn{
+public abstract class Shape implements shapeInt{
 
 	@Override
     abstract public double getX();
@@ -32,4 +32,7 @@ public abstract class Shape implements shapeIn{
 
 	@Override
     abstract public void drawShape(GraphicsContext gc);
+
+	@Override
+    abstract public double getHieght();
 }

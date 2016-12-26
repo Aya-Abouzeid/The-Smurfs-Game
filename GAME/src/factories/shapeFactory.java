@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import shape.Shape;
-import shape.shapeIn;
+import shape.shapeInt;
 
 public class shapeFactory {
 	private Random randomize = new Random();
@@ -29,9 +29,9 @@ public class shapeFactory {
 	public Shape getShapeInstance() {
 		Class shuffle = shapeShuffler.get(randomize.nextInt(shapeShuffler.size()));
 		Constructor<?>[] con = shuffle.getConstructors();
-        shapeIn crnt = null;
+        shapeInt crnt = null;
         try {
-            crnt = (shapeIn) con[0].newInstance();
+            crnt = (shapeInt) con[0].newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }

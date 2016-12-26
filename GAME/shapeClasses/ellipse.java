@@ -8,13 +8,14 @@ import javafx.scene.shape.Ellipse;
 import states.State;
 import states.Stored;
 
-public class ellipse extends Shape implements shapeIn {
+public class ellipse extends Shape implements shapeInt {
 	private Random randomize = new Random();
 	private Ellipse ellipseShape;
 	private State state;
 	private Color color;
 	private double x;
 	private double y;
+	private double hight;
 	private Color[] colors = { Color.RED, Color.BLUE, Color.PINK, Color.CYAN, Color.GOLD, color.BLUEVIOLET,
 			color.GREENYELLOW, color.DEEPPINK , color.BLACK , color.DARKGREEN};
 
@@ -24,11 +25,11 @@ public class ellipse extends Shape implements shapeIn {
 		ellipseShape = new Ellipse();
 		ellipseShape.setCenterY(10.0);
 		ellipseShape.setCenterX(10.0);
-
 		ellipseShape.setRadiusX(60.0f);
 		ellipseShape.setRadiusY(25.0f);
 		ellipseShape.setFill(color);
 		this.state = Stored.getStoredInstance();
+		this.hight = 50.0f;
 	}
 
 	@Override
@@ -87,5 +88,10 @@ public class ellipse extends Shape implements shapeIn {
 		// TODO Auto-generated method stub
 		return this.color;
 	}
+
+    @Override
+    public double getHieght() {
+        return this.hight;
+    }
 
 }
