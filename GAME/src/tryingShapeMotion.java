@@ -15,15 +15,16 @@ import layouts.classLoading;
 import shape.shapePool;
 
 public class tryingShapeMotion extends Application {
-    private double screenWidth;
 
+    private double screenWidth;
     private shapePool pool = shapePool.getPoolInstance();
     private int counter = 0;
     private ArrayList<shape.Shape> fallingShapes = new ArrayList<shape.Shape>();
     Image galaxy = new Image("file:galaxy2.png");
     Image smurfette = new Image("file:Smurfette-original.png");
     private static ArrayList<Class> loadedShapes;
-
+    private Player playe1 = new Player(null); // --- Send a path
+    private Player playe2 = new Player(null);
     public static void main(String[] args) {
         loadSahpes();
         launch(args);
@@ -88,7 +89,8 @@ public class tryingShapeMotion extends Application {
                 pool.returnObject(fallingShapes.get(i));
                 fallingShapes.remove(i);
                 i--;
-            } else {
+            }
+            else {
                 fallingShapes.get(i).setY(fallingShapes.get(i).getY() + 4.0);
 
                 fallingShapes.get(i).drawShape(gc);
