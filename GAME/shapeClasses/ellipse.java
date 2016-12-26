@@ -5,9 +5,10 @@ import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
-import states.*;
+import states.State;
+import states.Stored;
 
-public class ellipse extends Shape {
+public class ellipse extends Shape implements shapeIn {
 	private Random randomize = new Random();
 	private Ellipse ellipseShape;
 	private State state;
@@ -26,22 +27,18 @@ public class ellipse extends Shape {
 
 		ellipseShape.setRadiusX(60.0f);
 		ellipseShape.setRadiusY(25.0f);
-		ellipseShape.setStrokeWidth(2);
-		ellipseShape.setStroke(Color.BLACK);
 		ellipseShape.setFill(color);
 		this.state = Stored.getStoredInstance();
 	}
 
-	//
-	// public ellipse getEllipse() {
-	// return new ellipse();
-	// }
-	public void drawShape(GraphicsContext gc) {
+	@Override
+    public void drawShape(GraphicsContext gc) {
 		gc.setFill(this.color);
 		gc.fillOval(x - 25, y - 10.0, 60.0, 25.0f);
 	}
 
-	public Ellipse getShape() {
+	@Override
+    public Ellipse getShape() {
 		return this.ellipseShape;
 	}
 
