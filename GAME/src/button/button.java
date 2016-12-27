@@ -1,19 +1,23 @@
 package button;
 
 import controller.eventHandler;
+import factories.imageFactory;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 
 public abstract class button {
 	protected Button b;
-	eventHandler handler = eventHandler.getInstance();
+	protected eventHandler handler = eventHandler.getInstance();
+	protected imageFactory imgFactory = imageFactory.getImageFactory();
+	protected ImageView image;
 	
 	public button() {
 		createButton();
-		setStyle();
 		setX();
 		setY();
 		setName();
 		setAction();
+		setStyle();
 	}
 	
 	public Button getButton() {
@@ -21,12 +25,13 @@ public abstract class button {
 	}
 	
 	private void createButton() {
-		Button newButton = new Button();
-		b = newButton;
+		 b = new Button();
 	}
 
-	private void setStyle() {
-		////////////////// styling
+	protected void setStyle() {
+		image.setFitHeight(75);
+		image.setFitHeight(100);
+		b.setGraphic(image);
 	}
 
 

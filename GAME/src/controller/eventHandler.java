@@ -1,17 +1,16 @@
 package controller;
 
-import javafx.application.Application;
 import layouts.ExitConfrmationWindow;
+import layouts.Game;
 import layouts.View;
 
 public class eventHandler {
 
 	private static eventHandler handler;
+	private gameController controller;
 	private View view;
-	private String[] args;
 
 	private eventHandler() {
-
 	}
 
 	public static eventHandler getInstance() {
@@ -22,10 +21,15 @@ public class eventHandler {
 	}
 
 	public void NewGame() {
-		view.setScene("Game");
+		Game gameScene = new Game(view.getHeight(), view.getWidth());
+		view.setScene(gameScene.getScene());
+		controller = new gameController(gameScene);
+		Thread game = new Thread(controller,"game begin");
+		game.start();
 	}
 
 	public void EscapeFromGame() {
+		System.out.println("pause");
 		view.setScene("pause");
 		
 	}
@@ -77,8 +81,6 @@ public class eventHandler {
 		this.view = view;
 	}
 	
-	public void setArgs(String[] args) {
-		this.args = args;
-	}
+	
 
 }

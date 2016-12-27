@@ -1,6 +1,10 @@
 package button;
 
+import java.io.File;
+
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class GameOptionsButton extends button {
@@ -8,22 +12,24 @@ public class GameOptionsButton extends button {
 	private final String ButtonName = "Options";
 	private final double coordX = 0;
 	private final double coordY = 0;
-	
+
 	@Override
 	public void setX() {
 		b.setLayoutX(coordX);
-		
+
 	}
 
 	@Override
 	public void setY() {
 		b.setLayoutY(coordY);
-		
+
 	}
 
 	@Override
 	public void setName() {
-		b.setText(ButtonName);
+		File file = new File("src\\images\\OPTIONS.png");
+		Image img = new Image(file.toURI().toString());
+		image = new ImageView(img);
 	}
 
 	@Override
@@ -33,7 +39,7 @@ public class GameOptionsButton extends button {
 			@Override
 			public void handle(MouseEvent arg0) {
 				handler.gameOptions();
-				
+
 			}
 
 		});

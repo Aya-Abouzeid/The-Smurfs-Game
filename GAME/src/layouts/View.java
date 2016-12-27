@@ -5,7 +5,9 @@ import factories.sceneFactory;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -20,12 +22,23 @@ public class View extends Application {
 		factory = sceneFactory.getSceneFactory();
 		window = arg0;
 		window.setTitle("Game");
-		scene = factory.getScene("MainMenu");
+		setDimentions();
+		scene = factory.getScene("MainMenu", window.getHeight(), window.getWidth());
 		setScene();
 		setExitConfirmation();
-		window.setFullScreen(false);
-        window.setFullScreen(true);
+		
         window.show();
+	}
+	
+	private void setDimentions() {
+		Screen screen = Screen.getPrimary();
+		Rectangle2D bounds = screen.getVisualBounds();
+
+		window.setX(bounds.getMinX());
+		window.setY(bounds.getMinY());
+		window.setWidth(bounds.getWidth());
+		window.setHeight(bounds.getHeight());
+		
 	}
 
 	private void setExitConfirmation() {
@@ -46,7 +59,17 @@ public class View extends Application {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				scene = factory.getScene(name);
+				scene = factory.getScene(name, window.getHeight(), window.getWidth());
+				window.setScene(scene);
+			}
+
+		});
+	}
+	public void setScene(final Scene newScene) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				scene = newScene;
 				window.setScene(scene);
 			}
 
@@ -62,6 +85,13 @@ public class View extends Application {
 				}
 			}
 		});
+	}
+	
+	public double getWidth() {
+		return window.getWidth();
+	}
+	public double getHeight() {
+		return window.getHeight();
 	}
 
 	public void exit() {

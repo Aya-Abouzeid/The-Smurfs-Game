@@ -1,17 +1,14 @@
 package layouts;
 
-import factories.buttonFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 
-public class gameOptions implements layout{
+public class gameOptions extends layout{
 
-	private Scene scene;
-	private buttonFactory factory;
 	
-	public gameOptions() {
-		factory = buttonFactory.getButtonFactory();
+	public gameOptions(double height, double width) {
+		super(height, width);
 		VBox root = new VBox();
 		
 		root.getChildren().add(factory.getButton("Game Options Return").getButton());
@@ -19,14 +16,4 @@ public class gameOptions implements layout{
 		
 		scene = new Scene(root,windowWidth, windowHeight);
 	}
-	
-	
-	
-	
-	@Override
-	public Scene getScene() {
-		
-		return scene;
-	}
-	
 }

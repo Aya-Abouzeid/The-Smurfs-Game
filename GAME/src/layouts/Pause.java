@@ -1,17 +1,14 @@
 package layouts;
 
-import factories.buttonFactory;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 
-public class Pause implements layout{
+public class Pause extends layout{
 
-	private Scene scene;
-	private buttonFactory factory;
 	
-	public Pause() {
-		factory = buttonFactory.getButtonFactory();
+	public Pause(double height, double width) {
+		super(height, width);
 		VBox vbox = new VBox(30);
 		
 		vbox.getChildren().add(factory.getButton("Continue Game").getButton());
@@ -23,14 +20,4 @@ public class Pause implements layout{
 		
 		scene = new Scene(vbox,windowWidth, windowHeight);
 	}
-	
-	
-	
-	
-	@Override
-	public Scene getScene() {
-		
-		return scene;
-	}
-
 }

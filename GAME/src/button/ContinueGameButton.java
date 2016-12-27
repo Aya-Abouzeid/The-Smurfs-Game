@@ -30,6 +30,11 @@ public class ContinueGameButton extends button {
 	public void setY() {
 		b.setLayoutY(coordY);
 	}
+	///////////////////////////////////////
+	@Override
+	protected void setStyle() {
+		
+	}
 
 	@Override
 	public void setName() {

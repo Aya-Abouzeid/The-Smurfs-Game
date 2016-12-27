@@ -6,12 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 
-public class EndGame implements layout{
+public class EndGame extends layout{
 
-	private Scene scene;
-	private buttonFactory factory;
-
-	public EndGame() {
+	public EndGame(double height, double width) {
+		super(height, width);
 		factory = buttonFactory.getButtonFactory();
 		StackPane root = new StackPane();
 		Node b = factory.getButton("Main Menu").getButton();
@@ -20,9 +18,5 @@ public class EndGame implements layout{
 		scene = new Scene(root,windowWidth, windowHeight);
 	}
 
-	@Override
-	public Scene getScene() {
-		return scene;
-	}
-	
+		
 }

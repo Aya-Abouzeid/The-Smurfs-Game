@@ -1,6 +1,10 @@
 package button;
 
+import java.io.File;
+
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class exitButton extends button {
@@ -23,7 +27,10 @@ public class exitButton extends button {
 
 	@Override
 	public void setName() {
-		b.setText(ButtonName);
+		File file = new File("src\\images\\EXITGAME.png");
+		System.out.println(file.getAbsolutePath());
+		Image img = new Image(file.toURI().toString());
+		image = new ImageView(img);
 	}
 
 	@Override

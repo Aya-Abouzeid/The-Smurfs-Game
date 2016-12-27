@@ -1,10 +1,6 @@
 package factories;
 
-import button.exitButton;
-import button.instructionsButton;
-import button.loadGameButton;
-import button.mainOptionsButton;
-import button.newGameButton;
+
 import javafx.scene.Scene;
 import layouts.*;
 
@@ -24,26 +20,30 @@ public class sceneFactory {
 		return sceneFactory;
 	}
 
-	public Scene getScene(String name) {
+	public Scene getScene(String name, double Height, double Width) {
 
+		layout scene;
+		
 		switch (name) {
 		case "Game":
-			return new Game().getScene();
+			scene =  new Game(Height, Width);break;
 		case "MainMenu":
-			return new Start().getScene();
+			scene =  new Start(Height, Width);break;
 		case "pause":
-			return new Pause().getScene();
+			scene =  new Pause(Height, Width);break;
 		case "MainOptions":
-			return new mainOptions().getScene();
+			scene =  new mainOptions(Height, Width);break;
 		case "GameOptions":
-			return new gameOptions().getScene();
+			scene =  new gameOptions(Height, Width);break;
 		case "Instructions":
-			return new Instructions().getScene();
+			scene =  new Instructions(Height, Width);break;
 		case "EndGame":
-			return new EndGame().getScene();
+			scene =  new EndGame(Height, Width);break;
 		default:
 			return null;
 		}
+		
+		return scene.getScene();
 
 	}
 }
