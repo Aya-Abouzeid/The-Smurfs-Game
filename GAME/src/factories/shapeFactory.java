@@ -1,14 +1,15 @@
 package factories;
 
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.Random;
+
 import shape.Shape;
-import shape.ellipse;
-import shape.plate;
-import javafx.scene.paint.Color;
+import shape.shapeInt;
 
 public class shapeFactory {
 	private Random randomize = new Random();
-	private int[] shapeShuffler = { 0, 1 };
+	private ArrayList<Class> shapeShuffler;
 
 	private static shapeFactory shapeFactory = null;
 
@@ -26,11 +27,19 @@ public class shapeFactory {
 	}
 
 	public Shape getShapeInstance() {
-		int shuffle = shapeShuffler[randomize.nextInt(shapeShuffler.length)];
-		if (shuffle == 0) {
-			return new ellipse();
-		} else
-			return new plate();
+		Class shuffle = shapeShuffler.get(randomize.nextInt(shapeShuffler.size()));
+		Constructor<?>[] con = shuffle.getConstructors();
+        shapeInt crnt = null;
+        try {
+            crnt = (shapeInt) con[0].newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return (Shape) crnt;
+	}
+
+	public void setLoadedClasses(ArrayList<Class> loadedShapes) {
+	    this.shapeShuffler = loadedShapes;
 	}
 
 }

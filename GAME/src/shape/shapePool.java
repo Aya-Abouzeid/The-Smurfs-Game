@@ -9,9 +9,8 @@ import states.Stored;
 
 public class shapePool {
 
-	// --- Replace every Object with a SHAPE --- //
 	private Random rand = new Random();
-	int counter = 0;
+	private int counter = 0;
 	private static shapePool shapePoolSinglton = null;
 	private shapeFactory factory = shapeFactory.getShapeFactory();
 	private ConcurrentLinkedQueue<Shape> pool = new ConcurrentLinkedQueue<Shape>();
@@ -32,9 +31,9 @@ public class shapePool {
 		if ((shape = this.pool.poll()) == null) {
 			shape = CreateObject();
 		}
-	
+
 		shape.setState(Falling.getFallingInstance());
-		int position = (int) Math.abs((rand.nextInt((int) width) * 315123123 + 50) % (int)width);
+		int position = Math.abs((rand.nextInt((int) width) * 315123123 + 50) % (int)width);
 		shape.setX(position);
 		shape.setY(y);
 		y = y - 1.0;
@@ -50,7 +49,6 @@ public class shapePool {
 	}
 
 	private Shape CreateObject() {
-		// Call shapeFactory
 		return factory.getShapeInstance();
 	}
 }
