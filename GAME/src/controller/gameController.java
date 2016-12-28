@@ -95,10 +95,10 @@ public class gameController implements Runnable {
 			public void run() {
 				player1 = new ImageView(playerImg1);
 				root.getChildren().add(player1);
-				player1.setY(player1.getY() + 400);
+				player1.setY(player1.getY() + 700); //'700'should be [stage height - 300 (smurf's height)] to fit while resizing
 				player2 = new ImageView(playerImg2);
 				root.getChildren().add(player2);
-				player2.setY(player2.getY() + 400);				
+				player2.setY(player2.getY() + 700);				
 			}
 		});		
 	}

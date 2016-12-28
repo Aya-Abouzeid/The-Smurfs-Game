@@ -1,10 +1,14 @@
 package controller;
 
 
+import java.util.ArrayList;
+
+import factories.shapeFactory;
 import javafx.application.Application;
 import layouts.View;
+import layouts.classLoading;
 public class controllerSingleton {
-
+	private static ArrayList<Class> loadedShapes;
 	private static controllerSingleton controller;
 	private String[] args;
 	private static View view;
@@ -28,8 +32,18 @@ public class controllerSingleton {
 	
 	public void startGame(){
 		////Dynamic loading all Classes 
+		loadShapes();
 		Application.launch(View.class, args);
 				
+	}
+
+	private static void loadShapes() {
+		try {
+			loadedShapes = classLoading.getInstance().getLoadedShapes();
+			shapeFactory.getShapeFactory().setLoadedClasses(loadedShapes);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

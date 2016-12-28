@@ -22,18 +22,18 @@ public class tryingShapeMotion extends Application {
 	private shapePool pool = shapePool.getPoolInstance();
 	private int counter = 0;
 	private ArrayList<shape.Shape> fallingShapes = new ArrayList<shape.Shape>();
-	Image galaxy = new Image("file:galaxy2.png");
-	Image smurfette = new Image("file:Smurfette-original.png");
+	private Image galaxy = new Image("file:3.png");
+	private Image smurfette = new Image("file:1.png");
 	private static ArrayList<Class> loadedShapes;
 	private Player player1 = new Player(null); // --- Send a path
 	private Player player2 = new Player(null);
 
 	public static void main(String[] args) {
-		loadSahpes();
+		loadShapes();
 		launch(args);
 	}
 
-	private static void loadSahpes() {
+	private static void loadShapes() {
 		try {
 			loadedShapes = classLoading.getInstance().getLoadedShapes();
 			shapeFactory.getShapeFactory().setLoadedClasses(loadedShapes);
