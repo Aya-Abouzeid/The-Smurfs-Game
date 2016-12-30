@@ -35,8 +35,12 @@ public class shapePool {
 		shape.setState(Falling.getFallingInstance());
 		int position = Math.abs((rand.nextInt((int) width) * 315123123 + 50) % (int)width);
 		shape.setX(position);
-		shape.setY(y);
-		y = y - 1.0;
+//		shape.setY(y);
+//		y = y - 1.0;
+		shape.setY(200);
+		shape.setX(0);
+
+
 		return shape;
 	}
 

@@ -25,7 +25,7 @@ public class imageFactory {
 		File file;
 		switch(name) {
 		case "galaxy":
-			return new Image("file:galaxy2.png");//galaxy
+			return new Image("file:try2.png");//galaxy
 		case "smurfette":
 			 file = new File ("2.png");
 			return new Image(file.toURI().toString());//smurfette

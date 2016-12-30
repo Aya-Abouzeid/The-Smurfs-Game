@@ -26,7 +26,7 @@ public class gameController implements Runnable {
 	private ArrayList<shape.Shape> fallingShapes;
 	private shapePool pool;
 	private imageFactory imgFactory;
-	private double shapeSpeed = 4.0;
+	private double shapeSpeed = 3.0;
 	private Image playerImg1;
 	private static ImageView player1;
 	private static ImageView player2;
@@ -71,7 +71,7 @@ public class gameController implements Runnable {
 		gc.clearRect(0, 0, width, height);
 		//gc.drawImage(playerImg1, 0, 0);
 		counter++;
-		if (counter % 20 == 0) {
+		if (counter % 30 == 0) {
 			fallingShapes.add(pool.borrowObject(width));
 		counter =0;	
 		}
@@ -81,10 +81,16 @@ public class gameController implements Runnable {
 
 				fallingShapes.remove(i);
 				i--;
-			} else {
-				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + shapeSpeed); // controls
+			} else if(fallingShapes.get(i).getX() < 500){ //mafrood tb2a width of (stage/3) msh hardcoded 500
+				fallingShapes.get(i).setX(fallingShapes.get(i).getX() + shapeSpeed );
+//				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + shapeSpeed); // controls
 																				// speed
 				fallingShapes.get(i).drawShape(gc);
+			}
+			else {
+			fallingShapes.get(i).setY(fallingShapes.get(i).getY() + shapeSpeed); // controls
+				// speed
+fallingShapes.get(i).drawShape(gc);	
 			}
 		}
 	}
