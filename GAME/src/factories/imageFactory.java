@@ -5,8 +5,10 @@ import java.io.File;
 import javafx.scene.image.Image;
 
 public class imageFactory {
-	
+
 	private static imageFactory imgFactory;
+//	private final double DefaultWidth = 32;
+//	private final double DefaultHeight = 50;
 
 	private imageFactory() {
 
@@ -20,21 +22,31 @@ public class imageFactory {
 
 		return imgFactory;
 	}
-	
+
+	public Image getImage(String name, double width, double height) {
+		File file = getFile(name);
+		return new Image(file.toURI().toString(), width, height, false, true);
+
+	}
+
 	public Image getImage(String name) {
-		File file;
-		switch(name) {
+		File file = getFile(name);
+		return new Image(file.toURI().toString());
+	}
+
+	private File getFile(String name) {
+		switch (name) {
 		case "galaxy":
-			return new Image("file:try2.png");//galaxy
+			return new File("try2.png");// galaxy
 		case "smurfette":
-			 file = new File ("2.png");
-			return new Image(file.toURI().toString());//smurfette
+			return new File("2.png");
 		case "new game":
-			return new Image("file:NEWGAME");
+			return new File("NEWGAME.png");
 		case "smurff":
-			 file = new File ("1.png");
-			return new Image(file.toURI().toString());//smurfette
-		default: 
+			return new File("1.png");
+		case "main menu background":
+			return new File("OptionsBackGround.png");
+		default:
 			return null;
 		}
 	}

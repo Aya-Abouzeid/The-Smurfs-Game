@@ -22,6 +22,7 @@ public class View extends Application {
 		factory = sceneFactory.getSceneFactory();
 		window = arg0;
 		window.setTitle("Game");
+		window.setResizable(false);
 		setDimentions();
 		scene = factory.getScene("MainMenu", window.getHeight(), window.getWidth());
 		setScene();
@@ -95,7 +96,6 @@ public class View extends Application {
 	}
 
 	public void exit() {
-		System.out.println("bye");
 		Platform.exit();
 	}
 

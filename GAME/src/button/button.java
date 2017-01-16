@@ -2,6 +2,7 @@ package button;
 
 import controller.eventHandler;
 import factories.imageFactory;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
@@ -10,7 +11,7 @@ public abstract class button {
 	protected eventHandler handler = eventHandler.getInstance();
 	protected imageFactory imgFactory = imageFactory.getImageFactory();
 	protected ImageView image;
-	
+
 	public button() {
 		createButton();
 		setX();
@@ -19,30 +20,34 @@ public abstract class button {
 		setAction();
 		setStyle();
 	}
-	
+
 	public Button getButton() {
 		return b;
 	}
-	
+
 	private void createButton() {
-		 b = new Button();
+		b = new Button();
 	}
 
 	protected void setStyle() {
 		image.setFitHeight(75);
-		image.setFitHeight(100);
+		image.setFitWidth(200);
 		b.setGraphic(image);
+		b.setStyle("-fx-background-color:#ffb833;"+
+				"-fx-background-radius: 30;"+
+				"-fx-padding: 10 20 10 20");
 	}
 
-
 	public abstract void setX();
+
 	public abstract void setY();
+
 	public abstract void setName();
+
 	public abstract void setAction();
-	
-	
-//	public boolean isClicked();
-//	public void setWidth(int width);
-//	public void setHeight(int height);
+
+	// public boolean isClicked();
+	// public void setWidth(int width);
+	// public void setHeight(int height);
 
 }

@@ -1,23 +1,35 @@
 package player;
 import java.util.Stack;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import shape.Shape;
+import shape.shapeInt;
 
 public class Player {
 
-    public String filepath;
+    public ImageView imageView;
     public double hight; // photo Hight
     private double rightStackHight;
     private double leftStackHight;
     private double positionX;
+    private double positionY;
     private Stack<Shape> rightStack;
     private Stack<Shape> leftStack;
+    private boolean mouseControl;
+    private KeyCode leftButton;
+    private KeyCode rightButton;
+    
 
-    public Player(String imagePath) {
-        this.filepath = imagePath;
+    public Player(Image image, boolean mouseControl) {
+        imageView = new ImageView(image);
+        this.mouseControl = mouseControl;
         rightStack = new Stack<Shape>();
         leftStack = new Stack<Shape>();
+      
     }
+    
 
     public void addToRightStack(Shape shape) {
         if (shape != null)
@@ -57,6 +69,58 @@ public class Player {
 
     public double getX() {
         return positionX;
+    }
+    public void setX(double x) {
+    	imageView.setX(x);
+    	positionX = x;
+    	notifyStacks();
+    }
+    
+    public double getY() {
+        return positionY;
+    }
+    public void setY(double y) {
+    	imageView.setY(y);
+    	positionY = y;
+    }
+    
+    public void MoveByKey(double speed) {
+    	setX(getX() + speed);
+    	notifyStacks();
+    }
+    private void notifyStacks(){
+    	Shape shape;
+    	for (int i = 0; i < rightStack.size(); i++) {
+    		shape = rightStack.get(i);
+    		//shape.setX();
+    	}
+    	for (int i = 0; i < leftStack.size(); i++) {
+    		shape = leftStack.get(i);
+    		//shape.setX();
+    	}
+    }
+    
+    public void setRightButton(KeyCode button) {
+    	this.rightButton = button;
+    }
+    
+    public void setLeftButton(KeyCode button) {
+    	this.leftButton = button;
+    }
+    
+    public ImageView getImageView() {
+    	return imageView;
+    }
+    
+    public boolean getMouseControl() {
+    	return mouseControl;
+    }
+    
+    public KeyCode getLeftButton() {
+    	return leftButton;
+    }
+    public KeyCode getrightButton() {
+    	return rightButton;
     }
 
 }

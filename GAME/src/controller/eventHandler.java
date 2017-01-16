@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.input.KeyCode;
 import layouts.ExitConfrmationWindow;
 import layouts.Game;
 import layouts.View;
@@ -9,8 +10,10 @@ public class eventHandler {
 	private static eventHandler handler;
 	private gameController controller;
 	private View view;
+	private gameOptions gameOptions;
 
 	private eventHandler() {
+		gameOptions = new gameOptions();
 	}
 
 	public static eventHandler getInstance() {
@@ -23,20 +26,27 @@ public class eventHandler {
 	public void NewGame() {
 		Game gameScene = new Game(view.getHeight(), view.getWidth());
 		view.setScene(gameScene.getScene());
-		controller = new gameController(gameScene);
+		controller = new gameController(gameScene, gameOptions);
 		Thread game = new Thread(controller,"game begin");
 		game.start();
 	}
 
-	public void EscapeFromGame() {
+	private void EscapeFromGame() {
 		System.out.println("pause");
 		view.setScene("pause");
+		controller.pause();
 		
 	}
 
 	public void continueGame() {
+		///till having screenshot 
+		Game gameScene = new Game(view.getHeight(), view.getWidth());
+		view.setScene(gameScene.getScene());
+		controller = new gameController(gameScene, gameOptions);
+		Thread game = new Thread(controller,"game begin");
+		game.start();
 		//// getsnapshot
-		view.setScene("Game");
+		//view.setScene("Game");
 	}
 
 	public void MainMenu() {
@@ -79,6 +89,20 @@ public class eventHandler {
 
 	public void setView(View view) {
 		this.view = view;
+	}
+	
+	// it is called only from game layout 	
+	public void notifyMouseMoved(double x) {
+		controller.notifyMouseMoved(x);
+	}
+	
+	// it is called only from game layout 
+	public void notifyKeyPressed(KeyCode key) {
+		if (key == KeyCode.ESCAPE){
+			EscapeFromGame();	
+		} else {
+			controller.notifyKeyPressed(key);
+		}
 	}
 	
 	
