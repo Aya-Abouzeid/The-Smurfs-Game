@@ -76,7 +76,7 @@ public class plate extends Shape implements shapeInt {
 		// TODO Auto-generated method stub
 
 		this.state.move(this , gc ,  shapeSpeed);
-		
+
 	}
 
 	@Override

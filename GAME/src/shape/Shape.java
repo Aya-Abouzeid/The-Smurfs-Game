@@ -6,12 +6,14 @@ import states.State;
 
 public abstract class Shape implements shapeInt {
 
+    State state;
+
 	@Override
 	abstract public double getX();
 
 	@Override
 	abstract public void move(GraphicsContext gc , double shapeSpeed);
-	
+
 	@Override
 	abstract public double getY();
 
@@ -32,7 +34,7 @@ public abstract class Shape implements shapeInt {
 
 	@Override
 	abstract public Color getColor();
-	
+
 	@Override
 	abstract public void increaseSlopedY() ;
 

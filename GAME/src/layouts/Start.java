@@ -2,43 +2,39 @@ package layouts;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class Start extends layout {
 
-	private VBox vbox;
+    private VBox vbox;
+    private Group root = new Group();
+    private static final String[] BUTTONS = { "New Game", "Load Game", "Main Options", "Instructions", "Exit" };
 
-	public Start(double height, double width) {
-		super(height, width);
-		setButtons();
-		setBackground();
+    public Start(double height, double width) {
+        super(height, width);
+        setBackground();
+        setButtons();
+        scene = new Scene(root, windowWidth, windowHeight);
 
-	}
+    }
 
-	private void setButtons() {
-		vbox = new VBox(30);
+    private void setButtons() {
+        vbox = new VBox(30);
+        for (String crnt : BUTTONS)
+            vbox.getChildren().add(factory.getButton(crnt).getButton());
+        vbox.setAlignment(Pos.CENTER_RIGHT);
+        root.getChildren().add(vbox);
+        vbox.setPadding(new Insets(windowHeight - 700, 50, 150, windowWidth - 300));
+    }
 
-		vbox.getChildren().add(factory.getButton("New Game").getButton());
-		vbox.getChildren().add(factory.getButton("Load Game").getButton());
-		vbox.getChildren().add(factory.getButton("Main Options").getButton());
-		vbox.getChildren().add(factory.getButton("Instructions").getButton());
-		vbox.getChildren().add(factory.getButton("Exit").getButton());
-
-		vbox.setAlignment(Pos.CENTER_RIGHT);
-		vbox.setPadding(new Insets(10, 50, 50, 50));
-
-		scene = new Scene(vbox, windowWidth, windowHeight);
-	}
-
-	private void setBackground() {
-		Image img = imgFactory.getImage("main menu background", windowWidth, windowHeight);
-//		System.out.println(img.getWidth());
-//		BackgroundImage myBI = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
-//				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-//		// then you set to your node
-//		vbox.setBackground(new Background(myBI));
-	}
+    private void setBackground() {
+        Image background = imgFactory.getImage("mainMenu", windowWidth, windowHeight);
+        ImageView img = new ImageView(background);
+        root.getChildren().add(img);
+    }
 
 }

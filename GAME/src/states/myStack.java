@@ -38,12 +38,12 @@ private boolean sameShapes(Shape shape) {
 }
 public Stack insert(Shape shape){
 	if(sameShapes(shape)){
-		currentState=Same;	
+		currentState=Same;
 		}
 		else{
 			currentState=Different;
 		}
-		
+
 	return currentState.insert(shape);
 }
 

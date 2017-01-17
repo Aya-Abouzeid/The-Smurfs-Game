@@ -1,71 +1,68 @@
 package player;
-import java.util.Stack;
+import java.util.LinkedList;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import shape.Shape;
-import shape.shapeInt;
+import states.PlayerStack;
 
 public class Player {
 
     public ImageView imageView;
-    public double hight; // photo Hight
-    private double rightStackHight;
-    private double leftStackHight;
+    private int characterHeight = 300;
     private double positionX;
     private double positionY;
-    private Stack<Shape> rightStack;
-    private Stack<Shape> leftStack;
+    public LinkedList<PlayerStack> Stacks;
     private boolean mouseControl;
     private KeyCode leftButton;
     private KeyCode rightButton;
-    
+
 
     public Player(Image image, boolean mouseControl) {
         imageView = new ImageView(image);
         this.mouseControl = mouseControl;
-        rightStack = new Stack<Shape>();
-        leftStack = new Stack<Shape>();
-      
+        Stacks =  new LinkedList<states.PlayerStack>();
+        Stacks.add(new PlayerStack(characterHeight));
+        Stacks.add(new PlayerStack(characterHeight));
     }
-    
 
-    public void addToRightStack(Shape shape) {
+
+    public void addToStacks(Shape shape, int i) {
         if (shape != null)
-            rightStack.add(shape);
+            Stacks.get(i).add(shape);
     }
 
-    public void addToLeftStack(Shape shape) {
-        if (shape != null)
-            leftStack.add(shape);
-    }
-
-    public void popLeftStack() {
-        for (int i = 0; i < 2; i++)
-            leftStack.pop();
-    }
-
-    public void popRightStack() {
-        for (int i = 0; i < 2; i++)
-            rightStack.pop();
-    }
-
-    public double getRightStackHight() {
-        return rightStackHight;
-    }
-
-    public void setRightStackHight(double Hight) {
-        this.rightStackHight = Hight;
-    }
-
-    public double getLeftStackHight() {
-        return leftStackHight;
-    }
-
-    public void setLeftStackHight(double Hight) {
-        this.leftStackHight = Hight;
-    }
+//    public void addToLeftStack(Shape shape) {
+//        if (shape != null)
+//            leftStack.add(shape);
+//    }
+//
+//    public void popLeftStack() {
+//        for (int i = 0; i < 2; i++)
+//            leftStack.pop();
+//    }
+//
+//    public void popRightStack() {
+//        for (int i = 0; i < 2; i++)
+//            rightStack.pop();
+//    }
+//
+//    public double getRightStackHight() {
+//        return rightStackHight;
+//    }
+//
+//    public void setRightStackHight(double Hight) {
+//        this.rightStackHight = Hight;
+//    }
+//
+//    public double getLeftStackHight() {
+//        return leftStackHight;
+//    }
+//
+//    public void setLeftStackHight(double Hight) {
+//        this.leftStackHight = Hight;
+//    }
 
     public double getX() {
         return positionX;
@@ -75,7 +72,7 @@ public class Player {
     	positionX = x;
     	notifyStacks();
     }
-    
+
     public double getY() {
         return positionY;
     }
@@ -83,39 +80,39 @@ public class Player {
     	imageView.setY(y);
     	positionY = y;
     }
-    
+
     public void MoveByKey(double speed) {
     	setX(getX() + speed);
     	notifyStacks();
     }
     private void notifyStacks(){
     	Shape shape;
-    	for (int i = 0; i < rightStack.size(); i++) {
-    		shape = rightStack.get(i);
-    		//shape.setX();
-    	}
-    	for (int i = 0; i < leftStack.size(); i++) {
-    		shape = leftStack.get(i);
-    		//shape.setX();
-    	}
+//    	for (int i = 0; i < rightStack.size(); i++) {
+//    		shape = rightStack.get(i);
+//    		//shape.setX();
+//    	}
+//    	for (int i = 0; i < leftStack.size(); i++) {
+//    		shape = leftStack.get(i);
+//    		//shape.setX();
+//    	}
     }
-    
+
     public void setRightButton(KeyCode button) {
     	this.rightButton = button;
     }
-    
+
     public void setLeftButton(KeyCode button) {
     	this.leftButton = button;
     }
-    
+
     public ImageView getImageView() {
     	return imageView;
     }
-    
+
     public boolean getMouseControl() {
     	return mouseControl;
     }
-    
+
     public KeyCode getLeftButton() {
     	return leftButton;
     }

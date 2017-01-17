@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import factories.imageFactory;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -10,10 +11,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import factories.imageFactory;
 import layouts.Game;
 import player.Player;
+import shape.Shape;
+import shape.shapeInt;
 import shape.shapePool;
+import states.PlayerStack;
 
 public class gameController implements Runnable {
 	private final double characterHeight = 330;
@@ -21,7 +24,7 @@ public class gameController implements Runnable {
 	private final int KEYBOARD_MOVEMENT = 70;
 	private GraphicsContext gc;
 	private AnimationTimer drawingThread;
-	private ArrayList<shape.Shape> fallingShapes;
+	private ArrayList<Shape> fallingShapes;
 	private shapePool pool;
 	private imageFactory imgFactory;
 	private TimerThread timer;
@@ -66,7 +69,8 @@ public class gameController implements Runnable {
 
 	private void setFallingPlates() {
 		drawingThread = new AnimationTimer() {
-			public void handle(long currentNanoTime) {
+			@Override
+            public void handle(long currentNanoTime) {
 				// stop it when game is paused
 				draw();
 			}
@@ -77,25 +81,43 @@ public class gameController implements Runnable {
 
 	private void draw() {
 		gc.clearRect(0, 0, width, height);
-		// gc.drawImage(playerImg1, 0, 0);
 		counter++;
 		if (counter % 30 == 0) {
 			fallingShapes.add(pool.borrowObject(width, height));
 			counter = 0;
 		}
 		for (int i = 0; i < fallingShapes.size(); i++) {
+		    catchDetection(i);
 			if (fallingShapes.get(i).getY() >= height) {
 				pool.returnObject(fallingShapes.get(i));
-
 				fallingShapes.remove(i);
 				i--;
 			} else {
 				fallingShapes.get(i).move(gc, shapeSpeed);
 			}
 		}
+		if(players.size() == 2)
+		    for(int i = 0; i < 2; i++) {
+	            for(PlayerStack crnt : players.get(i).Stacks) {
+	                for(shapeInt x : crnt.stack)
+	                    x.drawShape(gc);
+	            }
+	        }
 	}
 
-	private void setPlayers() {
+	private void catchDetection(int obj) {
+	    for(int i = 0; i < 2; i++) {
+	        for(PlayerStack crnt : players.get(i).Stacks) {
+	            if(fallingShapes.get(obj).getY() == height - characterHeight &&
+	                    Math.abs(fallingShapes.get(obj).getX() + 10 - players.get(i).getX()) < 20) {
+	                crnt.add(fallingShapes.get(obj));
+	                fallingShapes.remove(obj);
+	            }
+	        }
+	    }
+    }
+
+    private void setPlayers() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {

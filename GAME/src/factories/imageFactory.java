@@ -44,8 +44,8 @@ public class imageFactory {
 			return new File("NEWGAME.png");
 		case "smurff":
 			return new File("1.png");
-		case "main menu background":
-			return new File("OptionsBackGround.png");
+		case "mainMenu":
+			return new File("src\\images\\mainMenu.jpg");
 		case "howTo":
 		    return new File("src\\images\\HowTo.png");
 		default:
