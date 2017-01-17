@@ -76,12 +76,11 @@ public class gameController implements Runnable {
 	}
 
 	private void draw() {
-		System.out.println("drawing");
 		gc.clearRect(0, 0, width, height);
 		// gc.drawImage(playerImg1, 0, 0);
 		counter++;
 		if (counter % 30 == 0) {
-			fallingShapes.add(pool.borrowObject(width));
+			fallingShapes.add(pool.borrowObject(width, height));
 			counter = 0;
 		}
 		for (int i = 0; i < fallingShapes.size(); i++) {
@@ -90,19 +89,8 @@ public class gameController implements Runnable {
 
 				fallingShapes.remove(i);
 				i--;
-			} else if (fallingShapes.get(i).getX() < 500) { // mafrood tb2a
-															// width of
-															// (stage/3) msh
-															// hardcoded 500
-				fallingShapes.get(i).setX(fallingShapes.get(i).getX() + shapeSpeed);
-				// fallingShapes.get(i).setY(fallingShapes.get(i).getY() +
-				// shapeSpeed); // controls
-				// speed
-				fallingShapes.get(i).drawShape(gc);
 			} else {
-				fallingShapes.get(i).setY(fallingShapes.get(i).getY() + shapeSpeed); // controls
-				// speed
-				fallingShapes.get(i).drawShape(gc);
+				fallingShapes.get(i).move(gc, shapeSpeed);
 			}
 		}
 	}

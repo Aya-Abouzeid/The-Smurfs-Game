@@ -4,35 +4,44 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import states.State;
 
-public abstract class Shape implements shapeInt{
+public abstract class Shape implements shapeInt {
 
 	@Override
-    abstract public double getX();
+	abstract public double getX();
 
 	@Override
-    abstract public double getY();
+	abstract public void move(GraphicsContext gc , double shapeSpeed);
+	
+	@Override
+	abstract public double getY();
 
 	@Override
-    abstract public void setX(double x);
+	abstract public void setX(double x);
 
 	@Override
-    abstract public void setY(double y);
+	abstract public void setY(double y);
 
 	@Override
-    abstract public State getState();
+	abstract public State getState();
 
 	@Override
-    abstract public void setState(State s);
+	abstract public void setSlope(double screenWidth, double screenheight);
 
 	@Override
-    abstract public Color getColor();
+	abstract public void setState(State s);
 
 	@Override
-    abstract public javafx.scene.shape.Shape getShape();
+	abstract public Color getColor();
+	
+	@Override
+	abstract public void increaseSlopedY() ;
 
 	@Override
-    abstract public void drawShape(GraphicsContext gc);
+	abstract public javafx.scene.shape.Shape getShape();
 
 	@Override
-    abstract public double getHieght();
+	abstract public void drawShape(GraphicsContext gc);
+
+	@Override
+	abstract public double getHeight();
 }

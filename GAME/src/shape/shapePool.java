@@ -4,8 +4,8 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import factories.shapeFactory;
-import states.Falling;
-import states.Stored;
+
+import states.*;
 
 public class shapePool {
 
@@ -15,6 +15,7 @@ public class shapePool {
 	private shapeFactory factory = shapeFactory.getShapeFactory();
 	private ConcurrentLinkedQueue<Shape> pool = new ConcurrentLinkedQueue<Shape>();
 	private double y = 0.0;
+	private static int iterator = 0;
 
 	private shapePool() {
 	}
@@ -25,21 +26,29 @@ public class shapePool {
 		return shapePoolSinglton;
 	}
 
-	public Shape borrowObject(double width) {
+	public Shape borrowObject(double width, double height) {
 		Shape shape;
 
 		if ((shape = this.pool.poll()) == null) {
 			shape = CreateObject();
 		}
 
-		shape.setState(Falling.getFallingInstance());
-		int position = Math.abs((rand.nextInt((int) width) * 315123123 + 50) % (int)width);
+		int position = Math.abs((rand.nextInt((int) width) * 315123123 + 50) % (int) width);
 		shape.setX(position);
-//		shape.setY(y);
-//		y = y - 1.0;
-		shape.setY(200);
-		shape.setX(0);
 
+		shape.setY(150);
+
+		if (iterator == 0) {
+			shape.setState(FallingFromLeft.getFallingFromLeftInstance());
+			shape.setX(0);
+			iterator = 1;
+		} else {
+			shape.setState(FallingFromRight.getFallingFromRightInstance());
+			shape.setX(width);
+			iterator = 0;
+		}
+
+		shape.setSlope(width, height);
 
 		return shape;
 	}

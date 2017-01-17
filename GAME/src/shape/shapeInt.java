@@ -6,24 +6,30 @@ import javafx.scene.shape.Shape;
 import states.State;
 
 public interface shapeInt {
-    public void drawShape(GraphicsContext gc);
+	public void drawShape(GraphicsContext gc);
 
-    public Shape getShape();
+	public Shape getShape();
 
-    public double getX();
+	public double getX();
 
-    public double getY();
+	public void setSlope(double screenWidth, double screenheight);
 
-    public void setX(double x);
+	public void move(GraphicsContext gc , double shapeSpeed);
+	
+	public double getY();
 
-    public void setY(double y);
+	public void setX(double x);
 
-    public State getState();
+	public void setY(double y);
 
-    public void setState(State s);
+	public void increaseSlopedY();
 
-    public Color getColor();
+	public State getState();
 
-    public double getHieght();
+	public void setState(State s);
+
+	public Color getColor();
+
+	public double getHeight();
 
 }

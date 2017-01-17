@@ -18,7 +18,7 @@ public class gameOptions {
 
 	public gameOptions() {
 		NPlayers = 2;
-		shapeSpeed = 3.0;
+		shapeSpeed = 4.0;
 		characters = new LinkedList<String>();
 		mouseControl = new LinkedList<Boolean>();
 		rightButton = new LinkedList<KeyCode>();

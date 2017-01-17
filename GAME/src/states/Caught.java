@@ -1,6 +1,8 @@
 package states;
 
 import factories.sceneFactory;
+import javafx.scene.canvas.GraphicsContext;
+import shape.Shape;
 
 public class Caught extends State {
 
@@ -58,4 +60,22 @@ public class Caught extends State {
 	// // TODO Auto-generated method stub
 	//
 	// }
+
+	@Override
+	public float setSlope(double screenWidth, double screenheight) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double increaseSlopedY(double oldY, float slope) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void move(Shape shape, GraphicsContext gc, double shapeSpeed) {
+		// TODO Auto-generated method stub
+
+	}
 }
