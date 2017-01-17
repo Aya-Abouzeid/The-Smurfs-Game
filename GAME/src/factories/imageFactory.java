@@ -37,7 +37,7 @@ public class imageFactory {
 	private File getFile(String name) {
 		switch (name) {
 		case "galaxy":
-			return new File("try2.png");// galaxy
+			return new File("try2.png");
 		case "smurfette":
 			return new File("2.png");
 		case "new game":
@@ -46,6 +46,8 @@ public class imageFactory {
 			return new File("1.png");
 		case "main menu background":
 			return new File("OptionsBackGround.png");
+		case "howTo":
+		    return new File("src\\images\\HowTo.png");
 		default:
 			return null;
 		}

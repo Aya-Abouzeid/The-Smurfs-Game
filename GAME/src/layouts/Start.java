@@ -4,11 +4,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 
 public class Start extends layout {
@@ -39,11 +34,11 @@ public class Start extends layout {
 
 	private void setBackground() {
 		Image img = imgFactory.getImage("main menu background", windowWidth, windowHeight);
-		System.out.println(img.getWidth());
-		BackgroundImage myBI = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
-				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-		// then you set to your node
-		vbox.setBackground(new Background(myBI));
+//		System.out.println(img.getWidth());
+//		BackgroundImage myBI = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+//				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+//		// then you set to your node
+//		vbox.setBackground(new Background(myBI));
 	}
 
 }
