@@ -25,7 +25,7 @@ public class ExitConfrmationWindow {
 		window.setHeight(150);
 
 		Label label = new Label();
-		label.setText("Do you want to quit??!!");
+		label.setText("Do you want to quit?");
 		Button YesButton = setYesButton();
 		Button NoButton = setNoButton();
 
@@ -40,7 +40,7 @@ public class ExitConfrmationWindow {
 		window.showAndWait();
 
 	}
-	
+
 	private static Button setYesButton() {
 		Button YesButton = new Button("Yes");
 		YesButton.setOnMouseClicked(new EventHandler<MouseEvent>() {

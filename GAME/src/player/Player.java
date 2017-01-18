@@ -4,29 +4,40 @@ import java.util.LinkedList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import observer.positionHandler;
 import shape.Shape;
 import states.PlayerStack;
 
 public class Player {
 
     public ImageView imageView;
-    private int characterHeight = 300;
+    private static final int CHARHIGHT = 330;
     private double positionX;
     private double positionY;
     public LinkedList<PlayerStack> Stacks;
     private boolean mouseControl;
     private KeyCode leftButton;
     private KeyCode rightButton;
+    private positionHandler PH;
 
 
     public Player(Image image, boolean mouseControl) {
         imageView = new ImageView(image);
         this.mouseControl = mouseControl;
         Stacks =  new LinkedList<states.PlayerStack>();
-        Stacks.add(new PlayerStack(characterHeight));
-        Stacks.add(new PlayerStack(characterHeight));
+        Stacks.add(new PlayerStack(CHARHIGHT));
+        Stacks.add(new PlayerStack(CHARHIGHT));
     }
 
+//    public void positionChanged(){
+//        notifyStacks();
+//    }
+
+    private void notifyStacks(){
+        for(PlayerStack crnt : Stacks)
+           crnt.PH.notifyObservers(positionX);
+
+    }
 
     public void addToStacks(Shape shape, int i) {
         if (shape != null)
@@ -84,17 +95,6 @@ public class Player {
     public void MoveByKey(double speed) {
     	setX(getX() + speed);
     	notifyStacks();
-    }
-    private void notifyStacks(){
-    	Shape shape;
-//    	for (int i = 0; i < rightStack.size(); i++) {
-//    		shape = rightStack.get(i);
-//    		//shape.setX();
-//    	}
-//    	for (int i = 0; i < leftStack.size(); i++) {
-//    		shape = leftStack.get(i);
-//    		//shape.setX();
-//    	}
     }
 
     public void setRightButton(KeyCode button) {
