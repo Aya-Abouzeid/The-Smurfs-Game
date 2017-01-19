@@ -109,11 +109,11 @@ public class gameController implements Runnable {
         for (int i = 0; i < 2; i++) {
             for (PlayerStack crnt : players.get(i).Stacks) {
                 if (fallingShapes.get(obj).getY() == height - crnt.getHight()
-                        && Math.abs(fallingShapes.get(obj).getX() + 20 - players.get(i).getX()) < 15) {
+                        && Math.abs(fallingShapes.get(obj).centerX() + 20 - players.get(i).getX()) < 15) {
                     crnt.add(fallingShapes.get(obj));
                     fallingShapes.remove(obj);
                 } else if (fallingShapes.get(obj).getY() == height - crnt.getHight()
-                        && Math.abs(fallingShapes.get(obj).getX() - 65 - characterWidth - players.get(i).getX()) < 15) {
+                        && Math.abs(fallingShapes.get(obj).centerX() - 65 - characterWidth - players.get(i).getX()) < 15) {
                     crnt.add(fallingShapes.get(obj));
                     fallingShapes.remove(obj);
 

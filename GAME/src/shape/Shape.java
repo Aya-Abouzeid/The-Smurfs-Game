@@ -1,12 +1,23 @@
 package shape;
 
+import java.util.Random;
+
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Color;
 import states.State;
 
 public abstract class Shape implements shapeInt {
 
-    State state;
+    protected State state;
+    protected Color color;
+    protected double x;
+    protected double y;
+    protected double height;
+    protected float slope;
+    protected Random randomize = new Random();
+    protected Color[] colors = { Color.RED, Color.BLUE, Color.PINK, Color.CYAN, Color.GOLD, Color.BLUEVIOLET,
+            Color.GREENYELLOW, Color.DEEPPINK, Color.BLACK, Color.DARKGREEN };
 
 	@Override
 	abstract public double getX();

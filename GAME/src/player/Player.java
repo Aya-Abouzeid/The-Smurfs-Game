@@ -35,7 +35,7 @@ public class Player {
 
     private void notifyStacks(){
         for(PlayerStack crnt : Stacks)
-           crnt.PH.notifyObservers(positionX);
+           crnt.PH.notifyObservers(positionX, Stacks.indexOf(crnt));
 
     }
 

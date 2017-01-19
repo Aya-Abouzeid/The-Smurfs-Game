@@ -44,7 +44,7 @@ public class FallingFromRight extends State {
 	@Override
 	public void move(Shape shape, GraphicsContext gc, double shapeSpeed) {
 		// TODO Auto-generated method stub
-	
+
 		if (shape.getX() > 1600) {
 
 			shape.setX(shape.getX() - shapeSpeed); // controls speed
@@ -60,10 +60,10 @@ public class FallingFromRight extends State {
 	public float setSlope(double screenWidth, double screenheight) {
 		// TODO Auto-generated method stub
 		float r = (randomize.nextInt((int) screenWidth));
-		
+
 		float slope = (float) (screenheight - 150) / (r - 250) ;
 		 return (slope < 0 )?  slope :  -slope ;
-		
+
 	}
 
 	@Override
