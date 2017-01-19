@@ -19,7 +19,7 @@ public class ellipse extends Shape implements shapeInt {
         ellipseShape.setRadiusY(15.0);
         ellipseShape.setFill(color);
         this.state = Stored.getStoredInstance();
-        this.height = 30.0f;
+        this.height = 28.0f;
     }
 
     @Override

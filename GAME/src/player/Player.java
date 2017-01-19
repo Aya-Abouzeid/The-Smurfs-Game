@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import observer.positionHandler;
-import shape.Shape;
 import states.PlayerStack;
 
 public class Player {
@@ -36,13 +35,12 @@ public class Player {
     private void notifyStacks(){
         for(PlayerStack crnt : Stacks)
            crnt.PH.notifyObservers(positionX, Stacks.indexOf(crnt));
-
     }
 
-    public void addToStacks(Shape shape, int i) {
-        if (shape != null)
-            Stacks.get(i).add(shape);
-    }
+//    public void addToStacks(Shape shape, int i) {
+//        if (shape != null)
+//            Stacks.get(i).add(shape);
+//    }
 
 //    public void addToLeftStack(Shape shape) {
 //        if (shape != null)

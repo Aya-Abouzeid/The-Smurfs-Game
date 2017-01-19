@@ -24,7 +24,7 @@ public class plate extends Shape implements shapeInt {
 
     @Override
     public void setSlope(double screenWidth, double screenheight) {
-    	
+
         this.slope = state.setSlope(screenWidth, screenheight);
     }
 
@@ -106,14 +106,14 @@ public class plate extends Shape implements shapeInt {
 
     @Override
     public void setY(double y) {
-        this.vertices[1] = y-8;
-        this.vertices[3] = y + 8.0;
-        this.vertices[5] = y + 8.0;
-        this.vertices[7] = y-8;
-        this.yVertices[0] = y-8;
-        this.yVertices[1] = y + 8.0;
-        this.yVertices[2] = y + 8.0;
-        this.yVertices[3] = y-8;
+        this.vertices[1] = y;
+        this.vertices[3] = y + 16.0;
+        this.vertices[5] = y + 16.0;
+        this.vertices[7] = y;
+        this.yVertices[0] = y;
+        this.yVertices[1] = y + 16.0;
+        this.yVertices[2] = y + 16.0;
+        this.yVertices[3] = y;
         platePolygon.getPoints().addAll(vertices);
         this.y = y;
     }

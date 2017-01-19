@@ -4,7 +4,7 @@ import java.util.Stack;
 
 import shape.Shape;
 
-public class Same implements State2{
+public class Same implements StackState{
 	myStack stack;
     public Same(myStack stack) {
 		this.stack=stack;

@@ -106,18 +106,18 @@ public class gameController implements Runnable {
     }
 
     private void catchDetection(int obj) {
+        Shape object = fallingShapes.get(obj);
         for (int i = 0; i < 2; i++) {
-            for (PlayerStack crnt : players.get(i).Stacks) {
-                if (fallingShapes.get(obj).getY() == height - crnt.getHight()
-                        && Math.abs(fallingShapes.get(obj).centerX() + 20 - players.get(i).getX()) < 15) {
-                    crnt.add(fallingShapes.get(obj));
-                    fallingShapes.remove(obj);
-                } else if (fallingShapes.get(obj).getY() == height - crnt.getHight()
-                        && Math.abs(fallingShapes.get(obj).centerX() - 65 - characterWidth - players.get(i).getX()) < 15) {
-                    crnt.add(fallingShapes.get(obj));
-                    fallingShapes.remove(obj);
+            PlayerStack S1 = players.get(i).Stacks.get(0);
+            PlayerStack S2 = players.get(i).Stacks.get(1);
+            if (object.getY() == height - S1.getHight() && Math.abs(object.centerX() - players.get(i).getX()) < 15) {
+                S1.add(object);
+                fallingShapes.remove(obj);
+            } else if (object.getY() == height - S2.getHight()
+                    && Math.abs(object.centerX() - 100 - characterWidth - players.get(i).getX()) < 15) {
+                S2.add(object);
+                fallingShapes.remove(obj);
 
-                }
             }
         }
     }

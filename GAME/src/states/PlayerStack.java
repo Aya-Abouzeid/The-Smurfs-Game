@@ -8,6 +8,7 @@ import shape.shapeInt;
 
 public class PlayerStack {
 
+    private StackState state;
     private double hight;
     public Stack<shapeInt> stack;
    public positionHandler PH = new positionHandler();
@@ -26,9 +27,13 @@ public class PlayerStack {
     }
 
     public void add(Shape shape) {
-        stack.add(shape);
+        stack.push(shape);
         setHight(getHight() + shape.getHeight());
-       PH.registerObserver(shape);
+        PH.registerObserver(shape);
+    }
+
+    public void removeThree() {
+       //remove from stack and from observers --- back to the poll
     }
 
     public void notifyStacks(){

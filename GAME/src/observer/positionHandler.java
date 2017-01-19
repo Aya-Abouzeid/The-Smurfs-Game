@@ -25,17 +25,13 @@ public class positionHandler {
             observers.remove(i);
     }
 
-//    public void positionChanged() {
-//        notifyObservers();
-//    }
-
     public void notifyObservers(double x, int s) {
         if(s == 0)
             for (Shape crnt : observers)
                 crnt.setX(x);
         else
             for (Shape crnt : observers)
-                crnt.setX(x + 170);
+                crnt.setX(x + 185);
     }
 
 //    public void setPosition(double newX) {
