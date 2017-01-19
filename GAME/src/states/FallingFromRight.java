@@ -61,7 +61,9 @@ public class FallingFromRight extends State {
 		// TODO Auto-generated method stub
 		float r = (randomize.nextInt((int) screenWidth));
 
+//		float slope = (float) (screenheight - 150) / (float)(r - (screenWidth-250)) ;
 		float slope = (float) (screenheight - 150) / (r - 250) ;
+		
 		 return (slope < 0 )?  slope :  -slope ;
 
 	}
