@@ -4,6 +4,7 @@ import javafx.scene.input.KeyCode;
 import layouts.ExitConfrmationWindow;
 import layouts.Game;
 import layouts.View;
+import snapshot.Memento;
 
 public class eventHandler {
 
@@ -11,6 +12,7 @@ public class eventHandler {
 	private gameController controller;
 	private View view;
 	private gameOptions gameOptions;
+	private Memento snapshot;
 
 	private eventHandler() {
 		gameOptions = new gameOptions();
@@ -34,19 +36,15 @@ public class eventHandler {
 	private void EscapeFromGame() {
 		System.out.println("pause");
 		view.setScene("pause");
-		controller.pause();
-		
+		snapshot = controller.pause();
 	}
 
 	public void continueGame() {
-		///till having screenshot 
 		Game gameScene = new Game(view.getHeight(), view.getWidth());
 		view.setScene(gameScene.getScene());
-		controller = new gameController(gameScene, gameOptions);
+		controller = new gameController(gameScene, snapshot);
 		Thread game = new Thread(controller,"game begin");
 		game.start();
-		//// getsnapshot
-		//view.setScene("Game");
 	}
 
 	public void MainMenu() {
@@ -54,6 +52,7 @@ public class eventHandler {
 	}
 
 	public void EndProgram() {
+		//save last screenshot
 		view.exit();
 	}
 	
