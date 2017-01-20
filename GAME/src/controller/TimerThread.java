@@ -42,7 +42,9 @@ public class TimerThread implements Runnable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				text.setText(minutes + " : " + seconds);
+				String min2digit = String.format("%02d", minutes);
+				String sec2digit = String.format("%02d", seconds);
+				text.setText(min2digit + " : " + sec2digit);
 				System.out.println("timer Thread seconds : " + seconds);
 			}
 		});
