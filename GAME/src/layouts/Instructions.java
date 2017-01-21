@@ -21,7 +21,7 @@ public class Instructions extends layout {
 
     private void addButton() {
         VBox vBox = new VBox();
-        vBox.setPadding(new Insets(windowHeight - 110, windowWidth / 2, 100, windowWidth / 2 - 80));
+        vBox.setPadding(new Insets(windowHeight - 150, windowWidth / 2 - 70, 100, windowWidth / 2 - 140));
         vBox.getChildren().add(factory.getButton("Main Menu").getButton());
         root.getChildren().add(vBox);
         vBox.setAlignment(Pos.BOTTOM_CENTER);

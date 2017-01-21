@@ -1,6 +1,10 @@
 package button;
 
+import java.io.File;
+
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class MainMenuButton extends button {
@@ -30,14 +34,10 @@ public class MainMenuButton extends button {
 		b.setLayoutY(coordY);
 	}
 
-	///////////////////////////////////////
-	@Override
-	protected void setStyle() {
-
-	}
-
 	@Override
 	public void setName() {
-		b.setText(ButtonName);
+	        File file = new File("src\\images\\MAINMENU.png");
+	        Image img = new Image(file.toURI().toString());
+	        image = new ImageView(img);
 	}
 }

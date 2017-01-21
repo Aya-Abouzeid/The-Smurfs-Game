@@ -48,6 +48,8 @@ public class imageFactory {
 			return new File("src\\images\\mainMenu.jpg");
 		case "howTo":
 		    return new File("src\\images\\HowTo.png");
+		case "pause":
+            return new File("src\\images\\pause.jpg");
 		default:
 			return null;
 		}
