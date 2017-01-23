@@ -2,8 +2,6 @@ package controller;
 
 import java.util.LinkedList;
 
-import factories.imageFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 public class gameOptions {
@@ -13,11 +11,10 @@ public class gameOptions {
 	private LinkedList<KeyCode> rightButton;
 	private LinkedList<KeyCode> leftButton;
 	private LinkedList<Double> startPositionX;
-	private int NPlayers;
+	private static final int Players = 2;
 	private double shapeSpeed;
 
 	public gameOptions() {
-		NPlayers = 2;
 		shapeSpeed = 4.0;
 		characters = new LinkedList<String>();
 		mouseControl = new LinkedList<Boolean>();
@@ -28,7 +25,7 @@ public class gameOptions {
 	}
 
 	public int getNPlayers() {
-		return NPlayers;
+		return Players;
 	}
 
 	private void setDefaultOptions() {
@@ -62,11 +59,11 @@ public class gameOptions {
 	public KeyCode getrightButton(int playerIndex) {
 		return rightButton.get(playerIndex);
 	}
-	
+
 	public Double getPositionX(int playerIndex) {
 		return startPositionX.get(playerIndex);
 	}
-	
+
 
 	public void setGameSpeed(double x) {
 		shapeSpeed = x;

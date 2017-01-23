@@ -40,6 +40,7 @@ public class gameController implements Runnable {
 	private double height;
 	private int counter;
 
+
 	public gameController(Game game, Memento snapshot) {
 		setGameParameters(game);
 		this.gameOptions = snapshot.getOptions();
