@@ -14,7 +14,7 @@ public abstract class State {
 	// abstract public void checkFalse();
 	// abstract public void checkTrue();
 	abstract public float setSlope(double screenWidth ,double screenheight);
-	abstract public double increaseSlopedY(double oldY ,float slope);
+	abstract public double increaseSlopedY(double oldY ,float slope,double width);
 
-	abstract public void move(Shape shape ,GraphicsContext gc , double shapeSpeed);
+	abstract public void move(Shape shape ,GraphicsContext gc , double shapeSpeed,double width);
 }

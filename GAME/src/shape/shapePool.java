@@ -4,8 +4,9 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import factories.shapeFactory;
-
-import states.*;
+import states.FallingFromLeft;
+import states.FallingFromRight;
+import states.Stored;
 
 public class shapePool {
 
@@ -36,7 +37,7 @@ public class shapePool {
 		int position = Math.abs((rand.nextInt((int) width) * 315123123 + 50) % (int) width);
 		shape.setX(position);
 
-		shape.setY(150);
+		shape.setY(100);
 
 		if (iterator == 0) {
 			shape.setState(FallingFromLeft.getFallingFromLeftInstance());
@@ -48,7 +49,7 @@ public class shapePool {
 			iterator = 0;
 		}
 
-		shape.setSlope(width, height);
+		shape.setSlope(width,height);
 
 		return shape;
 	}

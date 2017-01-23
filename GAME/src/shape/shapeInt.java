@@ -15,7 +15,7 @@ public interface shapeInt {
 
     public void setSlope(double screenWidth, double screenheight);
 
-    public void move(GraphicsContext gc, double shapeSpeed);
+    public void move(GraphicsContext gc, double shapeSpeed,double width);
 
     public double getY();
 
@@ -23,7 +23,7 @@ public interface shapeInt {
 
     public void setY(double y);
 
-    public void increaseSlopedY();
+    public void increaseSlopedY(double width);
 
     public State getState();
 

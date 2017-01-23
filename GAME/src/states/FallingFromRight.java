@@ -42,16 +42,16 @@ public class FallingFromRight extends State {
 	}
 
 	@Override
-	public void move(Shape shape, GraphicsContext gc, double shapeSpeed) {
+	public void move(Shape shape, GraphicsContext gc, double shapeSpeed,double width) {
 		// TODO Auto-generated method stub
 
-		if (shape.getX() > 1600) {
+		if (shape.getX() > (width-250) ) {
 
 			shape.setX(shape.getX() - shapeSpeed); // controls speed
 			shape.drawShape(gc);
 		} else {
 
-			shape.increaseSlopedY();
+			shape.increaseSlopedY(width);
 			shape.drawShape(gc);
 		}
 	}
@@ -61,17 +61,16 @@ public class FallingFromRight extends State {
 		// TODO Auto-generated method stub
 		float r = (randomize.nextInt((int) screenWidth));
 
-		float slope = (float) (screenheight - 150) / (float)(r - (screenWidth-250)) ;
-//		float slope = (float) (screenheight - 150) / (r - 250) ;
+		float slope = (float) (screenheight - (100)) / (float)(r - (screenWidth-250)) ;
 
 		 return (slope < 0 )?  slope :  -slope ;
 
 	}
 
 	@Override
-	public double increaseSlopedY(double oldY, float slope) {
+	public double increaseSlopedY(double oldY, float slope,double width) {
 		// TODO Auto-generated method stub
-		return 	(oldY- (150-(slope*1600)))/ slope;
+		return 	(oldY- ((100)-(slope*(width-250))))/ slope;
 
 	}
 

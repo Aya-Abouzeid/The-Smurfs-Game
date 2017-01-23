@@ -29,9 +29,9 @@ public class plate extends Shape implements shapeInt {
     }
 
     @Override
-    public void increaseSlopedY() {
+    public void increaseSlopedY(double width) {
         this.setY(this.getY() + 1);
-        this.setX(state.increaseSlopedY(this.getY(), this.slope));
+        this.setX(state.increaseSlopedY(this.getY(), this.slope,width));
     }
 
     @Override
@@ -66,8 +66,8 @@ public class plate extends Shape implements shapeInt {
     }
 
     @Override
-    public void move(GraphicsContext gc, double shapeSpeed) {
-        this.state.move(this, gc, shapeSpeed);
+    public void move(GraphicsContext gc, double shapeSpeed,double width) {
+        this.state.move(this, gc, shapeSpeed,width);
     }
 
     @Override

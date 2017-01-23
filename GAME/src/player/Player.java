@@ -18,14 +18,16 @@ public class Player {
     private KeyCode leftButton;
     private KeyCode rightButton;
     private positionHandler PH;
+    public int score;
 
 
     public Player(Image image, boolean mouseControl) {
         imageView = new ImageView(image);
         this.mouseControl = mouseControl;
         Stacks =  new LinkedList<states.PlayerStack>();
-        Stacks.add(new PlayerStack(CHARHIGHT));
-        Stacks.add(new PlayerStack(CHARHIGHT));
+        Stacks.add(new PlayerStack(CHARHIGHT,this));
+        Stacks.add(new PlayerStack(CHARHIGHT,this));
+        score = 0;
     }
 
 //    public void positionChanged(){

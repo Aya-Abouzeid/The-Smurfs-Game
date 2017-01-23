@@ -44,17 +44,19 @@ public class Stored extends State {
 		return 0;
 	}
 
-	@Override
-	public double increaseSlopedY(double oldY, float slope) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public void move(Shape shape, GraphicsContext gc, double shapeSpeed) {
-		// TODO Auto-generated method stub
 
-	}
+    @Override
+    public double increaseSlopedY(double oldY, float slope, double width, double height) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void move(Shape shape, GraphicsContext gc, double shapeSpeed, double width, double height) {
+        // TODO Auto-generated method stub
+
+    }
 
 	// @Override
 	// public void isOnGround() {

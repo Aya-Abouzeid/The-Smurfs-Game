@@ -11,23 +11,25 @@ public class ContinueGameButton extends button {
 	private final String ButtonName = "Continue Playing";
 	private final double coordX = 0;
 	private final double coordY = 0;
-	
-	
+
+
 	@Override
 	public void setAction() {
 		b.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
 			@Override
 			public void handle(MouseEvent arg0) {
-				handler.continueGame();
+				//handler.continueGame();
+			   handler.saveGame();
+
 			}
-		
+
 		});
 	}
 
 	@Override
 	public void setX() {
-		b.setLayoutX(coordX);		
+		b.setLayoutX(coordX);
 	}
 
 	@Override
@@ -41,4 +43,4 @@ public class ContinueGameButton extends button {
         Image img = new Image(file.toURI().toString());
         image = new ImageView(img);
 	}
-}  
+}

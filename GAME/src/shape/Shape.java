@@ -23,7 +23,7 @@ public abstract class Shape implements shapeInt {
 	abstract public double getX();
 
 	@Override
-	abstract public void move(GraphicsContext gc , double shapeSpeed);
+	abstract public void move(GraphicsContext gc , double shapeSpeed,double width);
 
 	@Override
 	abstract public double getY();
@@ -47,7 +47,7 @@ public abstract class Shape implements shapeInt {
 	abstract public Color getColor();
 
 	@Override
-	abstract public void increaseSlopedY() ;
+	abstract public void increaseSlopedY(double width) ;
 
 	@Override
 	abstract public javafx.scene.shape.Shape getShape();

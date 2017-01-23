@@ -4,6 +4,7 @@ import javafx.scene.input.KeyCode;
 import layouts.ExitConfrmationWindow;
 import layouts.Game;
 import layouts.View;
+import save.save2;
 import snapshot.Memento;
 
 public class eventHandler {
@@ -47,6 +48,11 @@ public class eventHandler {
 		game.start();
 	}
 
+	public void saveGame() {
+       save2 save=new save2();
+       save.save(this.snapshot);
+    }
+
 	public void MainMenu() {
 		view.setScene("MainMenu");
 	}
@@ -55,12 +61,12 @@ public class eventHandler {
 		//save last screenshot
 		view.exit();
 	}
-	
+
 	public void ExitConfirmation() {
 		System.out.println("exit confirmation");
 		ExitConfrmationWindow.display();
 	}
-	
+
 
 	public void Instructions() {
 		view.setScene("Instructions");
@@ -73,15 +79,15 @@ public class eventHandler {
 	public void mainOptions() {
 		view.setScene("MainOptions");
 	}
-	
+
 	public void EndGame() {
 		view.setScene("EndGame");
 	}
-	
+
 	public void gameOptions() {
-		view.setScene("GameOptions");	
+		view.setScene("GameOptions");
 	}
-	
+
 	public void GameOptionsReturn() {
 		view.setScene("pause");
 	}
@@ -89,21 +95,21 @@ public class eventHandler {
 	public void setView(View view) {
 		this.view = view;
 	}
-	
-	// it is called only from game layout 	
+
+	// it is called only from game layout
 	public void notifyMouseMoved(double x) {
 		controller.notifyMouseMoved(x);
 	}
-	
-	// it is called only from game layout 
+
+	// it is called only from game layout
 	public void notifyKeyPressed(KeyCode key) {
 		if (key == KeyCode.ESCAPE){
-			EscapeFromGame();	
+			EscapeFromGame();
 		} else {
 			controller.notifyKeyPressed(key);
 		}
 	}
-	
-	
+
+
 
 }

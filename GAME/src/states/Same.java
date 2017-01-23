@@ -2,21 +2,23 @@ package states;
 
 import java.util.Stack;
 
+import controller.gameController;
 import shape.Shape;
 
 public class Same implements StackState{
-	myStack stack;
-    public Same(myStack stack) {
+    PlayerStack stack;
+    public Same(PlayerStack stack) {
 		this.stack=stack;
 	}
 	@Override
 	public Stack insert(Shape shape) {
-		stack.shapes.push(shape);
+		stack.stack.push(shape);
 		for(int i=0;i<3;i++){
-		stack.shapes.pop();
+		Shape shape1=(Shape) stack.stack.pop();
+	    stack.setHight(stack.getHight()-shape1.getHeight());
+	    gameController.pool.returnObject(shape1);
 		}
-		//increase score scene 
-		return stack.shapes;
+		this.stack.getParetPlayer().score++;
+		return stack.stack;
 	}
-
 }

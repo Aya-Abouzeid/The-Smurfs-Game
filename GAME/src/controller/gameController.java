@@ -26,7 +26,7 @@ public class gameController implements Runnable {
 	private GraphicsContext gc;
 	private AnimationTimer drawingThread;
 	private ArrayList<Shape> fallingShapes;
-	private shapePool pool;
+	public static shapePool pool;
 	private imageFactory imgFactory;
 	private TimerThread timer;
 	private LinkedList<Player> players;
@@ -52,8 +52,8 @@ public class gameController implements Runnable {
 		players = new LinkedList<Player>();
 		setPlayers(snapshot.getPlayers());
 	}
-	
-	
+
+
 	public gameController(Game game, gameOptions gameOptions) {
 		setGameParameters(game);
 		this.gameOptions = gameOptions;
@@ -64,7 +64,7 @@ public class gameController implements Runnable {
 		counter = 0;
 		setPlayers();
 	}
-	
+
 	private void setGameParameters(Game game) {
 		this.gc = game.getGraphicContext();
 		this.width = game.getWidth();
@@ -110,7 +110,7 @@ public class gameController implements Runnable {
 				fallingShapes.remove(i);
 				i--;
 			} else {
-				fallingShapes.get(i).move(gc, shapeSpeed);
+				fallingShapes.get(i).move(gc, shapeSpeed,width);
 			}
 		}
 		if (players.size() == 2)
