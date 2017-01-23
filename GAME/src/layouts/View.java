@@ -1,6 +1,9 @@
 package layouts;
 
 
+import java.util.logging.Handler;
+
+import controller.eventHandler;
 import factories.sceneFactory;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -27,8 +30,8 @@ public class View extends Application {
 		scene = factory.getScene("MainMenu", window.getHeight(), window.getWidth());
 		setScene();
 		setExitConfirmation();
-		
         window.show();
+        eventHandler.getInstance().viewIsReady();
 	}
 	
 	private void setDimentions() {
@@ -47,6 +50,7 @@ public class View extends Application {
 			@Override
 			public void handle(WindowEvent event) {
 				try {
+					event.consume();
 					ExitConfrmationWindow.display();
 				} catch (Exception e) {
 					System.out.println("cann't close the program");

@@ -10,6 +10,7 @@ import button.exitButton;
 import button.instructionsButton;
 import button.loadGameButton;
 import button.mainOptionsButton;
+import button.musicButton;
 import button.newGameButton;
 
 public class buttonFactory {
@@ -33,13 +34,13 @@ public class buttonFactory {
 
 		switch (type) {
 		case "New Game":
-			return 	new newGameButton();
+			return new newGameButton();
 		case "Load Game":
-			return 	new loadGameButton();
+			return new loadGameButton();
 		case "Instructions":
-			return 	new instructionsButton();
+			return new instructionsButton();
 		case "Exit":
-			return 	new exitButton();
+			return new exitButton();
 		case "Main Options":
 			return new mainOptionsButton();
 		case "Continue Game":
@@ -51,11 +52,12 @@ public class buttonFactory {
 		case "Game Options":
 			return new GameOptionsButton();
 		case "save":
-            return new SaveGameButton();
+			return new SaveGameButton();
+		case "music":
+			return new musicButton();
 		default:
 			return null;
 		}
 	}
-
 
 }

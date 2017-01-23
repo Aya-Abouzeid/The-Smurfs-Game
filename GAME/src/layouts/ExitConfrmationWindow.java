@@ -54,16 +54,15 @@ public class ExitConfrmationWindow {
 		return YesButton;
 	}
 	private static Button setNoButton() {
-		Button YesButton = new Button("No");
-		YesButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		Button NoButton = new Button("No");
+		NoButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent arg0) {
 				window.close();
-
 			}
 		});
-		return YesButton;
+		return NoButton;
 	}
 
 }

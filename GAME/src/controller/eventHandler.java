@@ -14,6 +14,7 @@ public class eventHandler {
     private View view;
     private gameOptions gameOptions;
     private Memento snapshot;
+    private musicPlayer music;
 
     private eventHandler() {
         gameOptions = new gameOptions();
@@ -24,6 +25,11 @@ public class eventHandler {
             handler = new eventHandler();
         return handler;
     }
+
+    public void viewIsReady() throws InterruptedException {
+    	music = new musicPlayer();
+    	music.startMusic();
+	}
 
     public void NewGame() {
         Game gameScene = new Game(view.getHeight(), view.getWidth());
@@ -105,4 +111,12 @@ public class eventHandler {
             controller.notifyKeyPressed(key);
         }
     }
+    public void musicButtonPressed() {
+    	if (music.isPlaying()) {
+    		music.stopMusic();
+    	} else {
+    		music.startMusic();
+    	}
+    }
+
 }

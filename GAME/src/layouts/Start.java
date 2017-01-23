@@ -4,13 +4,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class Start extends layout {
 
-    private VBox vbox;
     private Group root = new Group();
     private static final String[] BUTTONS = { "New Game", "Load Game", "Main Options", "Instructions", "Exit" };
 
@@ -18,12 +19,21 @@ public class Start extends layout {
         super(height, width);
         setBackground();
         setButtons();
+        setMusicButton();
         scene = new Scene(root, windowWidth, windowHeight);
 
     }
 
-    private void setButtons() {
-        vbox = new VBox(30);
+    private void setMusicButton() {
+    	Button music = factory.getButton("music").getButton();
+    	music.setAlignment(Pos.TOP_LEFT);
+		StackPane stackPane = new StackPane(music);
+		stackPane.setPadding(new Insets(30, 0, 0, 50));
+		root.getChildren().add(stackPane);
+	}
+
+	private void setButtons() {
+		VBox vbox = new VBox(30);
         for (String crnt : BUTTONS)
             vbox.getChildren().add(factory.getButton(crnt).getButton());
         vbox.setAlignment(Pos.CENTER_RIGHT);

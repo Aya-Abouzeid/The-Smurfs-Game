@@ -22,11 +22,9 @@ public abstract class layout {
 		windowWidth = width;
 		factory = buttonFactory.getButtonFactory();
 		imgFactory = imageFactory.getImageFactory();
-		
 	}
 	
 	public Scene getScene() {
-		
 		return scene;
 	}
 }

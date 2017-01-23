@@ -1,16 +1,20 @@
 package layouts;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -24,8 +28,7 @@ public class Game extends layout{
 	public Game(double height, double width) {
 		super(height, width);
 		Group root = setLayout();
-		//////add sound button
-
+		setMusicButton();
 		Timer = new Label();
 		Timer.setTextFill(Color.web("#0076a3"));
 		Timer.setFont(Font.font("Cambria", 40));
@@ -34,6 +37,13 @@ public class Game extends layout{
 		scene = new Scene(root, windowWidth, windowHeight);
 		setKeyPress();
 		setMouseMovement();	
+	}
+	private void setMusicButton() {
+    	Button music = factory.getButton("music").getButton();
+    	music.setAlignment(Pos.TOP_LEFT);
+		StackPane stackPane = new StackPane(music);
+		stackPane.setPadding(new Insets(30, 0, 0, 50));
+		root.getChildren().add(stackPane);
 	}
 	
 	public Label getTimerLabel(){

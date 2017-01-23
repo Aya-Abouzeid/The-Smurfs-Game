@@ -32,7 +32,7 @@ public abstract class button {
         b.setGraphic(image);
         b.setStyle("-fx-background-color:#ffb833;" + "-fx-background-radius: 30;" + "-fx-padding: 10 20 10 20");
     }
-
+ 
     public abstract void setName();
 
     public abstract void setAction();
