@@ -9,107 +9,100 @@ import snapshot.Memento;
 
 public class eventHandler {
 
-	private static eventHandler handler;
-	private gameController controller;
-	private View view;
-	private gameOptions gameOptions;
-	private Memento snapshot;
+    private static eventHandler handler;
+    private gameController controller;
+    private View view;
+    private gameOptions gameOptions;
+    private Memento snapshot;
 
-	private eventHandler() {
-		gameOptions = new gameOptions();
-	}
-
-	public static eventHandler getInstance() {
-		if (handler == null) {
-			handler = new eventHandler();
-		}
-		return handler;
-	}
-
-	public void NewGame() {
-		Game gameScene = new Game(view.getHeight(), view.getWidth());
-		view.setScene(gameScene.getScene());
-		controller = new gameController(gameScene, gameOptions);
-		Thread game = new Thread(controller,"game begin");
-		game.start();
-	}
-
-	private void EscapeFromGame() {
-		System.out.println("pause");
-		view.setScene("pause");
-		snapshot = controller.pause();
-	}
-
-	public void continueGame() {
-		Game gameScene = new Game(view.getHeight(), view.getWidth());
-		view.setScene(gameScene.getScene());
-		controller = new gameController(gameScene, snapshot);
-		Thread game = new Thread(controller,"game begin");
-		game.start();
-	}
-
-	public void saveGame() {
-       save2 save=new save2();
-       save.save(this.snapshot);
+    private eventHandler() {
+        gameOptions = new gameOptions();
     }
 
-	public void MainMenu() {
-		view.setScene("MainMenu");
-	}
+    public static eventHandler getInstance() {
+        if (handler == null)
+            handler = new eventHandler();
+        return handler;
+    }
 
-	public void EndProgram() {
-		//save last screenshot
-		view.exit();
-	}
+    public void NewGame() {
+        Game gameScene = new Game(view.getHeight(), view.getWidth());
+        view.setScene(gameScene.getScene());
+        controller = new gameController(gameScene, gameOptions);
+        Thread game = new Thread(controller, "game begin");
+        game.start();
+    }
 
-	public void ExitConfirmation() {
-		System.out.println("exit confirmation");
-		ExitConfrmationWindow.display();
-	}
+    private void EscapeFromGame() {
+        System.out.println("pause");
+        view.setScene("pause");
+        snapshot = controller.pause();
+    }
 
+    public void continueGame() {
+        Game gameScene = new Game(view.getHeight(), view.getWidth());
+        view.setScene(gameScene.getScene());
+        controller = new gameController(gameScene, snapshot);
+        Thread game = new Thread(controller, "game begin");
+        game.start();
+    }
 
-	public void Instructions() {
-		view.setScene("Instructions");
-	}
+    public void saveGame() {
+        save2 save = new save2();
+        // save.save(this.snapshot);
+    }
 
-	public void loadGame() {
-		////// get load game
-	}
+    public void MainMenu() {
+        view.setScene("MainMenu");
+    }
 
-	public void mainOptions() {
-		view.setScene("MainOptions");
-	}
+    public void EndProgram() {
+        // save last screenshot
+        view.exit();
+    }
 
-	public void EndGame() {
-		view.setScene("EndGame");
-	}
+    public void ExitConfirmation() {
+        System.out.println("exit confirmation");
+        ExitConfrmationWindow.display();
+    }
 
-	public void gameOptions() {
-		view.setScene("GameOptions");
-	}
+    public void Instructions() {
+        view.setScene("Instructions");
+    }
 
-	public void GameOptionsReturn() {
-		view.setScene("pause");
-	}
+    public void loadGame() {
+        ////// get load game
+    }
 
-	public void setView(View view) {
-		this.view = view;
-	}
+    public void mainOptions() {
+        view.setScene("MainOptions");
+    }
 
-	// it is called only from game layout
-	public void notifyMouseMoved(double x) {
-		controller.notifyMouseMoved(x);
-	}
+    public void EndGame() {
+        view.setScene("EndGame");
+    }
 
-	// it is called only from game layout
-	public void notifyKeyPressed(KeyCode key) {
-		if (key == KeyCode.ESCAPE){
-			EscapeFromGame();
-		} else {
-			controller.notifyKeyPressed(key);
-		}
-	}
+    public void gameOptions() {
+        view.setScene("GameOptions");
+    }
 
+    public void GameOptionsReturn() {
+        view.setScene("pause");
+    }
 
+    public void setView(View view) {
+        this.view = view;
+    }
 
+    public void notifyMouseMoved(double x) {
+        controller.notifyMouseMoved(x);
+    }
+
+    public void notifyKeyPressed(KeyCode key) {
+        if (key == KeyCode.ESCAPE) {
+            EscapeFromGame();
+        } else {
+            controller.notifyKeyPressed(key);
+        }
+    }
 }
