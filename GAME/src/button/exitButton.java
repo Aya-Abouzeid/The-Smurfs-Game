@@ -9,22 +9,6 @@ import javafx.scene.input.MouseEvent;
 
 public class exitButton extends button {
 
-	
-	private final double coordX = 0;
-	private final double coordY = 0;
-
-	@Override
-	public void setX() {
-		b.setLayoutX(coordX);
-
-	}
-
-	@Override
-	public void setY() {
-		b.setLayoutY(coordY);
-
-	}
-
 	@Override
 	public void setName() {
 		File file = new File("src\\images\\EXITGAME.png");
@@ -40,8 +24,6 @@ public class exitButton extends button {
 			public void handle(MouseEvent arg0) {
 				handler.ExitConfirmation();
 			}
-
 		});
 	}
-
 }

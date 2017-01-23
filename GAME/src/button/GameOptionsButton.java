@@ -9,22 +9,6 @@ import javafx.scene.input.MouseEvent;
 
 public class GameOptionsButton extends button {
 
-	private final String ButtonName = "Options";
-	private final double coordX = 0;
-	private final double coordY = 0;
-
-	@Override
-	public void setX() {
-		b.setLayoutX(coordX);
-
-	}
-
-	@Override
-	public void setY() {
-		b.setLayoutY(coordY);
-
-	}
-
 	@Override
 	public void setName() {
 		File file = new File("src\\images\\OPTIONS.png");
@@ -39,7 +23,6 @@ public class GameOptionsButton extends button {
 			@Override
 			public void handle(MouseEvent arg0) {
 				handler.gameOptions();
-
 			}
 
 		});

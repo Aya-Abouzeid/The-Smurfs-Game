@@ -7,23 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class SaveGameButton extends button{
-
-    private final String ButtonName = "Save";
-    private final double coordX = 0;
-    private final double coordY = 0;
-
-    @Override
-    public void setX() {
-        b.setLayoutX(coordX);
-
-    }
-
-    @Override
-    public void setY() {
-        b.setLayoutY(coordY);
-
-    }
+public class SaveGameButton extends button {
 
     @Override
     public void setName() {
@@ -35,13 +19,11 @@ public class SaveGameButton extends button{
     @Override
     public void setAction() {
         b.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
             @Override
             public void handle(MouseEvent arg0) {
                 handler.saveGame();
 
             }
-
         });
     }
 }
