@@ -19,8 +19,7 @@ public class ContinueGameButton extends button {
 
 			@Override
 			public void handle(MouseEvent arg0) {
-				//handler.continueGame();
-			   handler.saveGame();
+				handler.continueGame();
 
 			}
 

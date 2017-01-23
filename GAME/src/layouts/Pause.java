@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 public class Pause extends layout {
 
     private Group root = new Group();
-    private static final String[] BUTTONS = { "Continue Game", "Main Menu", "Game Options" };
+    private static final String[] BUTTONS = { "Continue Game", "save", "Main Menu", "Game Options" };
 
     public Pause(double height, double width) {
         super(height, width);
@@ -21,7 +21,7 @@ public class Pause extends layout {
     }
 
     private void addButton() {
-        VBox vbox = new VBox(70);
+        VBox vbox = new VBox(30);
         vbox.setPadding(new Insets(windowHeight -550 , windowWidth / 2 - 60, 150,
          windowWidth / 2 - 150));
         for (String crnt : BUTTONS)
