@@ -79,10 +79,10 @@ public class Game extends layout {
     }
 
     private Group setLayout() {
-        Image background = imgFactory.getImage("galaxy");
+        Image background = imgFactory.getImage("background");
         ImageView img = new ImageView(background);
         img.setPreserveRatio(true);
-        img.setFitHeight(windowWidth);
+        img.setFitWidth(windowWidth);
         root = new Group();
         root.getChildren().add(img);
         Canvas canvas = new Canvas(windowWidth, windowHeight);

@@ -25,7 +25,6 @@ public class positionHandler {
     }
 
     public void notifyObservers(double x, int s) {
-        Logs.log("observers are moving", "debug");
         if (s == 0)
             for (Shape crnt : observers)
                 crnt.update(x);

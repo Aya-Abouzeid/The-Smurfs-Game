@@ -7,8 +7,6 @@ import javafx.scene.image.Image;
 public class imageFactory {
 
 	private static imageFactory imgFactory;
-//	private final double DefaultWidth = 32;
-//	private final double DefaultHeight = 50;
 
 	private imageFactory() {
 
@@ -36,14 +34,12 @@ public class imageFactory {
 
 	private File getFile(String name) {
 		switch (name) {
-		case "galaxy":
-			return new File("try2.png");
+		case "background":
+			return new File("src\\images\\back2.png");
 		case "smurfette":
-			return new File("2.png");
-		case "new game":
-			return new File("NEWGAME.png");
-		case "smurff":
-			return new File("1.png");
+            return new File("src\\images\\2.png");
+        case "smurff":
+            return new File("src\\images\\1.png");
 		case "mainMenu":
 			return new File("src\\images\\mainMenu.jpg");
 		case "howTo":
