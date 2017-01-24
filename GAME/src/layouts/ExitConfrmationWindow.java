@@ -35,10 +35,8 @@ public class ExitConfrmationWindow {
 
 		// Display window and wait for it to be closed before returning
 		Scene scene = new Scene(layout);
-
 		window.setScene(scene);
 		window.showAndWait();
-
 	}
 
 	private static Button setYesButton() {
@@ -64,5 +62,4 @@ public class ExitConfrmationWindow {
 		});
 		return NoButton;
 	}
-
 }

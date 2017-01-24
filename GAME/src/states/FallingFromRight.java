@@ -23,23 +23,7 @@ public class FallingFromRight extends State {
 
 	}
 
-	@Override
-	public boolean isCaught() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean isFalling() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isStored() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public void move(Shape shape, GraphicsContext gc, double shapeSpeed,double width) {
@@ -73,10 +57,10 @@ public class FallingFromRight extends State {
 		return 	(oldY- ((100)-(slope*(width-250))))/ slope;
 
 	}
-	
+
 	@Override
 	public String getstate() {
-		
+
 		return "right";
 	}
 

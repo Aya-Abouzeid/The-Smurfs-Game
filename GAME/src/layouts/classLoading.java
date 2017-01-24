@@ -17,6 +17,7 @@ public class classLoading {
         final File folder = new File("jars");
         listFilesForFolder(folder);
     }
+
     public static classLoading getInstance() throws MalformedURLException, ClassNotFoundException {
         if (cLoad == null)
             return cLoad = new classLoading();
@@ -31,19 +32,17 @@ public class classLoading {
             URL[] urls = new URL[] { JarFile };
             cl = new URLClassLoader(urls);
             Class tmp = cl.loadClass("shape." + name);
-            try{
-                if(Shape.class.isAssignableFrom(tmp))
+            try {
+                if (Shape.class.isAssignableFrom(tmp))
                     loadedShapes.add(tmp);
-            }
-            catch( Exception e) {
+            } catch (Exception e) {
 
             }
         }
     }
 
-    public ArrayList<Class> getLoadedShapes(){
+    public ArrayList<Class> getLoadedShapes() {
         return loadedShapes;
-
     }
 
 }

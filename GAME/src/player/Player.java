@@ -1,9 +1,7 @@
 package player;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-import factories.imageFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -22,7 +20,7 @@ public class Player implements Serializable{
     private KeyCode rightButton;
     public positionHandler PH;
     public int score;
-    
+
 
     public Player(Image image, boolean mouseControl) {
         imageView = new ImageView(image);
@@ -33,51 +31,17 @@ public class Player implements Serializable{
         score = 0;
     }
 
-//    public void positionChanged(){
-//        notifyStacks();
-//    }
+    public void positionChanged(){
+        notifyStacks();
+    }
     private void notifyStacks(){
-    	
+
         for(PlayerStack crnt : Stacks){
         	System.out.println(crnt.getHight());
         	System.out.println("stack move");
            crnt.PH.notifyObservers(positionX, Stacks.indexOf(crnt));}
     }
-//    public void addToStacks(Shape shape, int i) {
-//        if (shape != null)
-//            Stacks.get(i).add(shape);
-//    }
 
-//    public void addToLeftStack(Shape shape) {
-//        if (shape != null)
-//            leftStack.add(shape);
-//    }
-//
-//    public void popLeftStack() {
-//        for (int i = 0; i < 2; i++)
-//            leftStack.pop();
-//    }
-//
-//    public void popRightStack() {
-//        for (int i = 0; i < 2; i++)
-//            rightStack.pop();
-//    }
-//
-//    public double getRightStackHight() {
-//        return rightStackHight;
-//    }
-//
-//    public void setRightStackHight(double Hight) {
-//        this.rightStackHight = Hight;
-//    }
-//
-//    public double getLeftStackHight() {
-//        return leftStackHight;
-//    }
-//
-//    public void setLeftStackHight(double Hight) {
-//        this.leftStackHight = Hight;
-//    }
     public void setScore(int newScore){
     	score = newScore;
     }
@@ -91,7 +55,7 @@ public class Player implements Serializable{
     public void setX(double x) {
     	imageView.setX(x);
     	positionX = x;
-    	notifyStacks();
+    	positionChanged();
     }
 
     public double getY() {
@@ -104,8 +68,8 @@ public class Player implements Serializable{
 
     public void MoveByKey(double speed) {
     	setX(getX() + speed);
-    	notifyStacks();
-    }
+    	positionChanged();
+    	}
 
     public void setRightButton(KeyCode button) {
     	this.rightButton = button;

@@ -15,7 +15,7 @@ public class PlayerStack {
     private double hight;
     public Stack<shapeInt> stack;
     public Player player;
-   public positionHandler PH = new positionHandler();
+    public positionHandler PH = new positionHandler();
 
     public PlayerStack(double hight,Player player) {
         Different = new Different(this);
@@ -36,23 +36,10 @@ public class PlayerStack {
         currentstate = (StackState) newState;
     }
 
-    public StackState getDifferent() {
-        return Different;
-    }
-
-    public StackState getSame() {
-        return Same;
-    }
-
     public void setHight(double hight) {
         this.hight = hight;
     }
 
-
-
-    public void removeThree() {
-       //remove from stack and from observers --- back to the poll
-    }
     private boolean sameShapes(Shape shape) {
         if(stack.size()<2){
             return false;
@@ -74,11 +61,6 @@ public class PlayerStack {
         } else {
             currentstate = Different;
         }
-
         return currentstate.insert(shape);
     }
-    public void notifyStacks(){
-
-    }
-
 }

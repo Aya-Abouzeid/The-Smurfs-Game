@@ -23,24 +23,6 @@ public class FallingFromLeft extends State {
 	}
 
 	@Override
-	public boolean isCaught() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isFalling() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isStored() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void move(Shape shape, GraphicsContext gc, double shapeSpeed,double width) {
 		// TODO Auto-generated method stub
 		if (shape.getX() < 250) {
@@ -68,34 +50,11 @@ public class FallingFromLeft extends State {
 		// TODO Auto-generated method stub
 		return (oldY - ((100) - (slope * 250))) / slope;
 	}
-	
+
 	@Override
 	public String getstate() {
-		
+
 		return "left";
 	}
-
-	// @Override
-	// public void dequeue() {
-	// // TODO Auto-generated method stub
-	//
-	// }
-	// @Override
-	// public void isOnGround() {
-	// // TODO Auto-generated method stub
-	//
-	// }
-	//
-	// @Override
-	// public void checkFalse() {
-	// // TODO Auto-generated method stub
-	//
-	// }
-	//
-	// @Override
-	// public void checkTrue() {
-	// // TODO Auto-generated method stub
-	//
-	// }
 
 }

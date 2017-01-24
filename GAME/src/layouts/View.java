@@ -1,8 +1,6 @@
 package layouts;
 
 
-import java.util.logging.Handler;
-
 import controller.eventHandler;
 import factories.sceneFactory;
 import javafx.application.Application;
@@ -13,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import logs.Logs;
 
 public class View extends Application {
 
@@ -33,7 +32,7 @@ public class View extends Application {
         window.show();
         eventHandler.getInstance().viewIsReady();
 	}
-	
+
 	private void setDimentions() {
 		Screen screen = Screen.getPrimary();
 		Rectangle2D bounds = screen.getVisualBounds();
@@ -42,7 +41,7 @@ public class View extends Application {
 		window.setY(bounds.getMinY());
 		window.setWidth(bounds.getWidth());
 		window.setHeight(bounds.getHeight());
-		
+
 	}
 
 	private void setExitConfirmation() {
@@ -53,8 +52,7 @@ public class View extends Application {
 					event.consume();
 					ExitConfrmationWindow.display();
 				} catch (Exception e) {
-					System.out.println("cann't close the program");
-					e.printStackTrace();
+				    Logs.log("Games can't be closed!", "Error");
 				}
 			}
 		});
@@ -77,7 +75,6 @@ public class View extends Application {
 				scene = newScene;
 				window.setScene(scene);
 			}
-
 		});
 	}
 
@@ -91,7 +88,7 @@ public class View extends Application {
 			}
 		});
 	}
-	
+
 	public double getWidth() {
 		return window.getWidth();
 	}

@@ -1,6 +1,5 @@
 package snapshot;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -18,7 +17,7 @@ public class Memento {
 	private LinkedList<Player> players;
 	save2 save = new save2();
 
-	public Memento(ArrayList<Shape> shapes, gameOptions options, 
+	public Memento(ArrayList<Shape> shapes, gameOptions options,
 			LinkedList<Player> players, int minutes, int seconds, int counter) {
 		// save.save(shapes);
 		this.shapes = shapes;
@@ -28,10 +27,6 @@ public class Memento {
 		this.minutes = minutes;
 		this.seconds = seconds;
 	}
-
-	// public Shape[] getSavedshapes() throws IOException {
-	// return (Shape[]) save.load();
-	// }
 
 	public ArrayList<Shape> getShapes() {
 		return shapes;

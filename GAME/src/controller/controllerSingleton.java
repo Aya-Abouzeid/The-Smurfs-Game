@@ -6,6 +6,7 @@ import factories.shapeFactory;
 import javafx.application.Application;
 import layouts.View;
 import layouts.classLoading;
+import logs.Logs;
 
 public class controllerSingleton {
     private static ArrayList<Class> loadedShapes;
@@ -29,6 +30,7 @@ public class controllerSingleton {
 
     public void startGame() {
         loadShapes();
+        Logs.log("shapes is loaded", "info");
         Application.launch(View.class, args);
     }
 
@@ -37,7 +39,7 @@ public class controllerSingleton {
             loadedShapes = classLoading.getInstance().getLoadedShapes();
             shapeFactory.getShapeFactory().setLoadedClasses(loadedShapes);
         } catch (Exception e) {
-            e.printStackTrace();
+            Logs.log("Shapes can't be loaded", "error");
         }
     }
 

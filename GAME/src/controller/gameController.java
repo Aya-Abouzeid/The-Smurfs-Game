@@ -1,13 +1,12 @@
 package controller;
- 
+
 import java.util.ArrayList;
 import java.util.LinkedList;
- 
+
+import factories.imageFactory;
 import iterator.CreateIterator;
 import iterator.Iterator;
 import iterator.PlayerIterator;
-import iterator.Shapeiterator;
-import factories.imageFactory;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -22,7 +21,8 @@ import shape.shapeInt;
 import shape.shapePool;
 import snapshot.Memento;
 import states.PlayerStack;
- 
+import states.State;
+
 public class gameController implements Runnable,CreateIterator {
 	private final double characterHeight = 330;
 	private final double characterWidth = 100;
@@ -45,6 +45,7 @@ public class gameController implements Runnable,CreateIterator {
 	private int counter;
 	private Label score1;
     private Label score2;
+    private State Cought;
 	public gameController(Game game, Memento snapshot) {
 		setGameParameters(game);
 		this.gameOptions = snapshot.getOptions();
@@ -57,8 +58,8 @@ public class gameController implements Runnable,CreateIterator {
 		players = new LinkedList<Player>();
 		setPlayers(snapshot.getPlayers());
 	}
- 
- 
+
+
 	public gameController(Game game, gameOptions gameOptions) {
 		setGameParameters(game);
 		this.gameOptions = gameOptions;
@@ -69,7 +70,7 @@ public class gameController implements Runnable,CreateIterator {
 		counter = 0;
 		setPlayers();
 	}
- 
+
 	private void setGameParameters(Game game) {
 		this.gc = game.getGraphicContext();
 		this.width = game.getWidth();
@@ -79,18 +80,18 @@ public class gameController implements Runnable,CreateIterator {
 		this.score1 = game.getScore1Label();
         this.score2 = game.getScore2Label();
 	}
- 
+
 	@Override
 	public void run() {
 		setGameSpeed();
 		setFallingPlates();
 		startGameTimer();
 	}
- 
+
 	private void setGameSpeed() {
 		shapeSpeed = gameOptions.getGameSpeed();
 	}
- 
+
 	private void setFallingPlates() {
 		drawingThread = new AnimationTimer() {
 			@Override
@@ -121,7 +122,7 @@ public class gameController implements Runnable,CreateIterator {
 	        	if (players.size() == 2){
 	                catchDetection(i);
 	                changeText();
-//	                
+//
 	            }
 	            if (fallingShapes.get(i).getY() >= height) {
 	                pool.returnObject(fallingShapes.get(i));
@@ -139,7 +140,7 @@ public class gameController implements Runnable,CreateIterator {
 	                }
 	            }
 	}
- 
+
 	private void catchDetection(int obj) {
 		Shape object = fallingShapes.get(obj);
 		for (int i = 0; i < 2; i++) {
@@ -148,15 +149,17 @@ public class gameController implements Runnable,CreateIterator {
 			if (object.getY() == height - S1.getHight() && Math.abs(object.centerX() - players.get(i).getX()) < 15) {
 				S1.add(object);
 				fallingShapes.remove(obj);
+				object.setState(Cought);
 			} else if (object.getY() == height - S2.getHight()
 					&& Math.abs(object.centerX() - 100 - characterWidth - players.get(i).getX()) < 15) {
 				S2.add(object);
 				fallingShapes.remove(obj);
- 
+				object.setState(Cought);
+
 			}
 		}
 	}
- 
+
 	private void setPlayers(LinkedList<Player> players) {
 		this.players = players;
 		Player player;
@@ -168,7 +171,7 @@ public class gameController implements Runnable,CreateIterator {
 			System.out.println("show player " + i + 1);
 		}
 	}
- 
+
 	private void setPlayers() {
 		Platform.runLater(new Runnable() {
 			@Override
@@ -194,8 +197,8 @@ public class gameController implements Runnable,CreateIterator {
 			}
 		});
 	}
- 
- 
+
+
 	public void notifyMouseMoved(double x) {
 		Player p;
 		for (int i = 0; i < players.size(); i++) {
@@ -205,7 +208,7 @@ public class gameController implements Runnable,CreateIterator {
 			}
 		}
 	}
- 
+
 	public void notifyKeyPressed(KeyCode key) {
 		Player p;
 		for (int i = 0; i < players.size(); i++) {
@@ -223,13 +226,13 @@ public class gameController implements Runnable,CreateIterator {
 			}
 		}
 	}
- 
+
 	private void startGameTimer() {
 		timer = new TimerThread(timerLabel, minutesTimer, SecondsTimer);
 		Thread t = new Thread(timer);
 		t.start();
 	}
- 
+
 	// stop running threads
 	public Memento pause() {
 		timer.stopTimer();
@@ -237,25 +240,25 @@ public class gameController implements Runnable,CreateIterator {
 		Memento snapshot = new Memento(fallingShapes, gameOptions, players, timer.getMin()	, timer.getsec(), counter);
 		return snapshot;
 	}
- 
+
 	public void setGameSpeed(double speed) {
 		shapeSpeed = speed;
 	}
- 
- 
+
+
 	@Override
 	public Iterator cteateIterator(LinkedList<Player> player) {
- 
+
 		return new PlayerIterator(player);
 	}
- 
- 
+
+
 	@Override
 	public Iterator cteateIterator(ArrayList<Shape> shape) {
 		// TODO Auto-generated method stub
 		return null;
 	}
- 
- 
- 
+
+
+
 }

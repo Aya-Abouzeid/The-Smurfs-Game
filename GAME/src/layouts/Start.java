@@ -7,8 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import logs.Logs;
 
 public class Start extends layout {
 
@@ -27,9 +27,10 @@ public class Start extends layout {
     private void setMusicButton() {
     	Button music = factory.getButton("music").getButton();
     	music.setAlignment(Pos.TOP_LEFT);
-		StackPane stackPane = new StackPane(music);
-		stackPane.setPadding(new Insets(30, 0, 0, 50));
-		root.getChildren().add(stackPane);
+		VBox v = new VBox();
+		v.getChildren().add(music);
+		v.setPadding(new Insets(30, 0, 0, 50));
+		root.getChildren().add(v);
 	}
 
 	private void setButtons() {
@@ -45,6 +46,7 @@ public class Start extends layout {
         Image background = imgFactory.getImage("mainMenu", windowWidth, windowHeight);
         ImageView img = new ImageView(background);
         root.getChildren().add(img);
+        Logs.log("layout Changed", "debug");
     }
 
 }

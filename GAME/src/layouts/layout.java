@@ -12,18 +12,15 @@ public abstract class layout {
 	protected Scene scene;
 	protected buttonFactory factory;
 	protected imageFactory imgFactory;
-	
-	
-	
+
 	public eventHandler handler = eventHandler.getInstance();
-	
 	public layout(double height, double width) {
 		windowHeight = height;
 		windowWidth = width;
 		factory = buttonFactory.getButtonFactory();
 		imgFactory = imageFactory.getImageFactory();
 	}
-	
+
 	public Scene getScene() {
 		return scene;
 	}

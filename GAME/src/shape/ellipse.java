@@ -1,15 +1,13 @@
 package shape;
- 
-import java.io.IOException;
+
 import java.io.Serializable;
- 
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
-import states.FallingFromLeft;
 import states.State;
 import states.Stored;
- 
+
 public class ellipse extends Shape implements Serializable,shapeInt  {
    private  Ellipse ellipseShape;
    private int type=1;
@@ -25,11 +23,12 @@ public class ellipse extends Shape implements Serializable,shapeInt  {
         this.state = Stored.getStoredInstance();
         this.height = 28.0f;
     }
- 
+
     @Override
    public void move(GraphicsContext gc, double shapeSpeed,double width) {
         this.state.move(this, gc, shapeSpeed,width);
    }
+    @Override
     public int gettype(){
  	   return type;
     }
@@ -37,79 +36,79 @@ public class ellipse extends Shape implements Serializable,shapeInt  {
     public void setSlope(double screenWidth, double screenheight) {
       this.slope = state.setSlope(screenWidth, screenheight);
     }
- 
+
     @Override
     public void increaseSlopedY(double width) {
         this.setY(this.getY() + 1);
        this.setX(state.increaseSlopedY(this.getY(), this.slope,width));
     }
- 
+
     @Override
     public void drawShape(GraphicsContext gc) {
       gc.setFill(this.color);
         gc.fillOval(x - 25, y - 10.0, 60.0, 25.0f);
     }
- 
+
     @Override
     public Ellipse getShape() {
         return this.ellipseShape;
     }
- 
+
     @Override
     public double getX() {
         return this.x;
     }
- 
+
     @Override
     public double getY() {
         return this.y;
     }
- 
+
     @Override
     public void setX(double x) {
         this.x = x;
    this.ellipseShape.setCenterX(x);
     }
- 
+
     @Override
     public void setY(double y) {
         this.y = y;
    this.ellipseShape.setCenterY(y);
     }
- 
+
     @Override
    public State getState() {
    return this.state;
- 
+
     }
- 
+
     @Override
     public void setState(State s) {
        this.state = s;
     }
- 
+
     @Override
     public Color getColor() {
        return this.color;
- 
+
     }
- 
+
     @Override
     public double getHeight() {
     return this.height;
- 
+
     }
- 
+
     @Override
     public double centerX() {
         return getX();
     }
- 
+
     @Override
     public double centerY() {
        return getY();
     }
- 
+
 	@Override
 	public String getColorname() {
 		if(color.equals(Color.RED)){
@@ -144,4 +143,9 @@ public class ellipse extends Shape implements Serializable,shapeInt  {
 		}
 		return null;
 	}
+
+    @Override
+    public void update(double x) {
+        setX(x);
+    }
 }
