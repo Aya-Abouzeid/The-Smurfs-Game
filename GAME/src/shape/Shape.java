@@ -1,15 +1,20 @@
 package shape;
-
+ 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Random;
-
+ 
+import factories.imageFactory;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Color;
+import states.FallingFromLeft;
 import states.State;
-
-public abstract class Shape implements shapeInt {
-
-    protected State state;
+ 
+public abstract class Shape implements shapeInt,Serializable  {
+ 
+    protected  State state;
     protected Color color;
     protected double x;
     protected double y;
@@ -18,43 +23,45 @@ public abstract class Shape implements shapeInt {
     protected Random randomize = new Random();
     protected Color[] colors = { Color.RED, Color.BLUE, Color.PINK, Color.CYAN, Color.GOLD, Color.BLUEVIOLET,
             Color.GREENYELLOW, Color.DEEPPINK, Color.BLACK, Color.DARKGREEN };
-
-	@Override
-	abstract public double getX();
-
-	@Override
-	abstract public void move(GraphicsContext gc , double shapeSpeed,double width);
-
-	@Override
-	abstract public double getY();
-
-	@Override
-	abstract public void setX(double x);
-
-	@Override
-	abstract public void setY(double y);
-
-	@Override
-	abstract public State getState();
-
-	@Override
-	abstract public void setSlope(double screenWidth, double screenheight);
-
-	@Override
-	abstract public void setState(State s);
-
-	@Override
-	abstract public Color getColor();
-
-	@Override
-	abstract public void increaseSlopedY(double width) ;
-
-	@Override
-	abstract public javafx.scene.shape.Shape getShape();
-
-	@Override
-	abstract public void drawShape(GraphicsContext gc);
-
-	@Override
-	abstract public double getHeight();
+ 
+ 
+	 public abstract double getX();
+ 
+ 
+	 public abstract void move(GraphicsContext gc , double shapeSpeed,double width);
+ 
+ 
+	 public abstract  double getY();
+ 
+ 
+	 public abstract void setX(double x);
+ 
+ 
+	 public abstract void setY(double y);
+ 
+ 
+	 public abstract  State getState();
+ 
+	 public abstract  int gettype();
+ 
+	 public abstract  void setSlope(double screenWidth, double screenheight);
+ 
+ 
+	 public abstract  void setState(State s);
+ 
+ 
+	 public abstract  Color getColor();
+ 
+	 public abstract  String  getColorname();
+ 
+	 public  abstract void increaseSlopedY(double width) ;
+ 
+ 
+	 public abstract  javafx.scene.shape.Shape getShape();
+ 
+ 
+	 public abstract  void drawShape(GraphicsContext gc);
+ 
+ 
+	 public abstract  double getHeight();
 }

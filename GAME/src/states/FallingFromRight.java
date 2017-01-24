@@ -73,5 +73,11 @@ public class FallingFromRight extends State {
 		return 	(oldY- ((100)-(slope*(width-250))))/ slope;
 
 	}
+	
+	@Override
+	public String getstate() {
+		
+		return "right";
+	}
 
 }

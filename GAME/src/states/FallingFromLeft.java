@@ -68,6 +68,12 @@ public class FallingFromLeft extends State {
 		// TODO Auto-generated method stub
 		return (oldY - ((100) - (slope * 250))) / slope;
 	}
+	
+	@Override
+	public String getstate() {
+		
+		return "left";
+	}
 
 	// @Override
 	// public void dequeue() {

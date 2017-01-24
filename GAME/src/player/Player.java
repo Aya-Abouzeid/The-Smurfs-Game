@@ -1,25 +1,28 @@
 package player;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.LinkedList;
 
+import factories.imageFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import observer.positionHandler;
 import states.PlayerStack;
 
-public class Player {
+public class Player implements Serializable{
 
-    public ImageView imageView;
+    public  ImageView imageView;
     private static final int CHARHIGHT = 330;
     private double positionX;
     private double positionY;
-    public LinkedList<PlayerStack> Stacks;
+    public  LinkedList<PlayerStack> Stacks;
     private boolean mouseControl;
     private KeyCode leftButton;
     private KeyCode rightButton;
-    private positionHandler PH;
+    public positionHandler PH;
     public int score;
-
+    
 
     public Player(Image image, boolean mouseControl) {
         imageView = new ImageView(image);
@@ -29,23 +32,17 @@ public class Player {
         Stacks.add(new PlayerStack(CHARHIGHT,this));
         score = 0;
     }
-    public void setScore(int newScore){
-    	score = newScore;
-    }
-    public int getScore(){
-    	return score;
-    }
-
 
 //    public void positionChanged(){
 //        notifyStacks();
 //    }
-
     private void notifyStacks(){
-        for(PlayerStack crnt : Stacks)
-           crnt.PH.notifyObservers(positionX, Stacks.indexOf(crnt));
+    	
+        for(PlayerStack crnt : Stacks){
+        	System.out.println(crnt.getHight());
+        	System.out.println("stack move");
+           crnt.PH.notifyObservers(positionX, Stacks.indexOf(crnt));}
     }
-
 //    public void addToStacks(Shape shape, int i) {
 //        if (shape != null)
 //            Stacks.get(i).add(shape);
@@ -81,6 +78,12 @@ public class Player {
 //    public void setLeftStackHight(double Hight) {
 //        this.leftStackHight = Hight;
 //    }
+    public void setScore(int newScore){
+    	score = newScore;
+    }
+    public int getScore(){
+    	return score;
+    }
 
     public double getX() {
         return positionX;
