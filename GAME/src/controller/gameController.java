@@ -39,6 +39,8 @@ public class gameController implements Runnable {
     private double width;
     private double height;
     private int counter;
+    private Label score1;
+    private Label score2;
 
     public gameController(Game game, Memento snapshot) {
         setGameParameters(game);
@@ -70,6 +72,8 @@ public class gameController implements Runnable {
         this.height = game.getHeight();
         this.root = game.getRoot();
         this.timerLabel = game.getTimerLabel();
+        this.score1 = game.getScore1Label();
+        this.score2 = game.getScore2Label();
     }
 
     @Override
@@ -93,7 +97,15 @@ public class gameController implements Runnable {
         };
         drawingThread.start();
     }
-
+    private void changeText() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				 score1.setText("SMURF" +"\n     "+players.get(1).getScore());
+	        		score2.setText("SMURFETTE" +"\n          "+players.get(0).getScore());
+			}
+		});
+	}
     private void draw() {
         gc.clearRect(0, 0, width, height);
         counter++;
@@ -102,8 +114,11 @@ public class gameController implements Runnable {
             counter = 0;
         }
         for (int i = 0; i < fallingShapes.size(); i++) {
-            if (players.size() == 2)
+        	if (players.size() == 2){
                 catchDetection(i);
+                changeText();
+//                
+            }
             if (fallingShapes.get(i).getY() >= height) {
                 pool.returnObject(fallingShapes.get(i));
                 fallingShapes.remove(i);

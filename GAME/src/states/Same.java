@@ -18,7 +18,7 @@ public class Same implements StackState{
 	    stack.setHight(stack.getHight()-shape1.getHeight());
 	    gameController.pool.returnObject(shape1);
 		}
-		this.stack.getParetPlayer().score++;
+		this.stack.getParetPlayer().setScore((this.stack.getParetPlayer().getScore())+1);
 		return stack.stack;
 	}
 }

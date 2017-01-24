@@ -17,23 +17,38 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class Game extends layout{
 	
 	private GraphicsContext gc;
 	private Group root;
-	private Label Timer;
+	private Label timer;
+	private Label score1;
+	private Label score2;
 	
 	
 	public Game(double height, double width) {
 		super(height, width);
 		Group root = setLayout();
 		setMusicButton();
-		Timer = new Label();
-		Timer.setTextFill(Color.web("#0076a3"));
-		Timer.setFont(Font.font("Cambria", 40));
-		Timer.setLayoutX(width - 140);
-		root.getChildren().add(Timer);
+				timer = new Label();
+		timer.setTextFill(Color.web("#FFCA28"));
+		timer.setFont(Font.font("Cambria", FontWeight.BOLD, 60));
+		timer.setLayoutX(width - 800);
+		root.getChildren().add(timer);
+		
+		score1 = new Label();
+		score1.setTextFill(Color.web("#FFCA28"));
+		score1.setFont(Font.font("Cambria", FontWeight.BOLD, 40));
+		score1.setLayoutX(width - 1350);
+		root.getChildren().add(score1);
+		
+		score2 = new Label();
+		score2.setTextFill(Color.web("#FFCA28"));
+		score2.setFont(Font.font("Cambria", FontWeight.BOLD, 40));
+		score2.setLayoutX(width - 250);
+		root.getChildren().add(score2);
 		scene = new Scene(root, windowWidth, windowHeight);
 		setKeyPress();
 		setMouseMovement();	
@@ -45,9 +60,14 @@ public class Game extends layout{
 		stackPane.setPadding(new Insets(30, 0, 0, 50));
 		root.getChildren().add(stackPane);
 	}
-	
+	public Label getScore1Label(){
+		return score1;
+	}
+	public Label getScore2Label(){
+		return score2;
+	}
 	public Label getTimerLabel(){
-		return Timer;
+		return timer;
 	}
 	 
 	

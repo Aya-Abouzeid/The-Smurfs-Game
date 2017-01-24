@@ -29,6 +29,13 @@ public class Player {
         Stacks.add(new PlayerStack(CHARHIGHT,this));
         score = 0;
     }
+    public void setScore(int newScore){
+    	score = newScore;
+    }
+    public int getScore(){
+    	return score;
+    }
+
 
 //    public void positionChanged(){
 //        notifyStacks();
