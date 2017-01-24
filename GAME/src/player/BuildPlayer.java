@@ -21,7 +21,7 @@ public class BuildPlayer {
 	t.setRightButton(r.getRightButton());
 	t.setX(r.getPositionX());
 	t.setY(r.getPositionY());
-	t.score=t.score;
+	t.score=r.score;
 	  return t;
 	}
 }
