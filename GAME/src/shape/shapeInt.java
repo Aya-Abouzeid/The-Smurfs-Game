@@ -2,9 +2,7 @@ package shape;
  
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
 import states.ShapeState;
-import states.State;
  
 public interface shapeInt {
  
