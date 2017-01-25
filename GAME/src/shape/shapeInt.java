@@ -3,6 +3,7 @@ package shape;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
+import states.ShapeState;
 import states.State;
  
 public interface shapeInt {
@@ -23,9 +24,9 @@ public interface shapeInt {
  
     public void increaseSlopedY(double width, double fallingSpeed);
  
-    public State getState();
+    public ShapeState getState();
  
-    public void setState(State s);
+    public void setState(ShapeState s);
  
     public Color getColor();
  

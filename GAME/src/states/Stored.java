@@ -3,7 +3,7 @@ package states;
 import javafx.scene.canvas.GraphicsContext;
 import shape.Shape;
 
-public class Stored extends State {
+public class Stored implements ShapeState {
 
     private static Stored stored = null;
 
@@ -33,7 +33,7 @@ public class Stored extends State {
     }
 
     @Override
-    public void move(Shape shape, GraphicsContext gc, double shapeSpeed, double width) {
+    public void move(Shape shape, GraphicsContext gc, double shapeSpeed, double width, double fallingSpeed) {
 
     }
 

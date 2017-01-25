@@ -13,7 +13,6 @@ public class block extends Shape {
 
 	public block(double width, double heightt, GraphicsContext gc) {
 		image = imageFactory.getImageFactory().getImage("rock", 55, 55);
-		this.state = Stored.getStoredInstance();
 		this.gc = gc;
 
 		setY(100);
