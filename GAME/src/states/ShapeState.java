@@ -3,7 +3,7 @@ package states;
 import javafx.scene.canvas.GraphicsContext;
 import shape.Shape;
 
-public abstract class State {
+public interface ShapeState {
 
     abstract public float setSlope(double screenWidth, double screenheight);
 

@@ -21,7 +21,7 @@ public class gameOptions {
 	public gameOptions() {
 		shapeSpeed = 4.0;
 		setWinningStrategy("score"); // score , timer
-		setGameStrategy("easy");//easy , medium , difficult
+		setGameStrategy("medium");//easy , medium , difficult
 		setMaxTime(1);////// 1 min
 		setMaxScore(1);
 		characters = new LinkedList<String>();

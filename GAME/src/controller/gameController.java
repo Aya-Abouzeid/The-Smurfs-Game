@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import layouts.Game;
+import logs.Logs;
 import player.Player;
 import shape.Shape;
 import shape.block;
@@ -22,9 +23,14 @@ import shape.shapeInt;
 import shape.shapePool;
 import snapshot.Memento;
 import states.Caught;
-import states.Different;
 import states.PlayerStack;
-import strategy.*;
+import strategy.difficultGame;
+import strategy.easyGame;
+import strategy.gameStrategy;
+import strategy.mediumGame;
+import strategy.scoreStrategy;
+import strategy.timerStrategy;
+import strategy.winningStrategy;
 
 public class gameController implements Runnable, CreateIterator {
 	private final double characterHeight = 330;
@@ -51,7 +57,7 @@ public class gameController implements Runnable, CreateIterator {
 	private int counter;
 	private Label score1;
 	private Label score2;
-	private int shapesDensity; 
+	private int shapesDensity;
 
 	public gameController(Game game, Memento snapshot) {
 		setGameParameters(game);
@@ -98,7 +104,7 @@ public class gameController implements Runnable, CreateIterator {
 			winningStrategy = new scoreStrategy(options.getMaxScore());
 		}
 	}
-	
+
 	private void setGameStrategy(gameOptions options) {
 		if (options.getGameStrategy() == "easy") {
 			gameStrategy = new easyGame(this);
@@ -161,17 +167,16 @@ public class gameController implements Runnable, CreateIterator {
 			if (players.size() == 2 && i > 0) {
 				catchDetection(i);
 				changeText();
-				//
 			}
 		}
-		if (players.size() == 2)
+		if (players.size() == 2) {
 			for (int i = 0; i < 2; i++) {
 				for (PlayerStack crnt : players.get(i).Stacks) {
 					for (shapeInt x : crnt.stack)
 						x.drawShape(gc);
 				}
 			}
-		checkGameEnd();
+		checkGameEnd();}
 	}
 
 	private void checkGameEnd() {
@@ -194,6 +199,7 @@ public class gameController implements Runnable, CreateIterator {
 	}
 
 	private void EndGame(String winner) {
+	    Logs.log("The current game has ended", "info");
 		System.out.println("end game");
 		timer.stopTimer();
 		drawingThread.stop();
@@ -342,19 +348,19 @@ public class gameController implements Runnable, CreateIterator {
 	public LinkedList<Player> getPlayers() {
 		return players;
 	}
-	
+
 	public ArrayList<Shape> getFallingShapes() {
 		return fallingShapes;
 	}
-	
+
 	public double getWidth() {
 		return width;
 	}
-	
+
 	public double getHeight() {
 		return height;
 	}
-	
+
 	public GraphicsContext getGraphics() {
 		return gc;
 	}

@@ -5,7 +5,7 @@ import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 import shape.Shape;
 
-public class FallingFromLeft extends State {
+public class FallingFromLeft implements ShapeState {
 	private static FallingFromLeft fallingFromLeft = null;
 	private Random randomize = new Random();
 

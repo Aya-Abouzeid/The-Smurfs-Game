@@ -3,7 +3,7 @@ package states;
 import javafx.scene.canvas.GraphicsContext;
 import shape.Shape;
 
-public class Caught extends State {
+public class Caught implements ShapeState {
 
     private static Caught caught = null;
 
@@ -28,11 +28,14 @@ public class Caught extends State {
         return "caught";
     }
 
-    @Override
-    public void move(Shape shape, GraphicsContext gc, double shapeSpeed, double width) {
 
-    }
     public void move(Shape shape, double x) {
        shape.setX(x);
+    }
+
+    @Override
+    public void move(Shape shape, GraphicsContext gc, double shapeSpeed, double width, double fallingSpeed) {
+        // TODO Auto-generated method stub
+
     }
 }

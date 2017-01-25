@@ -5,11 +5,11 @@ import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import states.State;
+import states.ShapeState;
 
 public abstract class Shape implements shapeInt, Serializable {
 
-	protected State state;
+	protected ShapeState state;
 	protected Color color;
 	protected int type;
 	protected double x;
@@ -37,7 +37,7 @@ public abstract class Shape implements shapeInt, Serializable {
 		this.setX(state.increaseSlopedY(this.getY(), this.slope, width));
 	}
 
-	public void setState(State s) {
+	public void setState(ShapeState s) {
 		this.state = s;
 	}
 
@@ -62,7 +62,7 @@ public abstract class Shape implements shapeInt, Serializable {
 		return this.y;
 	}
 
-	public State getState() {
+	public ShapeState getState() {
 		return this.state;
 
 	}
