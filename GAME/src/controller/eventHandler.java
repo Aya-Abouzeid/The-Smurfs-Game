@@ -11,7 +11,6 @@ import player.BuildPlayer;
 import player.Player;
 import player.PlayerProxy;
 import save.getarray;
-import save.save2;
 import shape.BuildShape;
 import shape.Shape;
 import shape.ShapeProxy;
@@ -27,7 +26,7 @@ public class eventHandler {
 	private Memento snapshot;
 	private musicPlayer music;
 	private save save1=new save();
-    private getarray u=new getarray(); 
+    private getarray u=new getarray();
 
 	private eventHandler() {
 		gameOptions = new gameOptions();
@@ -66,11 +65,6 @@ public class eventHandler {
 		game.start();
 	}
 
-//	public void saveGame() {
-//		save2 save = new save2();
-//		// save.save(this.snapshot);
-//	}
-
 	public void MainMenu() {
 		view.setScene("MainMenu");
 	}
@@ -88,10 +82,6 @@ public class eventHandler {
 	public void Instructions() {
 		view.setScene("Instructions");
 	}
-
-//	public void loadGame() {
-//		////// get load game
-//	}
 
 	public void mainOptions() {
 		view.setScene("MainOptions");
@@ -134,8 +124,6 @@ public class eventHandler {
 	}
 
 	public void saveGame() {
-
-		// save.save(this.snapshot);
 		save1.save(this.snapshot);
 	}
 
@@ -143,9 +131,7 @@ public class eventHandler {
 		Memento snapshot = null;
 		BuildShape v = new BuildShape();
 		BuildPlayer v1 = new BuildPlayer();
-		// try {
-		// Shape[][]n=(Shape[][]) save.load();
-		// Player[] k=(Player[]) save1.load();
+
 		ShapeProxy[][] k = (ShapeProxy[][]) save1.load1();
 		Shape[][] n = new Shape[5][1];
 		for (int i = 0; i < 5; i++) {
