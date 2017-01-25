@@ -175,6 +175,7 @@ public class eventHandler {
 		players.get(0).Stacks = p33;
 		players.get(1).Stacks = p44;
 		ArrayList<Shape> shapes = this.u.getShapeList(n[0]);
+		gameOptions.setGameStrategy(save1.load4());
 		snapshot = new Memento(shapes, gameOptions, players, j[1], j[2], j[0]);
 
 		Game gameScene = new Game(view.getHeight(), view.getWidth());

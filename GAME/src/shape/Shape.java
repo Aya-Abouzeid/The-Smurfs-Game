@@ -27,12 +27,6 @@ public abstract class Shape implements shapeInt, Serializable {
 	public abstract void drawShape(GraphicsContext gc);
 
 	public void increaseSlopedY(double width, double fallingSpeed) {
-		try {
-			throw new Exception();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		this.setY(this.getY() + fallingSpeed);
 		this.setX(state.increaseSlopedY(this.getY(), this.slope, width));
 	}
