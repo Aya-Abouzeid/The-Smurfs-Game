@@ -48,6 +48,8 @@ public class imageFactory {
             return new File("src\\images\\pause.jpg");
 		case "rock":
 			return new File("src\\images\\ROCK.png");
+		case "end":
+            return new File("src\\images\\endGame.jpg");
 		default:
 			return null;
 		}
