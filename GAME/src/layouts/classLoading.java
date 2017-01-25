@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 
+import logs.Logs;
 import shape.Shape;
 
 public class classLoading {
@@ -36,7 +37,7 @@ public class classLoading {
                 if (Shape.class.isAssignableFrom(tmp))
                     loadedShapes.add(tmp);
             } catch (Exception e) {
-
+                Logs.log("problem with loading shapes", "error");
             }
         }
     }

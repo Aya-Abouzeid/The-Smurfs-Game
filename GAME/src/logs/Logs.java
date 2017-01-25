@@ -9,7 +9,6 @@ public class Logs {
 
     public static void log(String msg, String level) {
         switch (level) {
-
         case "info":
             logger.info(msg);
             break;
@@ -27,8 +26,6 @@ public class Logs {
             break;
         default:
             break;
-
         }
-
     }
 }
