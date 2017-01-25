@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 import javafx.scene.input.KeyCode;
 import layouts.ExitConfrmationWindow;
-import layouts.Game;
+import layouts.*;
 import layouts.View;
 import player.BuildPlayer;
 import player.Player;
@@ -70,7 +70,6 @@ public class eventHandler {
 	}
 
 	public void EndProgram() {
-		// save last screenshot
 		view.exit();
 	}
 
@@ -87,8 +86,11 @@ public class eventHandler {
 		view.setScene("MainOptions");
 	}
 
-	public void EndGame() {
-		view.setScene("EndGame");
+	public void EndGame(String winnerName) {
+		System.out.println("end game winner " + winnerName);
+		EndGame scene = new EndGame(view.getHeight(), view.getWidth());
+		scene.setWinner(winnerName);
+		view.setScene(scene.getScene());
 	}
 
 	public void gameOptions() {

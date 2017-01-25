@@ -27,29 +27,30 @@ public class block extends Shape {
 
 	@Override
 	public double centerX() {
-		return x;
+		return x + 25;
 	}
 
 	@Override
 	public double centerY() {
-		return y;
+		return y + 55;
 	}
 
 	@Override
 	public void setX(double x) {
-		this.x = x;
+		this.x = x ;
 		drawShape(gc);
 	}
 
 	@Override
 	public void setY(double y) {
-		this.y = y;
+		this.y = y ;
 		drawShape(gc);
 	}
 
 	@Override
 	public void drawShape(GraphicsContext gc) {
-		gc.drawImage(image, x, y);
+		gc.drawImage(image, x - 25, y - 30);
 	}
+
 
 }

@@ -20,7 +20,7 @@ public class TimerThread implements Runnable {
 	public void run() {
 		 while (timerOn) {
 			changeText();
-			if (seconds < 60) {
+			if (seconds < 59) {
 				seconds++;
 			} else {
 				seconds = 0;

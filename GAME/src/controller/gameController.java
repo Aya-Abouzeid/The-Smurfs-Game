@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Random;
 
 import factories.imageFactory;
 import iterator.CreateIterator;
@@ -15,17 +14,17 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
 import layouts.Game;
 import player.Player;
 import shape.Shape;
 import shape.block;
-import shape.plate;
 import shape.shapeInt;
 import shape.shapePool;
 import snapshot.Memento;
 import states.Caught;
+import states.Different;
 import states.PlayerStack;
+import strategy.*;
 
 public class gameController implements Runnable, CreateIterator {
 	private final double characterHeight = 330;
@@ -39,10 +38,12 @@ public class gameController implements Runnable, CreateIterator {
 	private TimerThread timer;
 	private LinkedList<Player> players;
 	private gameOptions gameOptions;
-	// private winningStrategy winStrat;
+	private winningStrategy winningStrategy;
+	private gameStrategy gameStrategy;
 	private Group root;
 	private Label timerLabel;
 	private double shapeSpeed;
+	private double fallingSpeed = 1;
 	private int minutesTimer;
 	private int SecondsTimer;
 	private double width;
@@ -50,6 +51,7 @@ public class gameController implements Runnable, CreateIterator {
 	private int counter;
 	private Label score1;
 	private Label score2;
+	private int shapesDensity; 
 
 	public gameController(Game game, Memento snapshot) {
 		setGameParameters(game);
@@ -62,6 +64,8 @@ public class gameController implements Runnable, CreateIterator {
 		pool = shapePool.getPoolInstance();
 		players = new LinkedList<Player>();
 		setPlayers(snapshot.getPlayers());
+		setWinningStrategy(snapshot.getOptions());
+		setGameStrategy(snapshot.getOptions());
 	}
 
 	public gameController(Game game, gameOptions gameOptions) {
@@ -73,6 +77,8 @@ public class gameController implements Runnable, CreateIterator {
 		players = new LinkedList<Player>();
 		counter = 0;
 		setPlayers();
+		setWinningStrategy(gameOptions);
+		setGameStrategy(gameOptions);
 	}
 
 	private void setGameParameters(Game game) {
@@ -83,6 +89,26 @@ public class gameController implements Runnable, CreateIterator {
 		this.timerLabel = game.getTimerLabel();
 		this.score1 = game.getScore1Label();
 		this.score2 = game.getScore2Label();
+	}
+
+	private void setWinningStrategy(gameOptions options) {
+		if (options.getWinningStrategy() == "timer") {
+			winningStrategy = new timerStrategy(options.getMaxTime());
+		} else if (options.getWinningStrategy() == "score") {
+			winningStrategy = new scoreStrategy(options.getMaxScore());
+		}
+	}
+	
+	private void setGameStrategy(gameOptions options) {
+		if (options.getGameStrategy() == "easy") {
+			gameStrategy = new easyGame(this);
+		} else if (options.getGameStrategy() == "medium") {
+			gameStrategy = new mediumGame(this);
+		} else if (options.getGameStrategy() == "difficult") {
+			gameStrategy = new difficultGame(this);
+		}
+		fallingSpeed = gameStrategy.getFallingSpeed();
+		shapesDensity = gameStrategy.getShapesDensity();
 	}
 
 	@Override
@@ -100,7 +126,6 @@ public class gameController implements Runnable, CreateIterator {
 		drawingThread = new AnimationTimer() {
 			@Override
 			public void handle(long currentNanoTime) {
-				// stop it when game is paused
 				draw();
 			}
 		};
@@ -120,12 +145,10 @@ public class gameController implements Runnable, CreateIterator {
 	private void draw() {
 		gc.clearRect(0, 0, width, height);
 		counter++;
-		if (counter % 30 == 0) {
+		gameStrategy.manageBlocks();
+		if (counter % shapesDensity == 0) {
 			fallingShapes.add(pool.borrowObject(width, height));
 			counter = 0;
-			if (new Random().nextInt(100) == 0) {
-				fallingShapes.add(new block(width, height, gc));
-			}
 		}
 		for (int i = 0; i < fallingShapes.size(); i++) {
 			if (fallingShapes.get(i).getY() >= height) {
@@ -133,7 +156,7 @@ public class gameController implements Runnable, CreateIterator {
 				fallingShapes.remove(i);
 				i--;
 			} else {
-				fallingShapes.get(i).move(gc, shapeSpeed, width);
+				fallingShapes.get(i).move(gc, shapeSpeed, width, fallingSpeed);
 			}
 			if (players.size() == 2 && i > 0) {
 				catchDetection(i);
@@ -148,6 +171,33 @@ public class gameController implements Runnable, CreateIterator {
 						x.drawShape(gc);
 				}
 			}
+		checkGameEnd();
+	}
+
+	private void checkGameEnd() {
+		if (winningStrategy.detectEndGame(this)) {
+			EndGame();
+		}
+	}
+
+	private void EndGame() {
+		int score1 = players.get(0).getScore();
+		int score2 = players.get(1).getScore();
+
+		if (score1 == score2) {
+			EndGame("Draw");
+		} else if (score1 > score2) {
+			EndGame("Player one wins");
+		} else if (score1 < score2) {
+			EndGame("Player two wins");
+		}
+	}
+
+	private void EndGame(String winner) {
+		System.out.println("end game");
+		timer.stopTimer();
+		drawingThread.stop();
+		eventHandler.getInstance().EndGame(winner);
 	}
 
 	private void catchDetection(int obj) {
@@ -155,29 +205,50 @@ public class gameController implements Runnable, CreateIterator {
 		for (int i = 0; i < 2; i++) {
 			PlayerStack S1 = players.get(i).Stacks.get(0);
 			if (!S1.isblocked()) {
-				catchDetection(S1, obj, object, players.get(i));				
+				catchDetection(S1, obj, object, i);
 			}
 			PlayerStack S2 = players.get(i).Stacks.get(1);
 			if (!S2.isblocked()) {
-				catchDetection(S2, obj, object, players.get(i), characterWidth);				
+				catchDetection(S2, obj, object, i, characterWidth);
 			}
 		}
 	}
 
-	private void catchDetection(PlayerStack s, int index, Shape object, Player p) {
-		if (object.getY() == height - s.getHight() && Math.abs(object.centerX() - p.getX()) < 15) {
+	private void catchDetection(PlayerStack s, int index, Shape object, int playerIndx) {
+		if (object.getY() == height - s.getHight()
+				&& Math.abs(object.centerX() - players.get(playerIndx).getX()) < 15) {
 			s.add(object);
 			fallingShapes.remove(index);
 			object.setState(Caught.getCaughtInstance());
+			if (object instanceof block) {
+				s.blockStack();
+				checkStacksBlocked(playerIndx);
+			}
 		}
 	}
 
-	private void catchDetection(PlayerStack s, int index, Shape object, Player p, double characterWidth) {
+	private void catchDetection(PlayerStack s, int index, Shape object, int playerIndx, double characterWidth) {
 		if (object.getY() == height - s.getHight()
-				&& Math.abs(object.centerX() - 100 - characterWidth - p.getX()) < 15) {
+				&& Math.abs(object.centerX() - 100 - characterWidth - players.get(playerIndx).getX()) < 15) {
 			s.add(object);
 			fallingShapes.remove(index);
 			object.setState(Caught.getCaughtInstance());
+			if (object instanceof block) {
+				s.blockStack();
+				checkStacksBlocked(playerIndx);
+			}
+		}
+	}
+
+	private void checkStacksBlocked(int index) {
+		if (players.get(index).getStacks().get(0).isblocked()) {
+			if (players.get(index).getStacks().get(1).isblocked()) {
+				if (index == 0) {
+					EndGame("player two wins");
+				} else if (index == 1) {
+					EndGame("player one wins");
+				}
+			}
 		}
 	}
 
@@ -252,6 +323,10 @@ public class gameController implements Runnable, CreateIterator {
 		t.start();
 	}
 
+	public int getTimerMin() {
+		return timer.getMin();
+	}
+
 	// stop running threads
 	public Memento pause() {
 		timer.stopTimer();
@@ -262,6 +337,26 @@ public class gameController implements Runnable, CreateIterator {
 
 	public void setGameSpeed(double speed) {
 		shapeSpeed = speed;
+	}
+
+	public LinkedList<Player> getPlayers() {
+		return players;
+	}
+	
+	public ArrayList<Shape> getFallingShapes() {
+		return fallingShapes;
+	}
+	
+	public double getWidth() {
+		return width;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
+	
+	public GraphicsContext getGraphics() {
+		return gc;
 	}
 
 	@Override

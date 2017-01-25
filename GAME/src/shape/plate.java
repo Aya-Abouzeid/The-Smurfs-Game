@@ -68,4 +68,5 @@ public class plate extends Shape implements shapeInt, Serializable {
 		this.y = y;
 	}
 
+
 }

@@ -11,11 +11,19 @@ public class gameOptions {
 	private LinkedList<KeyCode> rightButton;
 	private LinkedList<KeyCode> leftButton;
 	private LinkedList<Double> startPositionX;
+	private String winningStrategy;
+	private String gameStrategy;
 	private static final int Players = 2;
 	private double shapeSpeed;
+	private int maxTime;
+	private int maxScore;
 
 	public gameOptions() {
 		shapeSpeed = 4.0;
+		setWinningStrategy("score"); // score , timer
+		setGameStrategy("easy");//easy , medium , difficult
+		setMaxTime(1);////// 1 min
+		setMaxScore(1);
 		characters = new LinkedList<String>();
 		mouseControl = new LinkedList<Boolean>();
 		rightButton = new LinkedList<KeyCode>();
@@ -71,5 +79,37 @@ public class gameOptions {
 
 	public double getGameSpeed() {
 		return shapeSpeed;
+	}
+
+	public String getWinningStrategy() {
+		return winningStrategy;
+	}
+
+	public void setWinningStrategy(String winningStrategy) {
+		this.winningStrategy = winningStrategy;
+	}
+
+	public int getMaxTime() {
+		return maxTime;
+	}
+
+	public void setMaxTime(int maxTime) {
+		this.maxTime = maxTime;
+	}
+
+	public int getMaxScore() {
+		return maxScore;
+	}
+
+	public void setMaxScore(int maxScore) {
+		this.maxScore = maxScore;
+	}
+
+	public String getGameStrategy() {
+		return gameStrategy;
+	}
+
+	public void setGameStrategy(String gameStrategy) {
+		this.gameStrategy = gameStrategy;
 	}
 }

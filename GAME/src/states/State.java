@@ -11,5 +11,5 @@ public abstract class State {
 
     abstract public String getstate();
 
-    abstract public void move(Shape shape, GraphicsContext gc, double shapeSpeed, double width);
+    abstract public void move(Shape shape, GraphicsContext gc, double shapeSpeed, double width, double fallingSpeed);
 }

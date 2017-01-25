@@ -15,6 +15,8 @@ import javafx.scene.text.FontWeight;
 public class EndGame extends layout {
 
     private Group root = new Group();
+    private String winnerName = "";
+    private  Label winner;
 
     public EndGame(double height, double width) {
         super(height, width);
@@ -25,7 +27,8 @@ public class EndGame extends layout {
     }
     /// --- GET WINNER NAME ?!!!!
     private void addWinner() {
-        Label winner = new Label();
+        winner = new Label();
+        winner.setText(winnerName);
         winner.setTextFill(Color.web("#FFCA28"));
         winner.setFont(Font.font("Cambria", FontWeight.BOLD, 60));
         winner.setLayoutX(windowWidth * 0.5);
@@ -43,9 +46,14 @@ public class EndGame extends layout {
     }
 
     private void addBackground() {
-        Image background = imgFactory.getImage("endGame", windowWidth, windowHeight);
+        Image background = imgFactory.getImage("end", windowWidth, windowHeight);
         ImageView img = new ImageView(background);
         root.getChildren().add(img);
+    }
+    
+    public void setWinner (String winnerName) {
+    	this.winnerName = winnerName;
+        winner.setText(winnerName);
     }
 
 }

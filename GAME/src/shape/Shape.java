@@ -25,9 +25,15 @@ public abstract class Shape implements shapeInt, Serializable {
 	public abstract void setY(double y);
 
 	public abstract void drawShape(GraphicsContext gc);
-	
-	public void increaseSlopedY(double width) {
-		this.setY(this.getY() + 1);
+
+	public void increaseSlopedY(double width, double fallingSpeed) {
+		try {
+			throw new Exception();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.setY(this.getY() + fallingSpeed);
 		this.setX(state.increaseSlopedY(this.getY(), this.slope, width));
 	}
 
@@ -35,9 +41,9 @@ public abstract class Shape implements shapeInt, Serializable {
 		this.state = s;
 	}
 
-	public void move(GraphicsContext gc, double shapeSpeed, double width) {
-		
-		this.state.move(this, gc, shapeSpeed, width);
+	public void move(GraphicsContext gc, double shapeSpeed, double width, double fallingSpeed) {
+
+		this.state.move(this, gc, shapeSpeed, width, fallingSpeed);
 	}
 
 	public void setSlope(double screenWidth, double screenheight) {
@@ -72,36 +78,30 @@ public abstract class Shape implements shapeInt, Serializable {
 	}
 
 	public String getColorname() {
-		if (color.equals(Color.RED)) {
-			return "RED";
+		if (color != null) {
+			if (color.equals(Color.RED)) {
+				return "RED";
+			} else if (color.equals(Color.BLUE)) {
+				return "BLUE";
+			} else if (color.equals(Color.PINK)) {
+				return "PINK";
+			} else if (color.equals(Color.CYAN)) {
+				return "CYAN";
+			} else if (color.equals(Color.GOLD)) {
+				return "GOLD";
+			} else if (color.equals(Color.BLUEVIOLET)) {
+				return "BLUEVIOLET";
+			} else if (color.equals(Color.GREENYELLOW)) {
+				return "GREENYELLOW";
+			} else if (color.equals(Color.DEEPPINK)) {
+				return "DEEPPINK";
+			} else if (color.equals(Color.BLACK)) {
+				return "BLACK";
+			} else if (color.equals(Color.DARKGREEN)) {
+				return "DARKGREEN";
+			}
 		}
-		if (color.equals(Color.BLUE)) {
-			return "BLUE";
-		}
-		if (color.equals(Color.PINK)) {
-			return "PINK";
-		}
-		if (color.equals(Color.CYAN)) {
-			return "CYAN";
-		}
-		if (color.equals(Color.GOLD)) {
-			return "GOLD";
-		}
-		if (color.equals(Color.BLUEVIOLET)) {
-			return "BLUEVIOLET";
-		}
-		if (color.equals(Color.GREENYELLOW)) {
-			return "GREENYELLOW";
-		}
-		if (color.equals(Color.DEEPPINK)) {
-			return "DEEPPINK";
-		}
-		if (color.equals(Color.BLACK)) {
-			return "BLACK";
-		}
-		if (color.equals(Color.DARKGREEN)) {
-			return "DARKGREEN";
-		}
+
 		return null;
 	}
 

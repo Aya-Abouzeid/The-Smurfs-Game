@@ -23,7 +23,7 @@ public class FallingFromLeft extends State {
 	}
 
 	@Override
-	public void move(Shape shape, GraphicsContext gc, double shapeSpeed,double width) {
+	public void move(Shape shape, GraphicsContext gc, double shapeSpeed,double width, double fallingSpeed) {
 		// TODO Auto-generated method stub
 		if (shape.getX() < 250) {
 
@@ -31,7 +31,7 @@ public class FallingFromLeft extends State {
 			shape.drawShape(gc);
 		} else {
 
-			shape.increaseSlopedY(width);
+			shape.increaseSlopedY(width, fallingSpeed);
 			shape.drawShape(gc);
 		}
 	}
