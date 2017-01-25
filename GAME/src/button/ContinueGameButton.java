@@ -19,6 +19,8 @@ public class ContinueGameButton extends button {
         });
     }
 
+
+
     @Override
     public void setName() {
         File file = new File("src\\images\\CONTINUE.png");

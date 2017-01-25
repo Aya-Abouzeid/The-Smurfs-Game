@@ -1,8 +1,11 @@
 package factories;
 
 import button.ContinueGameButton;
+import button.EasyButton;
 import button.GameOptionsButton;
+import button.HardButton;
 import button.MainMenuButton;
+import button.MediumButton;
 import button.ReturnToPause;
 import button.SaveGameButton;
 import button.button;
@@ -55,6 +58,13 @@ public class buttonFactory {
 			return new SaveGameButton();
 		case "music":
 			return new musicButton();
+		case "easy":
+		    return new EasyButton();
+		case "medium":
+            return new MediumButton();
+		case "hard":
+            return new HardButton();
+
 		default:
 			return null;
 		}

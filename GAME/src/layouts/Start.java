@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logs.Logs;
 
@@ -14,6 +15,7 @@ public class Start extends layout {
 
     private Group root = new Group();
     private static final String[] BUTTONS = { "New Game", "Load Game", "Main Options", "Instructions", "Exit" };
+    private static final String[] LEVELS = {"easy", "medium", "hard"};
 
     public Start(double height, double width) {
         super(height, width);
@@ -40,6 +42,15 @@ public class Start extends layout {
         vbox.setAlignment(Pos.CENTER_RIGHT);
         root.getChildren().add(vbox);
         vbox.setPadding(new Insets(windowHeight - 700, 50, 150, windowWidth - 300));
+        setLevels();
+    }
+
+    private void setLevels() {
+        HBox hbox = new HBox(10);
+        for (String crnt : LEVELS)
+            hbox.getChildren().add(factory.getButton(crnt).getButton());
+        root.getChildren().add(hbox);
+       hbox.setPadding(new Insets(windowHeight * 0.07, 50, 150, windowWidth * .5));
     }
 
     private void setBackground() {

@@ -32,12 +32,12 @@ public class plate extends Shape implements shapeInt, Serializable {
 
 	@Override
 	public double centerX() {
-		return this.x + 35;
+		return this.x;
 	}
 
 	@Override
 	public double centerY() {
-		return this.y + 8;
+		return this.y;
 	}
 
 	@Override
