@@ -20,8 +20,8 @@ import shape.Shape;
 import shape.shapeInt;
 import shape.shapePool;
 import snapshot.Memento;
+import states.Caught;
 import states.PlayerStack;
-import states.State;
 
 public class gameController implements Runnable,CreateIterator {
 	private final double characterHeight = 330;
@@ -45,7 +45,6 @@ public class gameController implements Runnable,CreateIterator {
 	private int counter;
 	private Label score1;
     private Label score2;
-    private State Cought;
 	public gameController(Game game, Memento snapshot) {
 		setGameParameters(game);
 		this.gameOptions = snapshot.getOptions();
@@ -149,13 +148,12 @@ public class gameController implements Runnable,CreateIterator {
 			if (object.getY() == height - S1.getHight() && Math.abs(object.centerX() - players.get(i).getX()) < 15) {
 				S1.add(object);
 				fallingShapes.remove(obj);
-				object.setState(Cought);
+				object.setState(Caught.getCaughtInstance());
 			} else if (object.getY() == height - S2.getHight()
 					&& Math.abs(object.centerX() - 100 - characterWidth - players.get(i).getX()) < 15) {
 				S2.add(object);
 				fallingShapes.remove(obj);
-				object.setState(Cought);
-
+				object.setState(Caught.getCaughtInstance());
 			}
 		}
 	}
