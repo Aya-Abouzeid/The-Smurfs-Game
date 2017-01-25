@@ -1,5 +1,6 @@
 package layouts;
 
+import factories.imageFactory;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -52,6 +53,8 @@ public class Game extends layout {
         scene = new Scene(root, windowWidth, windowHeight);
         setKeyPress();
         setMouseMovement();
+ //       gc.drawImage(imageFactory.getImageFactory().getImage("rock"), 0, 0);
+                
     }
 
 
@@ -89,6 +92,8 @@ public class Game extends layout {
         root.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
         gc.setStroke(Color.BLACK);
+//        gc.setFill(Color.RED);
+//		gc.fillOval(50,50,50,50);
         return root;
     }
 

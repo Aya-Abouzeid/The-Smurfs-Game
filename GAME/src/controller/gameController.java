@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Random;
 
 import factories.imageFactory;
 import iterator.CreateIterator;
@@ -14,16 +15,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import layouts.Game;
 import player.Player;
 import shape.Shape;
+import shape.block;
+import shape.plate;
 import shape.shapeInt;
 import shape.shapePool;
 import snapshot.Memento;
 import states.Caught;
 import states.PlayerStack;
 
-public class gameController implements Runnable,CreateIterator {
+public class gameController implements Runnable, CreateIterator {
 	private final double characterHeight = 330;
 	private final double characterWidth = 100;
 	private final int KEYBOARD_MOVEMENT = 70;
@@ -35,6 +39,7 @@ public class gameController implements Runnable,CreateIterator {
 	private TimerThread timer;
 	private LinkedList<Player> players;
 	private gameOptions gameOptions;
+	// private winningStrategy winStrat;
 	private Group root;
 	private Label timerLabel;
 	private double shapeSpeed;
@@ -44,7 +49,8 @@ public class gameController implements Runnable,CreateIterator {
 	private double height;
 	private int counter;
 	private Label score1;
-    private Label score2;
+	private Label score2;
+
 	public gameController(Game game, Memento snapshot) {
 		setGameParameters(game);
 		this.gameOptions = snapshot.getOptions();
@@ -57,7 +63,6 @@ public class gameController implements Runnable,CreateIterator {
 		players = new LinkedList<Player>();
 		setPlayers(snapshot.getPlayers());
 	}
-
 
 	public gameController(Game game, gameOptions gameOptions) {
 		setGameParameters(game);
@@ -77,7 +82,7 @@ public class gameController implements Runnable,CreateIterator {
 		this.root = game.getRoot();
 		this.timerLabel = game.getTimerLabel();
 		this.score1 = game.getScore1Label();
-        this.score2 = game.getScore2Label();
+		this.score2 = game.getScore2Label();
 	}
 
 	@Override
@@ -101,60 +106,78 @@ public class gameController implements Runnable,CreateIterator {
 		};
 		drawingThread.start();
 	}
-	 private void changeText() {
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					 score1.setText("SMURF" +"\n     "+players.get(1).getScore());
-		        		score2.setText("SMURFETTE" +"\n          "+players.get(0).getScore());
-				}
-			});
-		}
+
+	private void changeText() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				score1.setText("SMURF" + "\n     " + players.get(1).getScore());
+				score2.setText("SMURFETTE" + "\n          " + players.get(0).getScore());
+			}
+		});
+	}
+
 	private void draw() {
-		  gc.clearRect(0, 0, width, height);
-	        counter++;
-	        if (counter % 30 == 0) {
-	            fallingShapes.add(pool.borrowObject(width, height));
-	            counter = 0;
-	        }
-	        for (int i = 0; i < fallingShapes.size(); i++) {
-	        	if (players.size() == 2){
-	                catchDetection(i);
-	                changeText();
-//
-	            }
-	            if (fallingShapes.get(i).getY() >= height) {
-	                pool.returnObject(fallingShapes.get(i));
-	                fallingShapes.remove(i);
-	                i--;
-	            } else {
-	                fallingShapes.get(i).move(gc, shapeSpeed, width);
-	            }
-	        }
-	        if (players.size() == 2)
-	            for (int i = 0; i < 2; i++) {
-	                for (PlayerStack crnt : players.get(i).Stacks) {
-	                    for (shapeInt x : crnt.stack)
-	                        x.drawShape(gc);
-	                }
-	            }
+		gc.clearRect(0, 0, width, height);
+		counter++;
+		if (counter % 30 == 0) {
+			fallingShapes.add(pool.borrowObject(width, height));
+			counter = 0;
+			if (new Random().nextInt(100) == 0) {
+				fallingShapes.add(new block(width, height, gc));
+			}
+		}
+		for (int i = 0; i < fallingShapes.size(); i++) {
+			if (fallingShapes.get(i).getY() >= height) {
+				pool.returnObject(fallingShapes.get(i));
+				fallingShapes.remove(i);
+				i--;
+			} else {
+				fallingShapes.get(i).move(gc, shapeSpeed, width);
+			}
+			if (players.size() == 2 && i > 0) {
+				catchDetection(i);
+				changeText();
+				//
+			}
+		}
+		if (players.size() == 2)
+			for (int i = 0; i < 2; i++) {
+				for (PlayerStack crnt : players.get(i).Stacks) {
+					for (shapeInt x : crnt.stack)
+						x.drawShape(gc);
+				}
+			}
 	}
 
 	private void catchDetection(int obj) {
 		Shape object = fallingShapes.get(obj);
 		for (int i = 0; i < 2; i++) {
 			PlayerStack S1 = players.get(i).Stacks.get(0);
-			PlayerStack S2 = players.get(i).Stacks.get(1);
-			if (object.getY() == height - S1.getHight() && Math.abs(object.centerX() - players.get(i).getX()) < 15) {
-				S1.add(object);
-				fallingShapes.remove(obj);
-				object.setState(Caught.getCaughtInstance());
-			} else if (object.getY() == height - S2.getHight()
-					&& Math.abs(object.centerX() - 100 - characterWidth - players.get(i).getX()) < 15) {
-				S2.add(object);
-				fallingShapes.remove(obj);
-				object.setState(Caught.getCaughtInstance());
+			if (!S1.isblocked()) {
+				catchDetection(S1, obj, object, players.get(i));				
 			}
+			PlayerStack S2 = players.get(i).Stacks.get(1);
+			if (!S2.isblocked()) {
+				catchDetection(S2, obj, object, players.get(i), characterWidth);				
+			}
+		}
+	}
+
+	private void catchDetection(PlayerStack s, int index, Shape object, Player p) {
+		if (object.getY() == height - s.getHight() && Math.abs(object.centerX() - p.getX()) < 15) {
+			s.add(object);
+			fallingShapes.remove(index);
+			object.setState(Caught.getCaughtInstance());
+		}
+	}
+
+	private void catchDetection(PlayerStack s, int index, Shape object, Player p, double characterWidth) {
+		if (object.getY() == height - s.getHight()
+				&& Math.abs(object.centerX() - 100 - characterWidth - p.getX()) < 15) {
+			s.add(object);
+			fallingShapes.remove(index);
+			object.setState(Caught.getCaughtInstance());
 		}
 	}
 
@@ -175,7 +198,6 @@ public class gameController implements Runnable,CreateIterator {
 			@Override
 			public void run() {
 				int n = gameOptions.getNPlayers();
-				System.out.println("game options setplayers number " + n);
 				boolean mouseCntrl;
 				Image img;
 				for (int i = 0; i < n; i++) {
@@ -195,7 +217,6 @@ public class gameController implements Runnable,CreateIterator {
 			}
 		});
 	}
-
 
 	public void notifyMouseMoved(double x) {
 		Player p;
@@ -235,7 +256,7 @@ public class gameController implements Runnable,CreateIterator {
 	public Memento pause() {
 		timer.stopTimer();
 		drawingThread.stop();
-		Memento snapshot = new Memento(fallingShapes, gameOptions, players, timer.getMin()	, timer.getsec(), counter);
+		Memento snapshot = new Memento(fallingShapes, gameOptions, players, timer.getMin(), timer.getsec(), counter);
 		return snapshot;
 	}
 
@@ -243,20 +264,16 @@ public class gameController implements Runnable,CreateIterator {
 		shapeSpeed = speed;
 	}
 
-
 	@Override
 	public Iterator cteateIterator(LinkedList<Player> player) {
 
 		return new PlayerIterator(player);
 	}
 
-
 	@Override
 	public Iterator cteateIterator(ArrayList<Shape> shape) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 }

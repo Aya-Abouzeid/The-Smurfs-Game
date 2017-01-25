@@ -9,8 +9,6 @@ public interface shapeInt {
  
     public void drawShape(GraphicsContext gc);
  
-    public Shape getShape();
- 
     public double getX();
  
     public void setSlope(double screenWidth, double screenheight);

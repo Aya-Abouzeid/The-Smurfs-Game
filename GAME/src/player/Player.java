@@ -37,8 +37,6 @@ public class Player implements Serializable{
     private void notifyStacks(){
 
         for(PlayerStack crnt : Stacks){
-        	System.out.println(crnt.getHight());
-        	System.out.println("stack move");
            crnt.PH.notifyObservers(positionX, Stacks.indexOf(crnt));}
     }
 

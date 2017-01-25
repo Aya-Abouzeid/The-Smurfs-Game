@@ -12,6 +12,7 @@ public class PlayerStack {
     private StackState currentstate;
     private StackState Different;
     private StackState Same;
+	private boolean block;
     private double hight;
     public Stack<shapeInt> stack;
     public Player player;
@@ -24,6 +25,7 @@ public class PlayerStack {
         stack = new Stack<shapeInt>();
         this.hight = hight;
         this.player=player;
+        block = false;
     }
 
     public double getHight() {
@@ -63,4 +65,11 @@ public class PlayerStack {
         }
         return currentstate.insert(shape);
     }
+    
+    public void blockStack() {
+		block = true;
+	}
+	public boolean isblocked() {
+		return block;
+	}
 }
