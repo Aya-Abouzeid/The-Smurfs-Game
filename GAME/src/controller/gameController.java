@@ -7,6 +7,8 @@ import factories.imageFactory;
 import iterator.CreateIterator;
 import iterator.Iterator;
 import iterator.PlayerIterator;
+import iterator.Shapeiterator;
+import iterator.ShapeiteratorArray;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -171,13 +173,16 @@ public class gameController implements Runnable, CreateIterator {
 				//
 			}
 		}
+		//////////////////////////// iterator
+		Iterator k = this.cteateIterator(players);
 		if (players.size() == 2)
-			for (int i = 0; i < 2; i++) {
-				for (PlayerStack crnt : players.get(i).Stacks) {
+			while (k.hasNext()) {
+				for (PlayerStack crnt : ((Player) k.Next()).Stacks) {
 					for (shapeInt x : crnt.stack)
 						x.drawShape(gc);
 				}
 			}
+
 		checkGameEnd();
 	}
 
@@ -375,8 +380,14 @@ public class gameController implements Runnable, CreateIterator {
 
 	@Override
 	public Iterator cteateIterator(ArrayList<Shape> shape) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new Shapeiterator(shape);
+	}
+
+	@Override
+	public Iterator cteateIterator(Shape[] shape) {
+
+		return new ShapeiteratorArray(shape);
 	}
 
 }

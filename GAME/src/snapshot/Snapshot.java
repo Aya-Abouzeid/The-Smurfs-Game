@@ -15,8 +15,9 @@ public class Snapshot {
     private gameOptions options;
     private LinkedList<Player> players;
 
-    public Snapshot(ArrayList<Shape> shapes, gameOptions options, LinkedList<Player> players, int minutes, int seconds,
-            int counter) {
+    public Snapshot(ArrayList<Shape> shapes,
+    		gameOptions options, LinkedList<Player> players,
+    		int minutes, int seconds, int counter) {
         this.shapes = shapes;
         this.options = options;
         this.players = players;

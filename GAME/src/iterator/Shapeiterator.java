@@ -12,7 +12,7 @@ public class Shapeiterator implements Iterator {
 	}
 	@Override
 	public boolean hasNext() {
-	    if(current>=shapes.size()-1){
+	    if(shapes==null||current>=shapes.size()-1||shapes.get(current+1)==null){
 		return false;
 		}
 	    return true;

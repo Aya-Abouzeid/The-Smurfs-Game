@@ -14,7 +14,7 @@ public class PlayerIterator implements Iterator {
 		}
 		@Override
 		public boolean hasNext() {
-		    if(current>=players.size()-1){
+		    if(players==null||current>=players.size()-1||players.get(current+1)==null){
 			return false;
 			}
 		    return true;
