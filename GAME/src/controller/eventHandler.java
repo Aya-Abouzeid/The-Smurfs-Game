@@ -99,6 +99,24 @@ public class eventHandler {
 	public void gameOptions() {
 		view.setScene("GameOptions");
 	}
+	
+	public void setLevel(String level) {
+		gameOptions.setGameStrategy(level);
+	}
+	
+	public void setKeyContol(String control) {
+		if (control.equals("KeyMouse")) {
+			gameOptions.setPlayer2Mouse();
+		} else if (control.equals("MouseKey")) {
+			gameOptions.setPlayer1Mouse();
+		} 
+	}
+	
+	public void setStrategy(String strategy, int maxTime, int maxScore) {
+		gameOptions.setGameStrategy(strategy);
+		gameOptions.setMaxTime(maxTime);
+		gameOptions.setMaxScore(maxScore);
+	}
 
 	public void GameOptionsReturn() {
 		view.setScene("pause");
@@ -130,6 +148,10 @@ public class eventHandler {
 
 	public void saveGame() {
 		save1.save(this.snapshot);
+	}
+	
+	public gameOptions getOptions() {
+		return gameOptions;
 	}
 
 	public void loadGame() {

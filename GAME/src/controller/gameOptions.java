@@ -21,7 +21,7 @@ public class gameOptions {
 	public gameOptions() {
 		shapeSpeed = 4.0;
 		setWinningStrategy("score"); // score , timer
-		setGameStrategy("difficult");//easy , medium , difficult
+		setGameStrategy("easy");//easy , medium , difficult
 		setMaxTime(1);////// 1 min
 		setMaxScore(1);
 		characters = new LinkedList<String>();
@@ -50,6 +50,26 @@ public class gameOptions {
 		rightButton.add(KeyCode.RIGHT);
 		leftButton.add(KeyCode.LEFT);
 		startPositionX.add(1000.0);
+	}
+	
+	public void setPlayer1Mouse() {
+		mouseControl.add(0, true);
+		mouseControl.add(1, false);
+		rightButton.add(0, null);
+		leftButton.add(0, null);
+		rightButton.add(1, KeyCode.RIGHT);
+		leftButton.add(1, KeyCode.LEFT);
+		
+	}
+	
+	public void setPlayer2Mouse() {
+		mouseControl.add(1, true);
+		mouseControl.add(0, false);
+		rightButton.add(1, null);
+		leftButton.add(1, null);
+		rightButton.add(0, KeyCode.RIGHT);
+		leftButton.add(0, KeyCode.LEFT);
+		
 	}
 
 	public String getCharacter(int playerIndex) {
