@@ -17,7 +17,7 @@ import save.getarray;
 import shape.BuildShape;
 import shape.Shape;
 import shape.ShapeProxy;
-import snapshot.Memento;
+import snapshot.Snapshot;
 import states.PlayerStack;
 
 public class eventHandler {
@@ -26,7 +26,7 @@ public class eventHandler {
 	private gameController controller;
 	private View view;
 	private gameOptions gameOptions;
-	private Memento snapshot;
+	private Snapshot snapshot;
 	private musicPlayer music;
 	private save save1=new save();
     private getarray u=new getarray();
@@ -133,7 +133,7 @@ public class eventHandler {
 	}
 
 	public void loadGame() {
-		Memento snapshot = null;
+		Snapshot snapshot = null;
 		BuildShape v = new BuildShape();
 		BuildPlayer v1 = new BuildPlayer();
 
@@ -185,7 +185,7 @@ public class eventHandler {
 		if(save1.load5()[2]) {players.get(1).Stacks.get(0).blockStack();}
 		else if(save1.load5()[3]) {players.get(1).Stacks.get(1).blockStack();}
 
-		snapshot = new Memento(shapes, gameOptions, players, j[1], j[2], j[0]);
+		snapshot = new Snapshot(shapes, gameOptions, players, j[1], j[2], j[0]);
 
 		Game gameScene = new Game(view.getHeight(), view.getWidth());
 		view.setScene(gameScene.getScene());

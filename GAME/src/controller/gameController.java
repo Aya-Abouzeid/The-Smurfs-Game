@@ -21,7 +21,7 @@ import shape.Shape;
 import shape.block;
 import shape.shapeInt;
 import shape.shapePool;
-import snapshot.Memento;
+import snapshot.Snapshot;
 import states.Caught;
 import states.PlayerStack;
 import strategy.difficultGame;
@@ -59,7 +59,7 @@ public class gameController implements Runnable, CreateIterator {
 	private Label score2;
 	private int shapesDensity;
 
-	public gameController(Game game, Memento snapshot) {
+	public gameController(Game game, Snapshot snapshot) {
 		setGameParameters(game);
 		this.gameOptions = snapshot.getOptions();
 		fallingShapes = snapshot.getShapes();
@@ -335,11 +335,11 @@ public class gameController implements Runnable, CreateIterator {
 	}
 
 	// stop running threads
-	public Memento pause() {
+	public Snapshot pause() {
 		timer.stopTimer();
 		drawingThread.stop();
 		Logs.log("Snapshot abject is created", "info");
-		Memento snapshot = new Memento(fallingShapes, gameOptions, players, timer.getMin(), timer.getsec(), counter);
+		Snapshot snapshot = new Snapshot(fallingShapes, gameOptions, players, timer.getMin(), timer.getsec(), counter);
 		return snapshot;
 	}
 

@@ -12,7 +12,7 @@ import player.PlayerProxy;
 import save.getarray;
 import shape.BuildShapeProxy;
 import shape.ShapeProxy;
-import snapshot.Memento;
+import snapshot.Snapshot;
 
 public class save {
     private getarray array = new getarray();
@@ -22,7 +22,7 @@ public class save {
     private String gameStrategy;
     private boolean[] blockstacks = new boolean[4];
 
-    public void save(Memento snapshot) {
+    public void save(Snapshot snapshot) {
         time[0] = snapshot.getCounter();
         time[1] = snapshot.getMinutes();
         time[2] = snapshot.getSeconds();
