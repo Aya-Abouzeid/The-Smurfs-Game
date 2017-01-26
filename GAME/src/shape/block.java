@@ -4,13 +4,12 @@ import factories.imageFactory;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import states.FallingFromLeft;
-import states.Stored;
 
 public class block extends Shape {
 
 	private Image image;
 	private GraphicsContext gc;
-	
+
 
 	public block(double width, double heightt, GraphicsContext gc) {
 		image = imageFactory.getImageFactory().getImage("rock", 55, 55);
@@ -25,7 +24,7 @@ public class block extends Shape {
 		type = 3;
 
 	}
-	
+
 	public block() {
 		image = imageFactory.getImageFactory().getImage("rock", 55, 55);
 
@@ -36,7 +35,7 @@ public class block extends Shape {
 
 		setSlope(133, 1362);
 		type = 3;
-		
+
 	}
 
 	@Override
@@ -52,13 +51,11 @@ public class block extends Shape {
 	@Override
 	public void setX(double x) {
 		this.x = x ;
-		//drawShape(gc);
 	}
 
 	@Override
 	public void setY(double y) {
 		this.y = y ;
-		//drawShape(gc);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import logs.Logs;
 
 public class Instructions extends layout {
 
@@ -28,6 +29,7 @@ public class Instructions extends layout {
     }
 
     private void addBackground() {
+        Logs.log("Instruction background added", "debug");
         Image background = imgFactory.getImage("howTo", windowWidth, windowHeight);
         ImageView img = new ImageView(background);
         root.getChildren().add(img);

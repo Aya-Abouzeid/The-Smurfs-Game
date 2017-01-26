@@ -22,7 +22,7 @@ public class Pause extends layout {
 
     private void addButton() {
         VBox vbox = new VBox(30);
-        vbox.setPadding(new Insets(windowHeight -550 , windowWidth / 2 - 60, 150,
+        vbox.setPadding(new Insets(windowHeight *.25 , windowWidth *.5, 150,
          windowWidth / 2 - 150));
         for (String crnt : BUTTONS)
             vbox.getChildren().add(factory.getButton(crnt).getButton());

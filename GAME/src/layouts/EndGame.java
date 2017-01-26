@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import logs.Logs;
 
 public class EndGame extends layout {
 
@@ -26,6 +27,7 @@ public class EndGame extends layout {
         scene = new Scene(root, windowWidth, windowHeight);
     }
     private void addWinner() {
+
         winner = new Label();
         winner.setText(winnerName);
         winner.setTextFill(Color.web("#FFCA28"));
@@ -45,6 +47,7 @@ public class EndGame extends layout {
     }
 
     private void addBackground() {
+        Logs.log("background is set to end game", "debug");
         Image background = imgFactory.getImage("end", windowWidth, windowHeight);
         ImageView img = new ImageView(background);
         root.getChildren().add(img);

@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import layouts.Game;
+import logs.Logs;
 import player.Player;
 import shape.Shape;
 import shape.block;
@@ -22,9 +23,14 @@ import shape.shapeInt;
 import shape.shapePool;
 import snapshot.Memento;
 import states.Caught;
-import states.Different;
 import states.PlayerStack;
-import strategy.*;
+import strategy.difficultGame;
+import strategy.easyGame;
+import strategy.gameStrategy;
+import strategy.mediumGame;
+import strategy.scoreStrategy;
+import strategy.timerStrategy;
+import strategy.winningStrategy;
 
 public class gameController implements Runnable, CreateIterator {
 	private final double characterHeight = 330;
@@ -332,6 +338,7 @@ public class gameController implements Runnable, CreateIterator {
 	public Memento pause() {
 		timer.stopTimer();
 		drawingThread.stop();
+		Logs.log("Snapshot abject is created", "info");
 		Memento snapshot = new Memento(fallingShapes, gameOptions, players, timer.getMin(), timer.getsec(), counter);
 		return snapshot;
 	}

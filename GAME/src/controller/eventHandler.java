@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import javafx.scene.input.KeyCode;
+import layouts.EndGame;
 import layouts.ExitConfrmationWindow;
-import layouts.*;
+import layouts.Game;
 import layouts.View;
+import logs.Logs;
 import player.BuildPlayer;
 import player.Player;
 import player.PlayerProxy;
@@ -88,7 +90,7 @@ public class eventHandler {
 	}
 
 	public void EndGame(String winnerName) {
-		System.out.println("end game winner " + winnerName);
+		Logs.log("winner:" + winnerName, "debug");
 		EndGame scene = new EndGame(view.getHeight(), view.getWidth());
 		scene.setWinner(winnerName);
 		view.setScene(scene.getScene());
@@ -182,7 +184,7 @@ public class eventHandler {
 		else if(save1.load5()[1]) {players.get(0).Stacks.get(1).blockStack();}
 		if(save1.load5()[2]) {players.get(1).Stacks.get(0).blockStack();}
 		else if(save1.load5()[3]) {players.get(1).Stacks.get(1).blockStack();}
-		
+
 		snapshot = new Memento(shapes, gameOptions, players, j[1], j[2], j[0]);
 
 		Game gameScene = new Game(view.getHeight(), view.getWidth());
