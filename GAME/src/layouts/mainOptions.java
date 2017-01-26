@@ -3,18 +3,30 @@ package layouts;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
+
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import logs.Logs;
 
 public class mainOptions extends layout{
 
+<<<<<<< HEAD
 	Group root = new Group();
 	
+=======
+    private Group root = new Group();
+
+
+>>>>>>> branch 'master' of https://salma_yehia@bitbucket.org/Nada_Ayman_Mahmoud/game.git
 	public mainOptions(double height, double width) {
+<<<<<<< HEAD
 		super(height, width);
 		VBox vbox = new VBox();
 		vbox.getChildren().add(factory.getButton("Main Menu").getButton());
@@ -22,6 +34,12 @@ public class mainOptions extends layout{
 		root.getChildren().add(vbox);
 		addLevel ();
 		scene = new Scene(root,windowWidth, windowHeight);
+=======
+	    super(height, width);
+        addBackground();
+        addButton();
+        scene = new Scene(root, windowWidth, windowHeight);
+>>>>>>> branch 'master' of https://salma_yehia@bitbucket.org/Nada_Ayman_Mahmoud/game.git
 	}
 	private void addKeyControls() {
 		final ToggleGroup group = new ToggleGroup();
@@ -56,5 +74,22 @@ public class mainOptions extends layout{
 	      });
 	    root.getChildren().add(vbox);
 	  }
+
+
+    private void addButton() {
+      VBox vBox = new VBox();
+      vBox.getChildren().add(factory.getButton("Main Menu").getButton());
+      vBox.setPadding(new Insets(windowHeight * .8, windowWidth  * .5 , 100, windowWidth / 2 - 140));
+      root.getChildren().add(vBox);
+    }
+
+
+    private void addBackground() {
+        Logs.log("Options background added", "debug");
+        Image background = imgFactory.getImage("mainOptions", windowWidth, windowHeight);
+        ImageView img = new ImageView(background);
+        root.getChildren().add(img);
+
+    }
 
 }

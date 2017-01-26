@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 public class Pause extends layout {
 
     private Group root = new Group();
-    private static final String[] BUTTONS = { "Continue Game", "save", "Main Menu", "Game Options" };
+    private static final String[] BUTTONS = { "Continue Game", "save", "Main Menu"};
 
     public Pause(double height, double width) {
         super(height, width);

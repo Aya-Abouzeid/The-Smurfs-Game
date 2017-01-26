@@ -21,7 +21,11 @@ public class gameOptions {
 	public gameOptions() {
 		shapeSpeed = 4.0;
 		setWinningStrategy("score"); // score , timer
+<<<<<<< HEAD
 		setGameStrategy("easy");//easy , medium , difficult
+=======
+		setGameStrategy("medium");//easy , medium , difficult
+>>>>>>> branch 'master' of https://salma_yehia@bitbucket.org/Nada_Ayman_Mahmoud/game.git
 		setMaxTime(1);////// 1 min
 		setMaxScore(1);
 		characters = new LinkedList<String>();

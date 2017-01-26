@@ -2,7 +2,13 @@ package factories;
 
 
 import javafx.scene.Scene;
-import layouts.*;
+import layouts.EndGame;
+import layouts.Game;
+import layouts.Instructions;
+import layouts.Pause;
+import layouts.Start;
+import layouts.layout;
+import layouts.mainOptions;
 
 public class sceneFactory {
 
@@ -23,7 +29,7 @@ public class sceneFactory {
 	public Scene getScene(String name, double Height, double Width) {
 
 		layout scene;
-		
+
 		switch (name) {
 		case "Game":
 			scene =  new Game(Height, Width);break;
@@ -33,8 +39,6 @@ public class sceneFactory {
 			scene =  new Pause(Height, Width);break;
 		case "MainOptions":
 			scene =  new mainOptions(Height, Width);break;
-		case "GameOptions":
-			scene =  new gameOptions(Height, Width);break;
 		case "Instructions":
 			scene =  new Instructions(Height, Width);break;
 		case "EndGame":
@@ -42,7 +46,7 @@ public class sceneFactory {
 		default:
 			return null;
 		}
-		
+
 		return scene.getScene();
 
 	}
