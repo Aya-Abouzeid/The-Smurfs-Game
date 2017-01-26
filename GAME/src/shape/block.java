@@ -10,6 +10,7 @@ public class block extends Shape {
 
 	private Image image;
 	private GraphicsContext gc;
+	
 
 	public block(double width, double heightt, GraphicsContext gc) {
 		image = imageFactory.getImageFactory().getImage("rock", 55, 55);
@@ -21,7 +22,21 @@ public class block extends Shape {
 		setX(0);
 
 		setSlope(width, heightt);
+		type = 3;
 
+	}
+	
+	public block() {
+		image = imageFactory.getImageFactory().getImage("rock", 55, 55);
+
+		setY(100);
+
+		setState(FallingFromLeft.getFallingFromLeftInstance());
+		setX(0);
+
+		setSlope(133, 1362);
+		type = 3;
+		
 	}
 
 	@Override
@@ -37,13 +52,13 @@ public class block extends Shape {
 	@Override
 	public void setX(double x) {
 		this.x = x ;
-		drawShape(gc);
+		//drawShape(gc);
 	}
 
 	@Override
 	public void setY(double y) {
 		this.y = y ;
-		drawShape(gc);
+		//drawShape(gc);
 	}
 
 	@Override

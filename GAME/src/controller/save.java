@@ -20,6 +20,7 @@ public class save {
 	private BuildPlayerProxy builtPlayerProxy = new BuildPlayerProxy();
 	private int time[] = new int[7];
 	private String gameStrategy;
+	private boolean[] blockstacks = new boolean[4];
 
 	public void save(Memento snapshot) {
 		time[0] = snapshot.getCounter();
@@ -30,6 +31,11 @@ public class save {
 		time[5] = (int) snapshot.getPlayers().get(1).Stacks.get(0).getHight();
 		time[6] = (int) snapshot.getPlayers().get(1).Stacks.get(1).getHight();
 		gameStrategy = snapshot.getOptions().getGameStrategy();
+		blockstacks[0] = snapshot.getPlayers().get(0).Stacks.get(0).isblocked();
+		blockstacks[1] = snapshot.getPlayers().get(0).Stacks.get(1).isblocked();
+		blockstacks[2] = snapshot.getPlayers().get(1).Stacks.get(0).isblocked();
+		blockstacks[3] = snapshot.getPlayers().get(1).Stacks.get(1).isblocked();
+		
 		try {
 			FileOutputStream fileOut1 = new FileOutputStream("car1");// creates
 																		// a
@@ -47,6 +53,7 @@ public class save {
 			FileOutputStream fileOut7 = new FileOutputStream("car7");
 			FileOutputStream fileOut8 = new FileOutputStream("car8");
 			FileOutputStream fileOut9 = new FileOutputStream("car9");
+			FileOutputStream fileOut10 = new FileOutputStream("car10");
 
 			// FileOutputStream fileOut2 = new FileOutputStream("car2");
 			ObjectOutputStream out1 = new ObjectOutputStream(fileOut1);// routs
@@ -64,6 +71,7 @@ public class save {
 			ObjectOutputStream out7 = new ObjectOutputStream(fileOut7);
 			ObjectOutputStream out8 = new ObjectOutputStream(fileOut8);
 			ObjectOutputStream out9 = new ObjectOutputStream(fileOut9);
+			ObjectOutputStream out10 = new ObjectOutputStream(fileOut10);
 
 			// ObjectOutputStream out2 = new ObjectOutputStream(fileOut2);
 			out1.writeObject(buildShapeProxy.create(array.getShapeArray(snapshot.getShapes())));// we
@@ -83,6 +91,7 @@ public class save {
 			out7.writeObject(builtPlayerProxy.create(snapshot.getPlayers().get(1), 1));
 			out8.writeObject(this.time);
 			out9.writeObject(gameStrategy);
+			out10.writeObject(blockstacks);
 			// out2.writeObject(snapshot.players.get(1));
 			out1.close();// closes the data paths
 			out2.close();
@@ -93,6 +102,7 @@ public class save {
 			out7.close();
 			out8.close();
 			out9.close();
+			out10.close();
 			// out2.close();
 			fileOut1.close();// closes the data paths
 			fileOut2.close();
@@ -103,6 +113,7 @@ public class save {
 			fileOut7.close();
 			fileOut8.close();
 			fileOut9.close();
+			fileOut10.close();
 			// fileOut2.close();
 		} catch (IOException i)// exception stuff
 		{
@@ -262,6 +273,39 @@ public class save {
 
 			// in2.close();
 			fileIn9.close();
+
+			// fileIn2.close();
+			return h;
+		} catch (IOException i)// exception stuff
+		{
+			i.printStackTrace();
+			return null;
+		} catch (ClassNotFoundException c)// more exception stuff
+		{
+			System.out.println("Error");
+			c.printStackTrace();
+			return null;
+		}
+	}
+	public boolean[] load5() {
+		try// If this doesnt work throw an exception
+		{
+			FileInputStream fileIn10 = new FileInputStream("car10");// Read serial
+																	// file.
+
+			// FileInputStream fileIn2 = new FileInputStream("car2");
+			ObjectInputStream in10 = new ObjectInputStream(fileIn10);
+
+			// ObjectInputStream in2 = new ObjectInputStream(fileIn2);
+			boolean[] h = (boolean[]) in10.readObject();
+			// Player b2 =(Player) in2.readObject();
+			// Player b[]=new Player[2];
+			// b[0]=b1;
+			// b[1]=b2;
+			in10.close();
+
+			// in2.close();
+			fileIn10.close();
 
 			// fileIn2.close();
 			return h;

@@ -51,7 +51,7 @@ public class gameController implements Runnable, CreateIterator {
 	private int counter;
 	private Label score1;
 	private Label score2;
-	private int shapesDensity; 
+	private int shapesDensity;
 
 	public gameController(Game game, Memento snapshot) {
 		setGameParameters(game);
@@ -98,13 +98,14 @@ public class gameController implements Runnable, CreateIterator {
 			winningStrategy = new scoreStrategy(options.getMaxScore());
 		}
 	}
-	
+
 	private void setGameStrategy(gameOptions options) {
-		if (options.getGameStrategy() == "easy") {
+		if (options.getGameStrategy().equals("easy")) {
+			System.out.println("jgfvihgvio");
 			gameStrategy = new easyGame(this);
-		} else if (options.getGameStrategy() == "medium") {
+		} else if (options.getGameStrategy().equals("medium")) {
 			gameStrategy = new mediumGame(this);
-		} else if (options.getGameStrategy() == "difficult") {
+		} else if (options.getGameStrategy().equals("difficult")) {
 			gameStrategy = new difficultGame(this);
 		}
 		fallingSpeed = gameStrategy.getFallingSpeed();
@@ -342,19 +343,19 @@ public class gameController implements Runnable, CreateIterator {
 	public LinkedList<Player> getPlayers() {
 		return players;
 	}
-	
+
 	public ArrayList<Shape> getFallingShapes() {
 		return fallingShapes;
 	}
-	
+
 	public double getWidth() {
 		return width;
 	}
-	
+
 	public double getHeight() {
 		return height;
 	}
-	
+
 	public GraphicsContext getGraphics() {
 		return gc;
 	}

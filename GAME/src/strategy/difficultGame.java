@@ -8,7 +8,7 @@ import shape.block;
 public class difficultGame implements gameStrategy {
 
 	private gameController game;
-	private final double fallingSpeed = 3;
+	private final double fallingSpeed = 2;
 	private int counter;
 
 	public difficultGame(gameController game) {
