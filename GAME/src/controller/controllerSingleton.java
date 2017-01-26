@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import factories.shapeFactory;
 import javafx.application.Application;
 import layouts.View;
-import layouts.classLoading;
 import logs.Logs;
 
 public class controllerSingleton {

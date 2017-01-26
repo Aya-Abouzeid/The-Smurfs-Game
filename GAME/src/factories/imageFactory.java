@@ -50,6 +50,8 @@ public class imageFactory {
 			return new File("src\\images\\ROCK.png");
 		case "end":
             return new File("src\\images\\endGame.jpg");
+		case "mainOptions":
+		    return new File("src\\images\\MainOptions.jpg");
 		default:
 			return null;
 		}
