@@ -25,13 +25,12 @@ public class EndGame extends layout {
         addWinner();
         scene = new Scene(root, windowWidth, windowHeight);
     }
-    /// --- GET WINNER NAME ?!!!!
     private void addWinner() {
         winner = new Label();
         winner.setText(winnerName);
         winner.setTextFill(Color.web("#FFCA28"));
         winner.setFont(Font.font("Cambria", FontWeight.BOLD, 60));
-        winner.setLayoutX(windowWidth * 0.5);
+        winner.setLayoutX(windowWidth * 0.3);
         winner.setLayoutY(windowHeight * 0.5);
         root.getChildren().add(winner);
 
@@ -50,7 +49,7 @@ public class EndGame extends layout {
         ImageView img = new ImageView(background);
         root.getChildren().add(img);
     }
-    
+
     public void setWinner (String winnerName) {
     	this.winnerName = winnerName;
         winner.setText(winnerName);
