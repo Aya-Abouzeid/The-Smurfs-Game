@@ -1,8 +1,9 @@
 A two-player catching falling plates game, programmed in JAVA, and JavaFX.
-there are a set of colored plates queues that end up falling down. Players try to catch the falling plates, if they
+ 
+- there are a set of colored plates queues that end up falling down. Players try to catch the falling plates, if they
 manage to collect three consecutive plates of the same color, then they are vanished and their score increases.
 
-Not only plates are used, The shapes classes are dynamically loaded at the start of the execution from a specific folder
+- Not only plates are used, The shapes classes are dynamically loaded at the start of the execution from a specific folder
 
 The following patterns are used in the design:
 1. Singleton,
@@ -17,5 +18,5 @@ The following patterns are used in the design:
 10. Object Pool
 11. MVC
 
-Complete log of the operations are done on the game (e.g., user actions, objects intersections,
+- Complete log of the operations are done on the game (e.g., user actions, objects intersections,
 creation or reusing of objects) using Log4J
